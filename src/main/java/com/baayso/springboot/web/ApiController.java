@@ -1,17 +1,29 @@
 package com.baayso.springboot.web;
 
-import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.List;
+
+import javax.inject.Inject;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.baayso.springboot.entity.TestUser;
+import com.baayso.springboot.service.TestUserService;
 
 @RestController
 @RequestMapping("/api")
 public class ApiController {
 
+    @Inject
+    private TestUserService testUserService;
+
     @RequestMapping
-    public String now() {
-        return "现在时间：" + LocalDateTime.now().toString();
+    public List<TestUser> now() {
+        List<TestUser> users = this.testUserService.findAll();
+        users.forEach(u -> u.setDatetime(new Date()));
+
+        return users;
     }
 
     @RequestMapping("/hello")

@@ -1,0 +1,36 @@
+server:
+    undertow:
+        accesslog:
+            enabled: false
+            dir: /var/logs
+
+logging:
+    level:
+        com.baayso: DEBUG
+
+spring:
+    datasource:
+        name: druidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://127.0.0.1:3306/spring-boot-demo
+        username: root
+        password: root
+        type: com.alibaba.druid.pool.DruidDataSource # 使用druid数据源
+        initialSize: 1
+        minIdle: 1
+        maxActive: 100
+        maxWait: 60000
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: SELECT 'x'
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: false
+        # maxPoolPreparedStatementPerConnectionSize: 20
+        maxOpenPreparedStatements: 20
+        filters: stat,wall
+        removeAbandoned: true
+        removeAbandonedTimeoutMillis: 300000
+        logAbandoned: true
+
