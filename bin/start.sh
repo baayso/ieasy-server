@@ -14,4 +14,6 @@ echo ${JAVA_OPTS}
 APP_OPTS="-spring.profiles.active=${PROFILE}"
 echo ${APP_OPTS}
 
+echo "java ${JAVA_OPTS} -jar spring-boot-demo.jar ${APP_OPTS}"
+
 java ${JAVA_OPTS} -jar spring-boot-demo.jar ${APP_OPTS}
