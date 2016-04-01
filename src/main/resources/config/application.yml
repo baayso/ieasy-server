@@ -1,0 +1,68 @@
+server:
+    port: 8888
+    # context-path: /springboot
+    compression:
+        enabled: true
+        mime-types: text/html,application/xml,application/json,application/javascript,text/css,text/plain
+        min-response-size: 1024
+    ssl:
+        enabled: true
+        key-store: classpath:config/sample.jks
+        key-store-password: secret
+        key-password: password
+    undertow:
+        accesslog:
+            enabled: false
+            dir: /var/logs
+
+logging:
+    # config: classpath:config/logback.xml
+    path: /var/logs
+    file: myapp.log
+    # level:
+    #     *: DEBUG
+    #   com.baayso: DEBUG
+
+spring:
+    profiles:
+        active: dev
+    application:
+        admin:
+            enabled: true
+    jackson:
+        date-format: yyyy-MM-dd HH:mm:ss
+        joda-date-time-format: yyyy-MM-dd HH:mm:ss
+    mvc:
+        date-format: yyyy-MM-dd HH:mm:ss
+        view:
+            prefix: /templates/
+            suffix: .ftl
+    freemarker:
+        enabled: true
+        cache: false
+        request-context-attribute: request
+    datasource:
+        name: druidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://127.0.0.1:3306/spring-boot-demo
+        username: root
+        password: root
+        type: com.alibaba.druid.pool.DruidDataSource # 使用druid数据源
+        initialSize: 10
+        minIdle: 10
+        maxActive: 100
+        maxWait: 60000
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: SELECT 'x'
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: false
+        # maxPoolPreparedStatementPerConnectionSize: 20
+        maxOpenPreparedStatements: 20
+        filters: stat,wall
+        removeAbandoned: true
+        removeAbandonedTimeoutMillis: 300000
+        logAbandoned: true
+
