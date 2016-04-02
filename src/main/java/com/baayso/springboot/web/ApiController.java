@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.baayso.springboot.entity.TestUser;
 import com.baayso.springboot.service.TestUserService;
+import com.github.pagehelper.PageInfo;
 
 @RestController
 @RequestMapping("/api")
@@ -24,6 +25,11 @@ public class ApiController {
         users.forEach(u -> u.setDatetime(new Date()));
 
         return users;
+    }
+
+    @RequestMapping("/page")
+    public PageInfo<TestUser> page() {
+        return this.testUserService.findAll(2, 3);
     }
 
     @RequestMapping("/hello")
