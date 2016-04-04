@@ -1,5 +1,9 @@
 package com.baayso.springboot.config;
 
+import java.util.EnumSet;
+
+import javax.servlet.DispatcherType;
+import javax.servlet.FilterRegistration;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
@@ -9,6 +13,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.util.IntrospectorCleanupListener;
 
 import com.alibaba.druid.support.http.StatViewServlet;
+import com.alibaba.druid.support.http.WebStatFilter;
 
 /**
  * Web基本配置。
@@ -34,10 +39,17 @@ public class WebInitializer implements ServletContextInitializer {
         // servletContext.addListener(Log4jConfigListener.class);
 
         // 配置Druid内置的StatViewServlet用于展示Druid的统计信息
-        StatViewServlet druidStatView = new StatViewServlet();
-        ServletRegistration.Dynamic dynamic = servletContext.addServlet("druidStatView", druidStatView);
-        // dynamic.setLoadOnStartup(2);
-        dynamic.addMapping("/druid/*");
+        ServletRegistration.Dynamic druidStatViewServlet = servletContext.addServlet("druidStatViewServlet", StatViewServlet.class);
+        // 在StatViewServlet输出的html页面中，有一个功能是Reset All，执行这个操作之后，会导致所有计数器清零，重新计数。你可以通过配置参数关闭它
+        druidStatViewServlet.setInitParameter("resetEnable", "false");
+        // druidStatView.setLoadOnStartup(2);
+        druidStatViewServlet.addMapping("/druid/*");
+
+        // WebStatFilter用于采集web-jdbc关联监控的数据
+        FilterRegistration.Dynamic druidWebStatFilter = servletContext.addFilter("druidWebStatFilter", WebStatFilter.class);
+        druidWebStatFilter.setInitParameter("exclusions", "*.js,*.css,*.gif,*.jpg,*.png,*.ico,/druid/*");
+        druidWebStatFilter.addMappingForUrlPatterns(EnumSet.of(DispatcherType.REQUEST, DispatcherType.FORWARD, DispatcherType.INCLUDE), false, "/*");
+
     }
 
 }
