@@ -32,6 +32,16 @@ public class ApiController {
         return this.testUserService.findAll(2, 3);
     }
 
+    @RequestMapping("/create")
+    public boolean create() {
+        return this.testUserService.create();
+    }
+
+    @RequestMapping("/creates")
+    public boolean creates() {
+        return this.testUserService.creates();
+    }
+
     @RequestMapping("/hello")
     public String helloWorld() {
         return "hello";

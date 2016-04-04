@@ -3,6 +3,8 @@ package com.baayso.springboot.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -17,6 +19,9 @@ public class TestUser implements Serializable {
 
     private static final long serialVersionUID = -8962566780883631270L;
 
+    @Id
+    @GeneratedValue(generator = "JDBC")
+    // @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long   id;
     private String name;
     @Transient
@@ -24,10 +29,10 @@ public class TestUser implements Serializable {
 
     @Override
     public String toString() {
-        return "TestUser{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", datetime=" + datetime +
+        return "TestUser{" + //
+                "id=" + id + //
+                ", name='" + name + '\'' + //
+                ", datetime=" + datetime + //
                 '}';
     }
 

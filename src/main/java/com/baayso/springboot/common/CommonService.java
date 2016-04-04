@@ -1,4 +1,4 @@
-package com.baayso.springboot.service;
+package com.baayso.springboot.common;
 
 import java.io.Serializable;
 import java.util.List;
@@ -10,8 +10,6 @@ import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
-import tk.mybatis.mapper.common.Mapper;
-
 /**
  * 通用业务逻辑。
  *
@@ -22,12 +20,13 @@ import tk.mybatis.mapper.common.Mapper;
 public abstract class CommonService<T, ID extends Serializable> {
 
     @Inject
-    protected Mapper<T> dao;
+    protected CommonMapper<T> dao;
 
     /**
      * 保存一个实体，null的属性不会保存，会使用数据库默认值。
      *
-     * @param entity 需要保存的实体
+     * @param entity
+     *            需要保存的实体
      *
      * @return 受影响的行数
      *
@@ -40,8 +39,10 @@ public abstract class CommonService<T, ID extends Serializable> {
     /**
      * 保存一个实体。
      *
-     * @param entity     需要保存的实体
-     * @param isSaveNull 是否保存为null的属性
+     * @param entity
+     *            需要保存的实体
+     * @param isSaveNull
+     *            是否保存为null的属性
      *
      * @return 受影响的行数
      *
@@ -61,9 +62,24 @@ public abstract class CommonService<T, ID extends Serializable> {
     }
 
     /**
+     * 批量插入，该接口限制实体包含`id`属性并且必须为自增列。 <br>
+     * 注：null的属性也会保存，不会使用数据库默认值。
+     * 
+     * @param list
+     *            实体集合
+     * @return 受影响的行数
+     *
+     * @since 1.0.0
+     */
+    public int saves(List<T> list) {
+        return this.dao.insertList(list);
+    }
+
+    /**
      * 根据主键字段进行删除，方法参数必须包含完整的主键属性。
      *
-     * @param key 主键
+     * @param key
+     *            主键
      *
      * @return 受影响的行数
      *
@@ -76,7 +92,8 @@ public abstract class CommonService<T, ID extends Serializable> {
     /**
      * 根据实体属性作为条件进行删除，查询条件使用等号。
      *
-     * @param entity 封装了查询条件的实体
+     * @param entity
+     *            封装了查询条件的实体
      *
      * @return 受影响的行数
      *
@@ -89,7 +106,8 @@ public abstract class CommonService<T, ID extends Serializable> {
     /**
      * 根据主键更新实体属性不为null的值。
      *
-     * @param entity 封装了更新条件和更新内容的实体
+     * @param entity
+     *            封装了更新条件和更新内容的实体
      *
      * @return 受影响的行数
      *
@@ -102,8 +120,10 @@ public abstract class CommonService<T, ID extends Serializable> {
     /**
      * 根据主键更新实体。
      *
-     * @param entity       封装了更新条件和更新内容的实体
-     * @param isUpdateNull 是否更新为null的属性
+     * @param entity
+     *            封装了更新条件和更新内容的实体
+     * @param isUpdateNull
+     *            是否更新为null的属性
      *
      * @return 受影响的行数
      *
@@ -125,7 +145,8 @@ public abstract class CommonService<T, ID extends Serializable> {
     /**
      * 根据实体中的属性查询总数，查询条件使用等号。
      *
-     * @param entity 封装了查询条件的实体
+     * @param entity
+     *            封装了查询条件的实体
      *
      * @return 查询总数
      *
@@ -138,7 +159,8 @@ public abstract class CommonService<T, ID extends Serializable> {
     /**
      * 根据主键字段进行查询，方法参数必须包含完整的主键属性，查询条件使用等号。
      *
-     * @param key 主键
+     * @param key
+     *            主键
      *
      * @return 查询到的实体
      *
@@ -151,7 +173,8 @@ public abstract class CommonService<T, ID extends Serializable> {
     /**
      * 根据实体中的属性进行查询，只能有一个返回值，有多个结果是抛出异常，查询条件使用等号。
      *
-     * @param entity 封装了查询条件的实体
+     * @param entity
+     *            封装了查询条件的实体
      *
      * @return 查询到的实体
      *
@@ -175,7 +198,8 @@ public abstract class CommonService<T, ID extends Serializable> {
     /**
      * 根据实体中的属性值进行查询，查询条件使用等号。
      *
-     * @param entity 封装了查询条件的实体
+     * @param entity
+     *            封装了查询条件的实体
      *
      * @return 查询到的数据列表
      *
@@ -188,8 +212,10 @@ public abstract class CommonService<T, ID extends Serializable> {
     /**
      * 单表分页查询。
      *
-     * @param pageNum  页码
-     * @param pageSize 每页行数
+     * @param pageNum
+     *            页码
+     * @param pageSize
+     *            每页行数
      *
      * @return 查询到的数据列表
      *
