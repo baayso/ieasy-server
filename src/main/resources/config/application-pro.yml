@@ -1,5 +1,4 @@
 server:
-    port: 6666
     undertow:
         accesslog:
             enabled: true
