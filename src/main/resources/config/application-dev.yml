@@ -12,7 +12,7 @@ spring:
     datasource:
         name: druidDataSource
         driver-class-name: com.mysql.jdbc.Driver
-        url: jdbc:mysql://127.0.0.1:3306/spring-boot-demo
+        url: jdbc:mysql://127.0.0.1:3306/springbootdemo
         username: root
         password: root
         type: com.alibaba.druid.pool.DruidDataSource # 使用druid数据源

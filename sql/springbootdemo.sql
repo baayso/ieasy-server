@@ -4,7 +4,7 @@ Navicat MySQL Data Transfer
 Source Server         : 127.0.0.1 (MariaDB 10.1)
 Source Server Version : 50505
 Source Host           : localhost:3306
-Source Database       : spring-boot-demo
+Source Database       : springbootdemo
 
 Target Server Type    : MYSQL
 Target Server Version : 50505
@@ -15,9 +15,9 @@ Date: 2016-04-01 16:40:03
 
 SET FOREIGN_KEY_CHECKS=0;
 
-CREATE DATABASE IF NOT EXISTS spring-boot-demo DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+CREATE DATABASE IF NOT EXISTS springbootdemo DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
 
-USE spring-boot-demo;
+USE springbootdemo;
 
 -- ----------------------------
 -- Table structure for t_test_user
