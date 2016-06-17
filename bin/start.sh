@@ -6,7 +6,7 @@ PORT=$1
 PROFILE=$2
 
 if [ -z ${PORT} ]; then
-    PROFILE="6666"
+    PORT="6666"
 fi
 
 if [ -z ${PROFILE} ]; then
@@ -19,6 +19,6 @@ echo ${JAVA_OPTS}
 APP_OPTS="--server.port=${PORT} --spring.profiles.active=${PROFILE}"
 echo ${APP_OPTS}
 
-echo "java ${JAVA_OPTS} -jar spring-boot-demo.jar ${APP_OPTS}"
+echo "nohup java ${JAVA_OPTS} -jar spring-boot-demo.jar ${APP_OPTS} > /dev/null 2>&1 &"
 
-java ${JAVA_OPTS} -jar spring-boot-demo.jar ${APP_OPTS}
+nohup java ${JAVA_OPTS} -jar spring-boot-demo.jar ${APP_OPTS} > /dev/null 2>&1 &
