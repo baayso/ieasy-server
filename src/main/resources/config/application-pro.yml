@@ -1,12 +1,12 @@
 server:
     undertow:
         accesslog:
-            enabled: true
-            dir: /var/logs
+            enabled: false
+            dir: /var/logs/${server.port}
 
 logging:
     path: /var/logs
-    file: myapp.log
+    file: spring-boot-demo-${server.port}.log
     level:
         com.baayso: INFO
 
@@ -35,4 +35,14 @@ spring:
         removeAbandoned: true
         removeAbandonedTimeoutMillis: 300000
         logAbandoned: true
-
+    redis:
+        database: 8
+        host: localhost
+        port: 6379
+        password:
+        pool:
+            max-active: 2048
+            max-idle: 10
+            max-wait: -1
+            min-idle: 0
+        timeout: 0

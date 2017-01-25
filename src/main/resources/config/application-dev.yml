@@ -2,7 +2,7 @@ server:
     undertow:
         accesslog:
             enabled: false
-            dir: /var/logs
+            dir: /var/logs/${server.port}
 
 logging:
     level:
@@ -33,4 +33,14 @@ spring:
         removeAbandoned: true
         removeAbandonedTimeoutMillis: 300000
         logAbandoned: true
-
+    redis:
+        database: 0
+        host: localhost
+        port: 6379
+        password:
+        pool:
+            max-active: 8
+            max-idle: 8
+            max-wait: -1
+            min-idle: 0
+        timeout: 0

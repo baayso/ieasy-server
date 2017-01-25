@@ -36,8 +36,9 @@
     </settings>
 
     <typeHandlers>
-        <!-- Java 8 time (JSR 310) support for Mybatis -->
-        <package name="com.github.javaplugs.mybatis"/>
+        <!-- 用户性别枚举
+        <typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler"
+                     javaType="com.baayso.api.user.entity.UserGender"/> -->
     </typeHandlers>
 
     <plugins>

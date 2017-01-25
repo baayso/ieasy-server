@@ -1,4 +1,4 @@
-package com.baayso.springboot.config;
+package com.baayso.springboot.config.web;
 
 import java.util.EnumSet;
 
@@ -8,7 +8,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 
-import org.springframework.boot.context.embedded.ServletContextInitializer;
+import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.util.IntrospectorCleanupListener;
 
@@ -17,9 +17,8 @@ import com.alibaba.druid.support.http.WebStatFilter;
 
 /**
  * Web基本配置。
- * 
+ *
  * @author ChenFangjie (2015年9月19日 下午10:18:17)
- * 
  * @since 1.0.0
  */
 @Configuration

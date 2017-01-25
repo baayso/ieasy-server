@@ -10,20 +10,18 @@ server:
         key-store: classpath:config/sample.jks
         key-store-password: secret
         key-password: password
-    undertow:
-        accesslog:
-            enabled: false
-            dir: /var/logs
 
 spring:
     profiles:
         active: dev
     application:
         admin:
-            enabled: true
+            enabled: false
     jackson:
         date-format: yyyy-MM-dd HH:mm:ss
         joda-date-time-format: yyyy-MM-dd HH:mm:ss
+        serialization-inclusion: NON_NULL
+        time-zone: Asia/Shanghai
     mvc:
         date-format: yyyy-MM-dd HH:mm:ss
         view:
@@ -33,4 +31,4 @@ spring:
         enabled: true
         cache: false
         request-context-attribute: request
-
+        template-loader-path: classpath:/templates/
