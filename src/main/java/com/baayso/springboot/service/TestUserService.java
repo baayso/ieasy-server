@@ -30,6 +30,8 @@ public class TestUserService extends CommonService<TestUser, Long> {
 
         super.save(testUser2);
 
+        int i = 1 / 0;
+
         return true;
     }
 

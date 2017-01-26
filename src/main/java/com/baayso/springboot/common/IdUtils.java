@@ -1,6 +1,6 @@
 package com.baayso.springboot.common;
 
-import org.springside.modules.utils.Ids;
+import org.springside.modules.utils.misc.IdGenerator;
 
 import com.baayso.commons.utils.ObjectId;
 
@@ -25,7 +25,7 @@ public final class IdUtils {
      * @since 1.0.0
      */
     public static String uuid() {
-        return Ids.uuid2();
+        return IdGenerator.uuid2();
     }
 
     /**

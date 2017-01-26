@@ -1,4 +1,4 @@
-package com.baayso.springboot.config;
+package com.baayso.springboot.config.mybatis;
 
 import java.util.Properties;
 
