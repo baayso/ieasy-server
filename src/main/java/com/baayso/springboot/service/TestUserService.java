@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.baayso.springboot.common.CommonService;
+import com.baayso.springboot.common.AbstractCommonService;
 import com.baayso.springboot.entity.TestUser;
 
 /**
@@ -16,10 +16,10 @@ import com.baayso.springboot.entity.TestUser;
  * @since 1.0.0
  */
 @Service
-public class TestUserService extends CommonService<TestUser, Long> {
+public class TestUserService extends AbstractCommonService<TestUser, Long> {
 
     @Transactional
-    public boolean create() {
+    public boolean saveTestUser() {
         TestUser testUser1 = new TestUser();
         testUser1.setName("code-1");
 
@@ -35,7 +35,7 @@ public class TestUserService extends CommonService<TestUser, Long> {
         return true;
     }
 
-    public boolean creates() {
+    public boolean saveTestUsers() {
         TestUser testUser3 = new TestUser();
         // testUser3.setName("code-3");
 

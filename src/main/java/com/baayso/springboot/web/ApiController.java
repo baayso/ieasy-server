@@ -21,7 +21,7 @@ public class ApiController {
 
     @RequestMapping
     public List<TestUser> now() {
-        List<TestUser> users = this.testUserService.findAll();
+        List<TestUser> users = this.testUserService.list();
         users.forEach(u -> u.setDatetime(new Date()));
 
         return users;
@@ -29,17 +29,17 @@ public class ApiController {
 
     @RequestMapping("/page")
     public PageInfo<TestUser> page() {
-        return this.testUserService.findAll(2, 3);
+        return this.testUserService.list(2, 3);
     }
 
     @RequestMapping("/create")
     public boolean create() {
-        return this.testUserService.create();
+        return this.testUserService.saveTestUser();
     }
 
     @RequestMapping("/creates")
     public boolean creates() {
-        return this.testUserService.creates();
+        return this.testUserService.saveTestUsers();
     }
 
     @RequestMapping("/hello")

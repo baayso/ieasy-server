@@ -17,7 +17,7 @@ import com.github.pagehelper.PageInfo;
  * @since 1.0.0
  */
 @Service
-public abstract class CommonService<T, ID extends Serializable> {
+public abstract class AbstractCommonService<T, ID extends Serializable> {
 
     @Inject
     protected CommonMapper<T> dao;
@@ -81,7 +81,7 @@ public abstract class CommonService<T, ID extends Serializable> {
      *
      * @since 1.0.0
      */
-    public int delete(ID key) {
+    public int remove(ID key) {
         return this.dao.deleteByPrimaryKey(key);
     }
 
@@ -94,7 +94,7 @@ public abstract class CommonService<T, ID extends Serializable> {
      *
      * @since 1.0.0
      */
-    public int delete(T entity) {
+    public int remove(T entity) {
         return this.dao.delete(entity);
     }
 
@@ -156,7 +156,7 @@ public abstract class CommonService<T, ID extends Serializable> {
      *
      * @since 1.0.0
      */
-    public T findOne(ID key) {
+    public T get(ID key) {
         return this.dao.selectByPrimaryKey(key);
     }
 
@@ -169,7 +169,7 @@ public abstract class CommonService<T, ID extends Serializable> {
      *
      * @since 1.0.0
      */
-    public T findOne(T entity) {
+    public T get(T entity) {
         return this.dao.selectOne(entity);
     }
 
@@ -180,7 +180,7 @@ public abstract class CommonService<T, ID extends Serializable> {
      *
      * @since 1.0.0
      */
-    public List<T> findAll() {
+    public List<T> list() {
         return this.dao.selectAll();
     }
 
@@ -193,7 +193,7 @@ public abstract class CommonService<T, ID extends Serializable> {
      *
      * @since 1.0.0
      */
-    public List<T> findAll(T entity) {
+    public List<T> list(T entity) {
         return this.dao.select(entity);
     }
 
@@ -207,7 +207,7 @@ public abstract class CommonService<T, ID extends Serializable> {
      *
      * @since 1.0.0
      */
-    public PageInfo<T> findAll(int pageNum, int pageSize) {
+    public PageInfo<T> list(int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
         List<T> list = this.dao.select(null);
 
