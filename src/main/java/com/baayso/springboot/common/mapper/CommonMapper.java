@@ -1,4 +1,4 @@
-package com.baayso.springboot.common;
+package com.baayso.springboot.common.mapper;
 
 import tk.mybatis.mapper.common.Mapper;
 import tk.mybatis.mapper.common.special.InsertListMapper;

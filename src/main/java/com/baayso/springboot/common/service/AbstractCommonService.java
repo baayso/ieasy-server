@@ -1,4 +1,4 @@
-package com.baayso.springboot.common;
+package com.baayso.springboot.common.service;
 
 import java.io.Serializable;
 import java.util.List;
@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.baayso.springboot.common.mapper.CommonMapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 

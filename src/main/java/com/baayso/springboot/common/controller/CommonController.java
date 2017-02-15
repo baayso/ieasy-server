@@ -1,5 +1,6 @@
-package com.baayso.springboot.common;
+package com.baayso.springboot.common.controller;
 
+import com.baayso.springboot.common.utils.JsonUtils;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.github.fge.jsonschema.core.report.ProcessingReport;
 import com.github.fge.jsonschema.main.JsonSchemaFactory;

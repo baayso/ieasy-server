@@ -1,4 +1,4 @@
-package com.baayso.springboot.common;
+package com.baayso.springboot.common.utils;
 
 import org.springside.modules.utils.misc.IdGenerator;
 

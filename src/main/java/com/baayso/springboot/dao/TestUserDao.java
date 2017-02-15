@@ -1,6 +1,6 @@
 package com.baayso.springboot.dao;
 
-import com.baayso.springboot.common.CommonMapper;
+import com.baayso.springboot.common.mapper.CommonMapper;
 import com.baayso.springboot.entity.TestUser;
 
 /**
