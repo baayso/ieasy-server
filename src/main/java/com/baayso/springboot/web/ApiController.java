@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.baayso.springboot.common.entity.Page;
 import com.baayso.springboot.entity.TestUser;
 import com.baayso.springboot.service.TestUserService;
 import com.github.pagehelper.PageInfo;
@@ -30,6 +31,21 @@ public class ApiController {
     @RequestMapping("/page")
     public PageInfo<TestUser> page() {
         return this.testUserService.list(2, 3);
+    }
+
+    @RequestMapping("/page2")
+    public Page<TestUser> page2() {
+        int pageSize = 3;
+        int pageNumber = 2;
+
+        Page<TestUser> page = new Page<>(pageSize, pageNumber);
+        page.initBeforePage();
+
+        List<TestUser> list = this.testUserService.list();
+
+        page.initAfterPage(new PageInfo<>(list, pageSize));
+
+        return page;
     }
 
     @RequestMapping("/create")
