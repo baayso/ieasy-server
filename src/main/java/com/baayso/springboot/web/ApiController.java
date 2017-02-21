@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,21 +30,26 @@ public class ApiController {
     }
 
     @RequestMapping("/page")
-    public PageInfo<TestUser> page() {
-        return this.testUserService.list(2, 3);
+    public PageInfo<TestUser> page(String pageSize, String pageNum) {
+
+        int ps = StringUtils.isNumeric(pageSize) ? Integer.parseInt(pageSize) : 3;
+        int pn = StringUtils.isNumeric(pageNum) ? Integer.parseInt(pageNum) : 2;
+
+        return this.testUserService.list(pn, ps);
     }
 
     @RequestMapping("/page2")
-    public Page<TestUser> page2() {
-        int pageSize = 3;
-        int pageNumber = 2;
+    public Page<TestUser> page2(String pageSize, String pageNum) {
 
-        Page<TestUser> page = new Page<>(pageSize, pageNumber);
+        int ps = StringUtils.isNumeric(pageSize) ? Integer.parseInt(pageSize) : 3;
+        int pn = StringUtils.isNumeric(pageNum) ? Integer.parseInt(pageNum) : 2;
+
+        Page<TestUser> page = new Page<>(ps, pn);
         page.initBeforePage();
 
         List<TestUser> list = this.testUserService.list();
 
-        page.initAfterPage(new PageInfo<>(list, pageSize));
+        page.initAfterPage(new PageInfo<>(list, ps));
 
         return page;
     }

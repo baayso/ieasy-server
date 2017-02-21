@@ -30,7 +30,11 @@ public class TestUserService extends AbstractCommonService<TestUser, Long> {
 
         super.save(testUser2);
 
-        int i = 1 / 0;
+        int min = 0;
+        int max = 1;
+        int random = (int) (Math.random() * (max - min + 1)) + min;
+
+        int i = 1 / random;
 
         return true;
     }
@@ -40,7 +44,7 @@ public class TestUserService extends AbstractCommonService<TestUser, Long> {
         // testUser3.setName("code-3");
 
         TestUser testUser4 = new TestUser();
-        // testUser4.setName("code-4");
+        testUser4.setName("code-4");
 
         List<TestUser> list = new ArrayList<>();
         list.add(testUser3);
