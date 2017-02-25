@@ -1,5 +1,6 @@
 package com.baayso.springboot.common.exception;
 
+import com.baayso.commons.exception.ApiException;
 import com.baayso.commons.tool.ResponseStatus;
 
 import lombok.extern.slf4j.Slf4j;
@@ -11,27 +12,15 @@ import lombok.extern.slf4j.Slf4j;
  * @since 1.0.0
  */
 @Slf4j
-public class ApiServiceException extends RuntimeException {
+public class ApiServiceException extends ApiException {
 
     private static final long serialVersionUID = -3247721709918992766L;
-
-    public ResponseStatus responseStatus;
 
     public ApiServiceException() {
     }
 
     public ApiServiceException(ResponseStatus responseStatus) {
-        super(responseStatus.getReason());
-        this.responseStatus = responseStatus;
-    }
-
-    @Override
-    public synchronized Throwable fillInStackTrace() {
-        if (log.isDebugEnabled()) {
-            return super.fillInStackTrace();
-        }
-
-        return null;
+        super(responseStatus);
     }
 
 }

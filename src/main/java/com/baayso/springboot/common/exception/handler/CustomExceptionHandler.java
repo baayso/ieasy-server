@@ -18,7 +18,9 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import org.springside.modules.web.MediaTypes;
 
+import com.baayso.commons.exception.ApiException;
 import com.baayso.commons.tool.CommonResponseStatus;
+import com.baayso.commons.tool.ResponseStatus;
 import com.baayso.commons.web.WebUtils;
 import com.baayso.springboot.common.exception.ApiServiceException;
 import com.baayso.springboot.common.tool.OperationResult;
@@ -65,11 +67,20 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
     public final ResponseEntity<OperationResult> handleGeneralException(Exception ex, HttpServletRequest request) {
         logError(ex, request);
 
+        ResponseStatus status = CommonResponseStatus.UNKNOWN_ERROR;
+
+        if (log.isDebugEnabled()) {
+            if (ex instanceof ApiException) {
+                ApiException exception = (ApiException) ex;
+                status = exception.responseStatus;
+            }
+        }
+
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.parseMediaType(MediaTypes.JSON_UTF_8));
 
-        OperationResult result = new OperationResult(false, CommonResponseStatus.UNKNOWN_ERROR.value());
-        result.setMessage(CommonResponseStatus.UNKNOWN_ERROR.getReason());
+        OperationResult result = new OperationResult(false, status.value());
+        result.setMessage(status.getReason());
 
         return new ResponseEntity<>(result, headers, HttpStatus.OK);
     }
