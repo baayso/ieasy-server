@@ -6,6 +6,8 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 
+import com.baayso.commons.serialize.redis.CustomSerializationRedisSerializer;
+
 /**
  * Redis配置。
  *
@@ -29,6 +31,7 @@ public class RedisConfig {
         template.setConnectionFactory(factory);
         template.setKeySerializer(template.getStringSerializer());
         template.setHashKeySerializer(template.getStringSerializer());
+        template.setDefaultSerializer(new CustomSerializationRedisSerializer());
         template.afterPropertiesSet();
 
         return template;
