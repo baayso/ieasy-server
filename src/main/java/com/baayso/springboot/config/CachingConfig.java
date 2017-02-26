@@ -22,13 +22,14 @@ import org.springframework.data.redis.core.RedisTemplate;
 public class CachingConfig extends CachingConfigurerSupport {
 
     @Bean
-    public KeyGenerator wiselyKeyGenerator() {
+    @Override
+    public KeyGenerator keyGenerator() {
         return new KeyGenerator() {
             @Override
             public Object generate(Object target, Method method, Object... params) {
                 StringBuilder sb = new StringBuilder();
-                sb.append(target.getClass().getName());
-                sb.append(method.getName());
+                sb.append(target.getClass().getName()).append("_");
+                sb.append(method.getName()).append("_");
 
                 for (Object obj : params) {
                     sb.append(obj.toString());
