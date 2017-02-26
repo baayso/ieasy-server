@@ -19,6 +19,8 @@ public class JsonUtils extends JsonMapper {
 
     static {
         INSTANCE = new JsonUtils();
+        // JsonUtils.INSTANCE.getMapper().setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+        // JsonUtils.INSTANCE.getMapper().enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
         JsonUtils.INSTANCE.getMapper().setDateFormat(new SimpleDateFormat(DateFormatUtil.PATTERN_DEFAULT_ON_SECOND));
     }
 

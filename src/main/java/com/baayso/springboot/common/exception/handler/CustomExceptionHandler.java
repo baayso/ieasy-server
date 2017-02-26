@@ -74,6 +74,19 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
                 ApiException exception = (ApiException) ex;
                 status = exception.responseStatus;
             }
+            else {
+                status = new ResponseStatus() {
+                    @Override
+                    public int value() {
+                        return 0;
+                    }
+
+                    @Override
+                    public String getReason() {
+                        return ex.getMessage();
+                    }
+                };
+            }
         }
 
         HttpHeaders headers = new HttpHeaders();
