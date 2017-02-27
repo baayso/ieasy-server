@@ -25,6 +25,10 @@ public class OperationResult<T> implements Serializable {
     public OperationResult() {
     }
 
+    public OperationResult(T data) {
+        this(true, data);
+    }
+
     public OperationResult(boolean status, int statusCode) {
         this.status = status;
         this.statusCode = statusCode;

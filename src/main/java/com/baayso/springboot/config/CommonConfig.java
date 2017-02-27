@@ -4,7 +4,7 @@ import javax.validation.Validator;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.client.OkHttpClientHttpRequestFactory;
+import org.springframework.http.client.OkHttp3ClientHttpRequestFactory;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.client.RestTemplate;
 
@@ -27,7 +27,7 @@ public class CommonConfig {
 
     @Bean
     public RestTemplate restTemplate() {
-        return new RestTemplate(new OkHttpClientHttpRequestFactory());
+        return new RestTemplate(new OkHttp3ClientHttpRequestFactory());
     }
 
     @Bean
