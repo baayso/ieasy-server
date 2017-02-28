@@ -1,4 +1,4 @@
-package com.baayso.springboot.demo.entity;
+package com.baayso.springboot.demo.domain;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -9,13 +9,13 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 /**
- * 测试实体。
+ * 数据对象：测试实体。
  *
  * @author ChenFangjie (2016/4/1 16:19)
  * @since 1.0.0
  */
-@Table(name = "t_test_user")
-public class TestUser implements Serializable {
+@Table(name = "demo_user")
+public class DemoUserDO implements Serializable {
 
     private static final long serialVersionUID = -8962566780883631270L;
 
@@ -30,7 +30,7 @@ public class TestUser implements Serializable {
 
     @Override
     public String toString() {
-        return "TestUser{" + //
+        return "DemoUserDO{" + //
                 "id=" + id + //
                 ", name='" + name + '\'' + //
                 ", datetime=" + datetime + //

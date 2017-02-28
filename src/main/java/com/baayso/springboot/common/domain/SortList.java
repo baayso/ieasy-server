@@ -1,4 +1,4 @@
-package com.baayso.springboot.common.entity;
+package com.baayso.springboot.common.domain;
 
 import java.util.ArrayList;
 import java.util.Arrays;

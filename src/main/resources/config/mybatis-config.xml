@@ -38,7 +38,7 @@
     <typeHandlers>
         <!-- 用户性别枚举
         <typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler"
-                     javaType="com.baayso.api.user.entity.UserGender"/> -->
+                     javaType="com.baayso.api.user.domain.UserGender"/> -->
     </typeHandlers>
 
     <plugins>

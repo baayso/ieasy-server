@@ -9,9 +9,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.baayso.springboot.common.entity.Page;
-import com.baayso.springboot.demo.entity.TestUser;
-import com.baayso.springboot.demo.service.TestUserService;
+import com.baayso.springboot.common.domain.Page;
+import com.baayso.springboot.demo.domain.DemoUserDO;
+import com.baayso.springboot.demo.service.DemoUserService;
 import com.github.pagehelper.PageInfo;
 
 @RestController
@@ -19,35 +19,35 @@ import com.github.pagehelper.PageInfo;
 public class ApiController {
 
     @Inject
-    private TestUserService testUserService;
+    private DemoUserService demoUserService;
 
     @RequestMapping
-    public List<TestUser> now() {
-        List<TestUser> users = this.testUserService.list();
+    public List<DemoUserDO> now() {
+        List<DemoUserDO> users = this.demoUserService.list();
         users.forEach(u -> u.setDatetime(new Date()));
 
         return users;
     }
 
     @RequestMapping("/page")
-    public PageInfo<TestUser> page(String pageSize, String pageNum) {
+    public PageInfo<DemoUserDO> page(String pageSize, String pageNum) {
 
         int ps = StringUtils.isNumeric(pageSize) ? Integer.parseInt(pageSize) : 3;
         int pn = StringUtils.isNumeric(pageNum) ? Integer.parseInt(pageNum) : 2;
 
-        return this.testUserService.list(pn, ps);
+        return this.demoUserService.list(pn, ps);
     }
 
     @RequestMapping("/page2")
-    public Page<TestUser> page2(String pageSize, String pageNum) {
+    public Page<DemoUserDO> page2(String pageSize, String pageNum) {
 
         int ps = StringUtils.isNumeric(pageSize) ? Integer.parseInt(pageSize) : 3;
         int pn = StringUtils.isNumeric(pageNum) ? Integer.parseInt(pageNum) : 2;
 
-        Page<TestUser> page = new Page<>(ps, pn);
+        Page<DemoUserDO> page = new Page<>(ps, pn);
         page.initBeforePage();
 
-        List<TestUser> list = this.testUserService.list();
+        List<DemoUserDO> list = this.demoUserService.list();
 
         page.initAfterPage(new PageInfo<>(list, ps));
 
@@ -56,12 +56,12 @@ public class ApiController {
 
     @RequestMapping("/create")
     public boolean create() {
-        return this.testUserService.saveTestUser();
+        return this.demoUserService.saveTestUser();
     }
 
     @RequestMapping("/creates")
     public boolean creates() {
-        return this.testUserService.saveTestUsers();
+        return this.demoUserService.saveTestUsers();
     }
 
     @RequestMapping("/hello")

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.baayso.springboot.common.service.AbstractCommonService;
-import com.baayso.springboot.demo.entity.TestUser;
+import com.baayso.springboot.demo.domain.DemoUserDO;
 
 /**
  * 测试业务。
@@ -16,19 +16,19 @@ import com.baayso.springboot.demo.entity.TestUser;
  * @since 1.0.0
  */
 @Service
-public class TestUserService extends AbstractCommonService<TestUser, Long> {
+public class DemoUserService extends AbstractCommonService<DemoUserDO, Long> {
 
     @Transactional
     public boolean saveTestUser() {
-        TestUser testUser1 = new TestUser();
-        testUser1.setName("code-1");
+        DemoUserDO user1 = new DemoUserDO();
+        user1.setName("code-1");
 
-        super.save(testUser1);
+        super.save(user1);
 
-        TestUser testUser2 = new TestUser();
-        testUser2.setName("code-2");
+        DemoUserDO user2 = new DemoUserDO();
+        user2.setName("code-2");
 
-        super.save(testUser2);
+        super.save(user2);
 
         int min = 0;
         int max = 1;
@@ -40,15 +40,15 @@ public class TestUserService extends AbstractCommonService<TestUser, Long> {
     }
 
     public boolean saveTestUsers() {
-        TestUser testUser3 = new TestUser();
-        // testUser3.setName("code-3");
+        DemoUserDO user3 = new DemoUserDO();
+        // user3.setName("code-3");
 
-        TestUser testUser4 = new TestUser();
-        testUser4.setName("code-4");
+        DemoUserDO user4 = new DemoUserDO();
+        user4.setName("code-4");
 
-        List<TestUser> list = new ArrayList<>();
-        list.add(testUser3);
-        list.add(testUser4);
+        List<DemoUserDO> list = new ArrayList<>();
+        list.add(user3);
+        list.add(user4);
 
         super.saves(list);
 
