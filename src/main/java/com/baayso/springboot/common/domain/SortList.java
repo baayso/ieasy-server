@@ -13,7 +13,7 @@ import com.google.common.base.CaseFormat;
  * @author ChenFangjie (2016/4/21 11:07)
  * @since 1.0.0
  */
-public class SortList extends ArrayList<SortBean> {
+public class SortList extends ArrayList<SortDTO> {
 
     private static final long serialVersionUID = 2686281079576407145L;
 
@@ -26,19 +26,19 @@ public class SortList extends ArrayList<SortBean> {
         if (StringUtils.isNotBlank(sortField)) {
             orderBeans = new SortList();
 
-            SortBean orderBean = new SortBean();
-            orderBean.setSortName(CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, sortField));
-            orderBean.setSortOrder(StringUtils.isNotBlank(sortDirection) ? sortDirection : DEFAULT_SORT_ORDER);
+            SortDTO sort = new SortDTO();
+            sort.setSortName(CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, sortField));
+            sort.setSortOrder(StringUtils.isNotBlank(sortDirection) ? sortDirection : DEFAULT_SORT_ORDER);
 
-            orderBeans.add(orderBean);
+            orderBeans.add(sort);
         }
 
         return orderBeans;
     }
 
-    public static SortList add(SortBean... sortBean) {
+    public static SortList add(SortDTO... sort) {
         SortList orderBeans = new SortList();
-        orderBeans.addAll(Arrays.asList(sortBean));
+        orderBeans.addAll(Arrays.asList(sort));
 
         return orderBeans;
     }

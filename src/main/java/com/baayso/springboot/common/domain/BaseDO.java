@@ -8,14 +8,14 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * 实体基类。
+ * 数据对象基类。
  *
  * @author ChenFangjie (2016/4/13 10:42)
  * @since 1.0.0
  */
 @Getter
 @Setter
-public class BaseBean extends IdEntity {
+public class BaseDO extends IdEntity {
 
     private static final long serialVersionUID = 6787870565161459149L;
 

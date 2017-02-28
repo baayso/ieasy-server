@@ -2,7 +2,7 @@ package com.baayso.springboot.access.domain;
 
 import javax.persistence.Table;
 
-import com.baayso.springboot.common.domain.BaseBean;
+import com.baayso.springboot.common.domain.BaseDO;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @Table(name = "system_access")
-public class AccessDO extends BaseBean {
+public class AccessDO extends BaseDO {
 
     private static final long serialVersionUID = 3877696751248414559L;
 

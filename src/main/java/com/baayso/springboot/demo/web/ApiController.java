@@ -9,7 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.baayso.springboot.common.domain.Page;
+import com.baayso.springboot.common.domain.PageVO;
 import com.baayso.springboot.demo.domain.DemoUserDO;
 import com.baayso.springboot.demo.service.DemoUserService;
 import com.github.pagehelper.PageInfo;
@@ -39,12 +39,12 @@ public class ApiController {
     }
 
     @RequestMapping("/page2")
-    public Page<DemoUserDO> page2(String pageSize, String pageNum) {
+    public PageVO<DemoUserDO> page2(String pageSize, String pageNum) {
 
         int ps = StringUtils.isNumeric(pageSize) ? Integer.parseInt(pageSize) : 3;
         int pn = StringUtils.isNumeric(pageNum) ? Integer.parseInt(pageNum) : 2;
 
-        Page<DemoUserDO> page = new Page<>(ps, pn);
+        PageVO<DemoUserDO> page = new PageVO<>(ps, pn);
         page.initBeforePage();
 
         List<DemoUserDO> list = this.demoUserService.list();

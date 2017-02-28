@@ -9,15 +9,15 @@ import com.github.pagehelper.PageInfo;
 import com.google.common.base.CaseFormat;
 
 /**
- * 分页实体。
+ * 管理系统分页展示对象。
  *
- * @author ChenFangjie (2016/4/18 15:00)
+ * @author ChenFangjie (2016/5/19 16:31)
  * @since 1.0.0
  */
-public class Page<T> {
+public class AdminPageVO<T> {
 
     public static final int    DEFAULT_PAGE_SIZE   = 10;
-    public static final int    DEFAULT_PAGE_NUMBER = 1;
+    public static final int    DEFAULT_PAGE_NUMBER = 10;
     public static final String DEFAULT_SORT_NAME   = "";
     public static final String DEFAULT_SORT_ORDER  = "ASC";
 
@@ -28,21 +28,21 @@ public class Page<T> {
     private String  sortOrder;          // 排序方式
 
     // 需要查询数据库
-    private Long    recordCount;        // 总记录数
-    private List<T> dataList;           // 当前页数据
+    private Long    total;              // 总记录数
+    private List<T> rows;               // 当前页数据
 
     // 需要计算
     private Long pageCount;          // 总页数
 
 
-    public Page() {
+    public AdminPageVO() {
         this(DEFAULT_PAGE_SIZE, DEFAULT_PAGE_NUMBER, DEFAULT_SORT_NAME, DEFAULT_SORT_ORDER);
     }
 
     /**
      * @param pageSize 页大小（每页显示多少条记录）
      */
-    public Page(int pageSize) {
+    public AdminPageVO(int pageSize) {
         this(pageSize, DEFAULT_PAGE_NUMBER, DEFAULT_SORT_NAME, DEFAULT_SORT_ORDER);
     }
 
@@ -50,14 +50,14 @@ public class Page<T> {
      * @param pageSize   页大小（每页显示多少条记录）
      * @param pageNumber 当前页
      */
-    public Page(int pageSize, int pageNumber) {
+    public AdminPageVO(int pageSize, int pageNumber) {
         this(pageSize, pageNumber, DEFAULT_SORT_NAME, DEFAULT_SORT_ORDER);
     }
 
     /**
      * @param sortName 排序字段名称
      */
-    public Page(String sortName) {
+    public AdminPageVO(String sortName) {
         this(DEFAULT_PAGE_SIZE, DEFAULT_PAGE_NUMBER, sortName, DEFAULT_SORT_ORDER);
     }
 
@@ -65,7 +65,7 @@ public class Page<T> {
      * @param sortName  排序字段名称
      * @param sortOrder 排序方式
      */
-    public Page(String sortName, String sortOrder) {
+    public AdminPageVO(String sortName, String sortOrder) {
         this(DEFAULT_PAGE_SIZE, DEFAULT_PAGE_NUMBER, sortName, sortOrder);
     }
 
@@ -73,7 +73,7 @@ public class Page<T> {
      * @param pageSize 页大小（每页显示多少条记录）
      * @param sortName 排序字段名称
      */
-    public Page(int pageSize, String sortName) {
+    public AdminPageVO(int pageSize, String sortName) {
         this(pageSize, DEFAULT_PAGE_NUMBER, sortName, DEFAULT_SORT_ORDER);
     }
 
@@ -82,7 +82,7 @@ public class Page<T> {
      * @param sortName  排序字段名称
      * @param sortOrder 排序方式
      */
-    public Page(int pageSize, String sortName, String sortOrder) {
+    public AdminPageVO(int pageSize, String sortName, String sortOrder) {
         this(pageSize, DEFAULT_PAGE_NUMBER, sortName, sortOrder);
     }
 
@@ -92,7 +92,7 @@ public class Page<T> {
      * @param sortName   排序字段名称
      * @param sortOrder  排序方式
      */
-    public Page(int pageSize, int pageNumber, String sortName, String sortOrder) {
+    public AdminPageVO(int pageSize, int pageNumber, String sortName, String sortOrder) {
         if (pageSize < 1) {
             pageSize = DEFAULT_PAGE_SIZE;
         }
@@ -116,31 +116,23 @@ public class Page<T> {
     }
 
 
-    public Page<T> initBeforePage() {
-        PageHelper.startPage(this.pageNumber, this.pageSize);
+    public AdminPageVO<T> initBeforePage() {
+        PageHelper.startPage(pageNumber, pageSize);
 
-        if (StringUtils.isNotBlank(this.sortName)) {
-            PageHelper.orderBy(this.sortName + " " + this.sortOrder);
+        if (StringUtils.isNotBlank(sortName)) {
+            PageHelper.orderBy(sortName + " " + sortOrder);
         }
 
         return this;
     }
 
-    public Page<T> initAfterPage(PageInfo<T> pageInfo) {
+    public AdminPageVO<T> initAfterPage(PageInfo<T> pageInfo) {
         if (pageInfo != null) {
-            this.recordCount = pageInfo.getTotal();
-            this.dataList = pageInfo.getList();
-            // this.pageCount = (this.recordCount + this.pageSize - 1) / this.pageSize;
+            this.total = pageInfo.getTotal();
+            this.rows = pageInfo.getList();
+            // this.pageCount = (recordCount + this.pageSize - 1) / this.pageSize;
             this.pageCount = (long) pageInfo.getPages();
         }
-
-        return this;
-    }
-
-    public Page<T> initAfterPage(long recordCount, List<T> list) {
-        this.recordCount = recordCount;
-        this.dataList = list;
-        this.pageCount = (this.recordCount + this.pageSize - 1) / this.pageSize;
 
         return this;
     }
@@ -179,20 +171,20 @@ public class Page<T> {
         this.sortOrder = sortOrder;
     }
 
-    public Long getRecordCount() {
-        return recordCount;
+    public Long getTotal() {
+        return total;
     }
 
-    public void setRecordCount(long recordCount) {
-        this.recordCount = recordCount;
+    public void setTotal(Long total) {
+        this.total = total;
     }
 
-    public List<T> getDataList() {
-        return dataList;
+    public List<T> getRows() {
+        return rows;
     }
 
-    public void setDataList(List<T> dataList) {
-        this.dataList = dataList;
+    public void setRows(List<T> rows) {
+        this.rows = rows;
     }
 
     public Long getPageCount() {
