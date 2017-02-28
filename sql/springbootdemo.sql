@@ -20,10 +20,10 @@ CREATE DATABASE IF NOT EXISTS springbootdemo DEFAULT CHARSET utf8 COLLATE utf8_g
 USE springbootdemo;
 
 -- ----------------------------
--- Table structure for t_test_user
+-- Table structure for demo_user
 -- ----------------------------
-DROP TABLE IF EXISTS `t_test_user`;
-CREATE TABLE `t_test_user` (
+DROP TABLE IF EXISTS `demo_user`;
+CREATE TABLE `demo_user` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   `intro` text DEFAULT NULL,
@@ -31,11 +31,11 @@ CREATE TABLE `t_test_user` (
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of t_test_user
+-- Records of demo_user
 -- ----------------------------
-INSERT INTO `t_test_user` VALUES ('1', 'name1', '');
-INSERT INTO `t_test_user` VALUES ('2', 'name2', '');
-INSERT INTO `t_test_user` VALUES ('3', 'name3', '');
-INSERT INTO `t_test_user` VALUES ('4', 'name4', '');
-INSERT INTO `t_test_user` VALUES ('5', 'name5', '');
-INSERT INTO `t_test_user` VALUES ('6', 'name6', '');
+INSERT INTO `demo_user` VALUES ('1', 'name1', '');
+INSERT INTO `demo_user` VALUES ('2', 'name2', '');
+INSERT INTO `demo_user` VALUES ('3', 'name3', '');
+INSERT INTO `demo_user` VALUES ('4', 'name4', '');
+INSERT INTO `demo_user` VALUES ('5', 'name5', '');
+INSERT INTO `demo_user` VALUES ('6', 'name6', '');
