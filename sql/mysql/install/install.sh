@@ -30,7 +30,7 @@ if [ -z ${PORT} ]; then
 fi
 
 if [ -z ${DATABASE} ]; then
-    DATABASE="service-platform"
+    DATABASE="springbootdemo"
 fi
 
 if [ -z ${USERNAME} ]; then

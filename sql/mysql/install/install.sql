@@ -4,4 +4,5 @@ set names utf8;
 
 source common/area_mysql.sql;
 source common/common_mysql.sql;
+source system/system_mysql.sql;
 source admin/admin_mysql.sql;

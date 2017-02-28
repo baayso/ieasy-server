@@ -6,7 +6,7 @@ set /P server="Server [%server%]: "
 set port=3306
 set /P port="Port [%port%]: "
 
-set database=service-platform
+set database=springbootdemo
 set /P database="Database [%database%]: "
 
 set username=root

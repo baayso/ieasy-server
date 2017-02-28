@@ -6,7 +6,6 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import com.baayso.commons.interceptor.PerformanceInterceptor;
-import com.baayso.springboot.common.interceptor.DataDigestInterceptor;
 
 /**
  * Spring MVC 配置。
@@ -21,12 +20,12 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new PerformanceInterceptor()).addPathPatterns("/api/**");
 
-        //registry.addInterceptor(new ValidateAccessTokenInterceptor()) //
+        //registry.addInterceptor(new AccessTokenVerifyInterceptor()) //
         //        .addPathPatterns("/api/**") //
         //        .excludePathPatterns("/api/token") //
         //        .excludePathPatterns("/api/order/alipay/web/notify");
 
-        registry.addInterceptor(new DataDigestInterceptor()).addPathPatterns("/api/**");
+        //registry.addInterceptor(new DataDigestInterceptor()).addPathPatterns("/api/**");
     }
 
     // CORS全局配置
