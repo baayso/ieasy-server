@@ -1,4 +1,4 @@
-package com.baayso.springboot.service;
+package com.baayso.springboot.demo.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.baayso.springboot.common.service.AbstractCommonService;
-import com.baayso.springboot.entity.TestUser;
+import com.baayso.springboot.demo.entity.TestUser;
 
 /**
  * 测试业务。

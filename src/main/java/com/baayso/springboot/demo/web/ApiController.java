@@ -1,4 +1,4 @@
-package com.baayso.springboot.web;
+package com.baayso.springboot.demo.web;
 
 import java.util.Date;
 import java.util.List;
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.baayso.springboot.common.entity.Page;
-import com.baayso.springboot.entity.TestUser;
-import com.baayso.springboot.service.TestUserService;
+import com.baayso.springboot.demo.entity.TestUser;
+import com.baayso.springboot.demo.service.TestUserService;
 import com.github.pagehelper.PageInfo;
 
 @RestController

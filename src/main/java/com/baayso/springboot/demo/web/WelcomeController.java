@@ -1,4 +1,4 @@
-package com.baayso.springboot.web;
+package com.baayso.springboot.demo.web;
 
 import java.util.Date;
 import java.util.Map;

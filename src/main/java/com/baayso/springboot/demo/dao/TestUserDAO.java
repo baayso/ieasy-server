@@ -1,7 +1,7 @@
-package com.baayso.springboot.dao;
+package com.baayso.springboot.demo.dao;
 
 import com.baayso.springboot.common.mapper.CommonMapper;
-import com.baayso.springboot.entity.TestUser;
+import com.baayso.springboot.demo.entity.TestUser;
 
 /**
  * 测试数据访问。

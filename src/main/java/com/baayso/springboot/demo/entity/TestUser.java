@@ -1,4 +1,4 @@
-package com.baayso.springboot.entity;
+package com.baayso.springboot.demo.entity;
 
 import java.io.Serializable;
 import java.util.Date;
