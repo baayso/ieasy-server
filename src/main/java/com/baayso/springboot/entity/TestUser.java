@@ -24,6 +24,7 @@ public class TestUser implements Serializable {
     // @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long   id;
     private String name;
+    private String intro;
     @Transient
     private Date   datetime;
 
@@ -50,6 +51,14 @@ public class TestUser implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getIntro() {
+        return intro;
+    }
+
+    public void setIntro(String intro) {
+        this.intro = intro;
     }
 
     public Date getDatetime() {

@@ -26,15 +26,16 @@ DROP TABLE IF EXISTS `t_test_user`;
 CREATE TABLE `t_test_user` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
+  `intro` text DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_test_user
 -- ----------------------------
-INSERT INTO `t_test_user` VALUES ('1', 'name1');
-INSERT INTO `t_test_user` VALUES ('2', 'name2');
-INSERT INTO `t_test_user` VALUES ('3', 'name3');
-INSERT INTO `t_test_user` VALUES ('4', 'name4');
-INSERT INTO `t_test_user` VALUES ('5', 'name5');
-INSERT INTO `t_test_user` VALUES ('6', 'name6');
+INSERT INTO `t_test_user` VALUES ('1', 'name1', '');
+INSERT INTO `t_test_user` VALUES ('2', 'name2', '');
+INSERT INTO `t_test_user` VALUES ('3', 'name3', '');
+INSERT INTO `t_test_user` VALUES ('4', 'name4', '');
+INSERT INTO `t_test_user` VALUES ('5', 'name5', '');
+INSERT INTO `t_test_user` VALUES ('6', 'name6', '');
