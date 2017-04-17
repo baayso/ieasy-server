@@ -20,12 +20,16 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new PerformanceInterceptor()).addPathPatterns("/api/**");
 
-        //registry.addInterceptor(new AccessTokenVerifyInterceptor()) //
+        //registry.addInterceptor(new AccessTokenVerificationInterceptor()) //
         //        .addPathPatterns("/api/**") //
         //        .excludePathPatterns("/api/token") //
         //        .excludePathPatterns("/api/order/alipay/web/notify");
 
         //registry.addInterceptor(new DataDigestInterceptor()).addPathPatterns("/api/**");
+
+        //registry.addInterceptor(new AccessApiAuthenticationInterceptor()) //
+        //        .addPathPatterns("/api/**") //
+        //        .excludePathPatterns("/api/token");
     }
 
     // CORS全局配置

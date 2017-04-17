@@ -28,7 +28,7 @@ ALTER TABLE system_access ADD UNIQUE uk_access_key (access_key) COMMENT 'AccessK
 
 
 /*==============================================================*/
-/* 表: 接入组                                          */
+/* 表: 接入组                                                    */
 /*==============================================================*/
 drop table if exists system_access_group;
 
@@ -50,7 +50,7 @@ INSERT INTO system_access_group (name, descr) VALUES ('测试', '拥有所有API
 
 
 /*==============================================================*/
-/* 表: 接入方和接入组关联表                            */
+/* 表: 接入方和接入组关联表                                        */
 /*==============================================================*/
 drop table if exists system_access_group_relation;
 
@@ -75,10 +75,13 @@ drop table if exists system_access_api;
 
 create table system_access_api
 (
-   id                   bigint not null auto_increment comment 'ID',
+   id                   bigint not null auto_increment comment '主键',
    name                 varchar(100) comment '名称',
-   api_path             varchar(255) comment 'API访问地址',
+   code                 varchar(100) comment '编码',
+   url                  varchar(255) comment 'API访问地址',
    descr                varchar(255) comment '描述',
+   parent_id            bigint comment '父操作ID',
+   is_parent            boolean default false comment '是否父级',
    create_by            varchar(100) comment '记录创建人',
    create_time          datetime comment '记录创建时间',
    modify_by            varchar(100) comment '记录修改人',
@@ -89,7 +92,7 @@ create table system_access_api
 
 
 /*==============================================================*/
-/* 表：接入方_API关联表                                           */
+/* 表：接入方和API关联表                                           */
 /*==============================================================*/
 drop table if exists system_access_group_api_relation;
 

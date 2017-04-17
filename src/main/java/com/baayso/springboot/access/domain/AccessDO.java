@@ -1,6 +1,10 @@
 package com.baayso.springboot.access.domain;
 
+import java.util.List;
+import java.util.Set;
+
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.baayso.springboot.common.domain.BaseDO;
 
@@ -33,5 +37,11 @@ public class AccessDO extends BaseDO {
     private String  accessSecret;    // AccessSecret
     private String  salt;            // 数据盐
     private Boolean isEnable;        // 是否启用
+
+    @Transient
+    private List<AccessGroupDO> groups; // 接入组列表
+
+    @Transient
+    private Set<AccessApiDO> apis; // API列表
 
 }

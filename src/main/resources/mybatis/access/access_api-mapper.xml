@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!-- namespace 必须指向 MyBatis DAO 接口 -->
+<mapper namespace="com.baayso.springboot.access.dao.AccessApiDAO">
+
+    <resultMap id="accessApiResultMap" type="com.baayso.springboot.access.domain.AccessApiDO">
+        <id property="id" column="id"/>
+    </resultMap>
+
+    <select id="listByAccessId" resultMap="accessApiResultMap">
+        SELECT
+            api.*
+        FROM
+            system_access AS a
+        LEFT OUTER JOIN
+            system_access_group_relation AS ag ON a.id = ag.access_id
+        -- LEFT OUTER JOIN
+        --    system_access_group AS g ON ag.group_id = g.id
+        LEFT OUTER JOIN
+            system_access_group_api_relation AS ga ON ag.group_id = ga.group_id
+        LEFT OUTER JOIN
+            system_access_api AS api ON ga.api_id = api.id
+        WHERE
+            a.id = #{accessId}
+    </select>
+
+</mapper>

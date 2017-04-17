@@ -9,6 +9,8 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.client.RestTemplate;
 
 import com.baayso.commons.security.AESCoder;
+import com.baayso.commons.security.password.BCryptPasswordEncoder;
+import com.baayso.commons.security.password.PasswordEncoder;
 import com.baayso.commons.spring.SpringUtils;
 
 /**
@@ -38,6 +40,11 @@ public class CommonConfig {
     @Bean
     public AESCoder aesCoder() {
         return new AESCoder("G7jX/RpqbqzbvUoxJ2fEaVdhk8e/axGXbhEXli2dR0TI=");
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
 }

@@ -18,7 +18,7 @@ import com.baayso.springboot.common.exception.ApiServiceException;
  * @author ChenFangjie (2016/4/13 14:38)
  * @since 1.0.0
  */
-public class AccessTokenVerifyInterceptor extends HandlerInterceptorAdapter {
+public class AccessTokenVerificationInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -30,7 +30,7 @@ public class AccessTokenVerifyInterceptor extends HandlerInterceptorAdapter {
 
         StringRedisTemplate stringRedisTemplate = SpringUtils.getBean(StringRedisTemplate.class);
 
-        String key = AccessBusiness.ACCESS_TOKEN_KEY_PREFIX + accessToken;
+        String key = AccessBusiness.ACCESS_TOKEN_PREFIX + accessToken;
 
         String accessTokenOfCaching = stringRedisTemplate.opsForValue().get(key);
 

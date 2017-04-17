@@ -22,7 +22,9 @@ public enum AccessResponseStatus implements ResponseStatus {
 
     MISSING_ACCESS_KEY(13010192, "缺少accessKey参数"),
 
-    MISSING_ACCESS_SECRET(13010224, "缺少accessSecret参数");
+    MISSING_ACCESS_SECRET(13010224, "缺少accessSecret参数"),
+
+    PERMISSION_DENIED(13010256, "API权限不足");
 
 
     private final int    value;
