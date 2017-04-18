@@ -18,8 +18,6 @@
             system_access AS a
         LEFT OUTER JOIN
             system_access_group_relation AS ag ON a.id = ag.access_id
-        -- LEFT OUTER JOIN
-        --    system_access_group AS g ON ag.group_id = g.id
         LEFT OUTER JOIN
             system_access_group_api_relation AS ga ON ag.group_id = ga.group_id
         LEFT OUTER JOIN
