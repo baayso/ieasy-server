@@ -14,7 +14,6 @@ import tk.mybatis.spring.mapper.MapperScannerConfigurer;
  * @since 1.0.0
  */
 @Configuration
-// 注意：由于MapperScannerConfigurer执行的比较早，所以必须有下面的注解
 @AutoConfigureAfter(MyBatisConfig.class)
 public class MyBatisMapperScannerConfig {
 

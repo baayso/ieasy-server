@@ -11,6 +11,11 @@ server:
         key-store-password: secret
         key-password: password
 
+management:
+    context-path: /actuator
+    security:
+        enabled: false
+
 spring:
     profiles:
         active: dev
