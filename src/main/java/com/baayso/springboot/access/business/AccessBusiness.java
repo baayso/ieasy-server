@@ -7,12 +7,9 @@ import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
 
 import org.apache.commons.lang3.RandomStringUtils;
-import org.apache.commons.lang3.RandomUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
-import org.springside.modules.utils.text.EncodeUtil;
-import org.springside.modules.utils.text.HashUtil;
 
 import com.baayso.commons.utils.JsonUtils;
 import com.baayso.springboot.access.domain.AccessApiDO;
@@ -91,19 +88,17 @@ public class AccessBusiness {
             access.setApis(new HashSet<>(apis));
         }
 
-        String key = access.getAccessKey();
-        String salt = access.getSalt();
-
-        String keySecret = key + secret + salt;
-
-        String salt2 = RandomStringUtils.randomAlphanumeric(16);
-        int iterations = RandomUtils.nextInt(1, 1024);
-        byte[] shaCode = HashUtil.sha1(keySecret, org.apache.commons.codec.binary.StringUtils.getBytesUtf8(salt2), iterations);
-        String accessToken = EncodeUtil.encodeBase64UrlSafe(shaCode);
+        String accessToken = RandomStringUtils.randomAlphanumeric(16);
 
         // 写入缓存
-        this.stringRedisTemplate.opsForValue().set(ACCESS_PREFIX + accessToken, JsonUtils.INSTANCE.toJson(access), ACCESS_TOKEN_EXPIRES_IN, TimeUnit.SECONDS);
-        this.stringRedisTemplate.opsForValue().set(ACCESS_TOKEN_PREFIX + accessToken, accessToken, ACCESS_TOKEN_EXPIRES_IN, TimeUnit.SECONDS);
+        this.stringRedisTemplate.opsForValue().set(ACCESS_PREFIX + accessToken, //
+                JsonUtils.INSTANCE.toJson(access), //
+                ACCESS_TOKEN_EXPIRES_IN, //
+                TimeUnit.SECONDS);
+        this.stringRedisTemplate.opsForValue().set(ACCESS_TOKEN_PREFIX + accessToken,
+                accessToken, //
+                ACCESS_TOKEN_EXPIRES_IN, //
+                TimeUnit.SECONDS);
 
         return TokenVO.builder().accessToken(accessToken).expiresIn(ACCESS_TOKEN_EXPIRES_IN).build();
     }
