@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "system_access_group_relation")
+@Table(name = "access_group_relation")
 public class AccessGroupRelationDO extends BaseDO {
 
     private static final long serialVersionUID = -7492276935585795453L;

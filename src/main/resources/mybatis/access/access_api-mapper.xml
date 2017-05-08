@@ -15,13 +15,13 @@
         SELECT
             api.*
         FROM
-            system_access AS a
+            access AS a
         LEFT OUTER JOIN
-            system_access_group_relation AS ag ON a.id = ag.access_id
+            access_group_relation AS ag ON a.id = ag.access_id
         LEFT OUTER JOIN
-            system_access_group_api_relation AS ga ON ag.group_id = ga.group_id
+            access_group_api_relation AS ga ON ag.group_id = ga.group_id
         LEFT OUTER JOIN
-            system_access_api AS api ON ga.api_id = api.id
+            access_api AS api ON ga.api_id = api.id
         WHERE
             a.id = #{accessId}
     </select>

@@ -25,7 +25,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "system_access")
+@Table(name = "access")
 public class AccessDO extends BaseDO {
 
     private static final long serialVersionUID = 3877696751248414559L;
