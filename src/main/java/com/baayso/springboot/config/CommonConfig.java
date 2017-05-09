@@ -33,7 +33,7 @@ public class CommonConfig {
     }
 
     @Bean
-    public SpringUtils springUtils() {
+    public static SpringUtils springUtils() {
         return new SpringUtils();
     }
 
