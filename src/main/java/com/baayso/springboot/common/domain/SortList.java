@@ -5,8 +5,6 @@ import java.util.Arrays;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.google.common.base.CaseFormat;
-
 /**
  * 排序集合。
  *
@@ -17,8 +15,6 @@ public class SortList extends ArrayList<SortDTO> {
 
     private static final long serialVersionUID = 2686281079576407145L;
 
-    public static final String DEFAULT_SORT_ORDER = "ASC";
-
 
     public static SortList add(String sortField, String sortDirection) {
         SortList orderBeans = null;
@@ -26,9 +22,7 @@ public class SortList extends ArrayList<SortDTO> {
         if (StringUtils.isNotBlank(sortField)) {
             orderBeans = new SortList();
 
-            SortDTO sort = new SortDTO();
-            sort.setSortName(CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, sortField));
-            sort.setSortOrder(StringUtils.isNotBlank(sortDirection) ? sortDirection : DEFAULT_SORT_ORDER);
+            SortDTO sort = new SortDTO(sortField, sortDirection);
 
             orderBeans.add(sort);
         }
