@@ -54,6 +54,11 @@ public class ApiController {
         return page;
     }
 
+    @RequestMapping("/deletes")
+    public Integer deletes() {
+        return this.demoUserService.deletes();
+    }
+
     @RequestMapping("/create")
     public boolean create() {
         return this.demoUserService.saveTestUser();

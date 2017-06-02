@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import com.baayso.springboot.common.mapper.CommonMapper;
@@ -97,6 +98,19 @@ public abstract class AbstractCommonService<T, ID extends Serializable> {
      */
     public int remove(T entity) {
         return this.dao.delete(entity);
+    }
+
+    /**
+     * 根据主键字符串进行删除（使用 IN 操作符）。
+     *
+     * @param ids 如 "1,2,3,4"
+     *
+     * @return 受影响的行数
+     *
+     * @since 1.0.0
+     */
+    public int remove(List<ID> ids) {
+        return this.dao.deleteByIds(StringUtils.join(ids.toArray(), ','));
     }
 
     /**
@@ -196,6 +210,19 @@ public abstract class AbstractCommonService<T, ID extends Serializable> {
      */
     public List<T> list(T entity) {
         return this.dao.select(entity);
+    }
+
+    /**
+     * 根据主键字符串查询数据列表（使用 IN 操作符）。
+     *
+     * @param ids 如 "1,2,3,4"
+     *
+     * @return 查询到的数据列表
+     *
+     * @since 1.0.0
+     */
+    public List<T> list(List<ID> ids) {
+        return this.dao.selectByIds(StringUtils.join(ids.toArray(), ','));
     }
 
     /**

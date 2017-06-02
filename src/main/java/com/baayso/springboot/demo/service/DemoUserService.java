@@ -55,4 +55,12 @@ public class DemoUserService extends AbstractCommonService<DemoUserDO, Long> {
         return true;
     }
 
+    public int deletes() {
+        List<Long> ids = new ArrayList<>();
+        ids.add(1L);
+        ids.add(2L);
+
+        return super.remove(ids);
+    }
+
 }
