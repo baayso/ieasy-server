@@ -22,7 +22,6 @@ import com.baayso.commons.exception.ApiException;
 import com.baayso.commons.tool.CommonResponseStatus;
 import com.baayso.commons.tool.ResponseStatus;
 import com.baayso.commons.web.WebUtils;
-import com.baayso.springboot.common.exception.ApiServiceException;
 import com.baayso.springboot.common.tool.OperationResult;
 import com.baayso.springboot.common.utils.JsonUtils;
 import com.baayso.springboot.common.validator.BeanValidators;
@@ -40,12 +39,12 @@ import lombok.extern.slf4j.Slf4j;
 public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
     /**
-     * 处理ApiServiceException异常。
+     * 处理ApiException异常。
      *
      * @since 1.0.0
      */
-    @ExceptionHandler(value = {ApiServiceException.class})
-    public final ResponseEntity<OperationResult> handleApiServiceException(ApiServiceException ex, HttpServletRequest request) {
+    @ExceptionHandler(value = {ApiException.class})
+    public final ResponseEntity<OperationResult> handleApiServiceException(ApiException ex, HttpServletRequest request) {
         // 注入servletRequest，用于出错时打印请求URL与来源地址
         logError(ex, request);
 
