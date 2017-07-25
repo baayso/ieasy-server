@@ -11,7 +11,7 @@ logging:
 spring:
     redis:
         database: 0
-        host: localhost
+        host: 192.168.1.222
         port: 6379
         password:
         pool:
@@ -24,7 +24,7 @@ spring:
 datasource:
     name: druidDataSource
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/springbootdemo?useSSL=false
+    url: jdbc:mysql://192.168.1.222:3306/springbootdemo?useSSL=false
     username: root
     password: root
     type: com.alibaba.druid.pool.DruidDataSource # 使用druid数据源
@@ -44,3 +44,8 @@ datasource:
     removeAbandoned: true
     removeAbandonedTimeoutMillis: 300000
     logAbandoned: true
+
+druidStatView:
+    login:
+        username: baayso
+        password: baayso

@@ -56,3 +56,8 @@ datasource:
     removeAbandoned: true
     removeAbandonedTimeoutMillis: 300000
     logAbandoned: true
+
+druidStatView:
+    login:
+        username: baayso
+        password: baayso
