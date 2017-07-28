@@ -25,7 +25,6 @@ spring:
     jackson:
         date-format: yyyy-MM-dd HH:mm:ss
         joda-date-time-format: yyyy-MM-dd HH:mm:ss
-        # serialization-inclusion: NON_NULL
         default-property-inclusion: NON_NULL
         time-zone: Asia/Shanghai
     mvc:
