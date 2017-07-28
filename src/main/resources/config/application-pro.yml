@@ -23,7 +23,7 @@ spring:
                 enabled: false
     redis:
         database: 8
-        host: localhost
+        host: 192.168.1.222
         port: 6379
         password:
         pool:
@@ -32,32 +32,29 @@ spring:
             max-wait: -1
             min-idle: 0
         timeout: 0
-
-datasource:
-    name: druidDataSource
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/springbootdemo
-    username: root
-    password: root
-    type: com.alibaba.druid.pool.DruidDataSource # 使用druid数据源
-    initialSize: 10
-    minIdle: 10
-    maxActive: 100
-    maxWait: 60000
-    timeBetweenEvictionRunsMillis: 60000
-    minEvictableIdleTimeMillis: 300000
-    validationQuery: SELECT 'x'
-    testWhileIdle: true
-    testOnBorrow: false
-    testOnReturn: false
-    poolPreparedStatements: false
-    maxOpenPreparedStatements: 20
-    filters: stat,wall
-    removeAbandoned: true
-    removeAbandonedTimeoutMillis: 300000
-    logAbandoned: true
-
-druidStatView:
-    login:
-        username: baayso
-        password: baayso
+    datasource:
+        url: jdbc:mysql://192.168.1.222:3306/springbootdemo?useSSL=false
+        username: root
+        password: root
+        druid:
+            initial-size: 10
+            min-idle: 10
+            max-active: 100
+            # 如果用Oracle则把poolPreparedStatements配置为true，MySQL可以配置为false。分库分表较多的数据库建议配置为false。
+            poolPreparedStatements: false
+            filter:
+                stat:
+                  enabled: true
+                  log-slow-sql: true
+                wall:
+                    enabled: true
+            stat-view-servlet:
+                enabled: true
+                url-pattern: /druid/*
+                reset-enable: false
+                login-username: baayso
+                login-password: baayso
+            web-stat-filter:
+                enabled: true
+                url-pattern: /*
+                exclusions: /druid,/druid/*
