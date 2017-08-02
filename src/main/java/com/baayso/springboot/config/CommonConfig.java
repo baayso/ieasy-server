@@ -1,17 +1,15 @@
 package com.baayso.springboot.config;
 
-import javax.validation.Validator;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.OkHttp3ClientHttpRequestFactory;
-import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.client.RestTemplate;
 
 import com.baayso.commons.security.AESCoder;
 import com.baayso.commons.security.password.BCryptPasswordEncoder;
 import com.baayso.commons.security.password.PasswordEncoder;
 import com.baayso.commons.spring.SpringUtils;
+import com.baayso.commons.utils.Validator;
 
 /**
  * 公共配置。
@@ -21,11 +19,6 @@ import com.baayso.commons.spring.SpringUtils;
  */
 @Configuration
 public class CommonConfig {
-
-    @Bean
-    public Validator validator() {
-        return new LocalValidatorFactoryBean();
-    }
 
     @Bean
     public RestTemplate restTemplate() {
@@ -45,6 +38,11 @@ public class CommonConfig {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public Validator validator() {
+        return new Validator();
     }
 
 }
