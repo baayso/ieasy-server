@@ -20,7 +20,7 @@ public class MyBatisMapperScannerConfig {
     @Bean
     public MapperScannerConfigurer mapperScannerConfigurer() {
         Properties properties = new Properties();
-        properties.setProperty("mappers", "com.baayso.springboot.common.mapper.CommonMapper");
+        properties.setProperty("mappers", "com.baayso.commons.mybatis.mapper.CommonMapper");
         properties.setProperty("notEmpty", "false");
         properties.setProperty("IDENTITY", "MYSQL");
 

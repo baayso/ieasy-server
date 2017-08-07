@@ -2,8 +2,8 @@ package com.baayso.springboot.access.service;
 
 import org.springframework.stereotype.Service;
 
+import com.baayso.commons.service.AbstractCommonService;
 import com.baayso.springboot.access.domain.AccessGroupDO;
-import com.baayso.springboot.common.service.AbstractCommonService;
 
 
 /**

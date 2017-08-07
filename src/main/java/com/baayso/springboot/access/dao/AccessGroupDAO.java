@@ -1,8 +1,8 @@
 package com.baayso.springboot.access.dao;
 
 
+import com.baayso.commons.mybatis.mapper.CommonMapper;
 import com.baayso.springboot.access.domain.AccessGroupDO;
-import com.baayso.springboot.common.mapper.CommonMapper;
 
 /**
  * 接入组数据访问。

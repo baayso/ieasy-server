@@ -44,7 +44,7 @@ spring:
 #
 #mapper:
 #    mappers:
-#        - com.baayso.springboot.common.mapper.CommonMapper
+#        - com.baayso.commons.mybatis.mapper.CommonMapper
 #    not-empty: false
 #    identity: MYSQL
 #

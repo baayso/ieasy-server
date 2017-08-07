@@ -6,9 +6,9 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.baayso.commons.service.AbstractCommonService;
 import com.baayso.springboot.access.dao.AccessApiDAO;
 import com.baayso.springboot.access.domain.AccessApiDO;
-import com.baayso.springboot.common.service.AbstractCommonService;
 
 
 /**

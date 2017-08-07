@@ -3,8 +3,8 @@ package com.baayso.springboot.access.dao;
 
 import java.util.List;
 
+import com.baayso.commons.mybatis.mapper.CommonMapper;
 import com.baayso.springboot.access.domain.AccessApiDO;
-import com.baayso.springboot.common.mapper.CommonMapper;
 
 /**
  * API数据访问。

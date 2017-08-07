@@ -6,8 +6,9 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.baayso.springboot.common.service.AbstractCommonService;
+import com.baayso.commons.service.AbstractCommonService;
 import com.baayso.springboot.demo.domain.DemoUserDO;
+
 
 /**
  * 测试业务。

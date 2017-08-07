@@ -5,8 +5,8 @@ import javax.inject.Inject;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
+import com.baayso.commons.service.AbstractCommonService;
 import com.baayso.springboot.access.domain.AccessDO;
-import com.baayso.springboot.common.service.AbstractCommonService;
 
 
 /**
