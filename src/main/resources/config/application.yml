@@ -27,6 +27,10 @@ spring:
         joda-date-time-format: yyyy-MM-dd HH:mm:ss
         default-property-inclusion: NON_NULL
         time-zone: Asia/Shanghai
+        serialization:
+            WRITE_ENUMS_USING_TO_STRING: true
+        deserialization:
+            READ_ENUMS_USING_TO_STRING: true
     mvc:
         date-format: yyyy-MM-dd HH:mm:ss
         view:
