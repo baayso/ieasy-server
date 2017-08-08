@@ -1,9 +1,12 @@
 package com.baayso.springboot.config.mybatis;
 
+import java.util.Set;
+
 import javax.inject.Inject;
 import javax.sql.DataSource;
 
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.type.TypeHandlerRegistry;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.context.annotation.Bean;
@@ -14,6 +17,10 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.TransactionManagementConfigurer;
+
+import com.baayso.commons.mybatis.type.EnumValueTypeHandler;
+import com.baayso.commons.mybatis.type.ValueEnum;
+import com.baayso.commons.spring.LoadPackageAndAssignableTypeClasses;
 
 /**
  * MyBatis基础配置。
@@ -33,12 +40,27 @@ public class MyBatisConfig implements TransactionManagementConfigurer {
         ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
 
         try {
-            SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
-            sqlSessionFactory.setDataSource(this.dataSource);
-            sqlSessionFactory.setConfigLocation(resolver.getResource("classpath:config/mybatis-config.xml"));
-            sqlSessionFactory.setMapperLocations(resolver.getResources("classpath*:mybatis/**/*.xml"));
+            SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
+            sqlSessionFactoryBean.setDataSource(this.dataSource);
+            sqlSessionFactoryBean.setConfigLocation(resolver.getResource("classpath:config/mybatis-config.xml"));
+            sqlSessionFactoryBean.setMapperLocations(resolver.getResources("classpath*:mybatis/**/*.xml"));
 
-            return sqlSessionFactory.getObject();
+            SqlSessionFactory sqlSessionFactory = sqlSessionFactoryBean.getObject();
+
+            TypeHandlerRegistry registry = sqlSessionFactory.getConfiguration().getTypeHandlerRegistry();
+
+            String[] packages = new String[]{"com.baayso"}; // 需要被扫描的包
+            Class<?> targetType = ValueEnum.class;
+            LoadPackageAndAssignableTypeClasses scanner = new LoadPackageAndAssignableTypeClasses(packages, targetType);
+            Set<Class<?>> classes = scanner.getClassSet();
+
+            for (Class<?> clazz : classes) {
+                if (clazz.isEnum()) {
+                    registry.register(clazz, EnumValueTypeHandler.class);
+                }
+            }
+
+            return sqlSessionFactory;
         }
         catch (Exception e) {
             throw new RuntimeException(e);

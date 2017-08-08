@@ -39,9 +39,6 @@
         <!-- 用户性别枚举
         <typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler"
                      javaType="com.baayso.api.user.domain.UserGender"/> -->
-
-        <typeHandler handler="com.baayso.commons.mybatis.type.EnumValueTypeHandler"
-                     javaType="com.baayso.springboot.demo.domain.status.OrderStatus"/>
     </typeHandlers>
 
     <plugins>
