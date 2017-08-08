@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.TransactionManagementConfigure
 
 import com.baayso.commons.mybatis.type.EnumValueTypeHandler;
 import com.baayso.commons.mybatis.type.ValueEnum;
-import com.baayso.commons.spring.LoadPackageAndAssignableTypeClasses;
+import com.baayso.commons.spring.ClassScanner;
 
 /**
  * MyBatis基础配置。
@@ -51,7 +51,7 @@ public class MyBatisConfig implements TransactionManagementConfigurer {
 
             String[] packages = new String[]{"com.baayso"}; // 需要被扫描的包
             Class<?> targetType = ValueEnum.class;
-            LoadPackageAndAssignableTypeClasses scanner = new LoadPackageAndAssignableTypeClasses(packages, targetType);
+            ClassScanner scanner = new ClassScanner(packages, targetType);
             Set<Class<?>> classes = scanner.getClassSet();
 
             for (Class<?> clazz : classes) {
