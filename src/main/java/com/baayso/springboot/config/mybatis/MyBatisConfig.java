@@ -5,6 +5,7 @@ import java.util.Set;
 import javax.inject.Inject;
 import javax.sql.DataSource;
 
+import org.apache.commons.lang3.ClassUtils;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.type.TypeHandlerRegistry;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -21,6 +22,8 @@ import org.springframework.transaction.annotation.TransactionManagementConfigure
 import com.baayso.commons.mybatis.type.EnumValueTypeHandler;
 import com.baayso.commons.mybatis.type.ValueEnum;
 import com.baayso.commons.spring.ClassScanner;
+import com.baayso.springboot.Application;
+
 
 /**
  * MyBatis基础配置。
@@ -49,7 +52,7 @@ public class MyBatisConfig implements TransactionManagementConfigurer {
 
             TypeHandlerRegistry registry = sqlSessionFactory.getConfiguration().getTypeHandlerRegistry();
 
-            String[] packages = new String[]{"com.baayso"}; // 需要被扫描的包
+            String[] packages = new String[]{ClassUtils.getPackageName(Application.class)}; // 需要被扫描的包
             Class<?> targetType = ValueEnum.class;
             ClassScanner scanner = new ClassScanner(packages, targetType);
             Set<Class<?>> classes = scanner.getClassSet();
