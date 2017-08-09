@@ -21,9 +21,9 @@ import org.springside.modules.web.MediaTypes;
 import com.baayso.commons.exception.ApiException;
 import com.baayso.commons.tool.CommonResponseStatus;
 import com.baayso.commons.tool.ResponseStatus;
+import com.baayso.commons.utils.JsonUtils;
 import com.baayso.commons.web.WebUtils;
 import com.baayso.springboot.common.tool.OperationResult;
-import com.baayso.springboot.common.utils.JsonUtils;
 import com.baayso.springboot.common.validator.BeanValidators;
 
 import lombok.extern.slf4j.Slf4j;
