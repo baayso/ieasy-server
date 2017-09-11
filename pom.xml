@@ -42,7 +42,7 @@
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <poi.version>3.16</poi.version>
-        <easypoi.version>2.4.0</easypoi.version>
+        <easypoi.version>3.0.1</easypoi.version>
         <springside.version>5.0.0-SNAPSHOT</springside.version>
     </properties>
 
@@ -122,17 +122,17 @@
             <version>${poi.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.jeecg</groupId>
+            <groupId>cn.afterturn</groupId>
             <artifactId>easypoi-base</artifactId>
             <version>${easypoi.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.jeecg</groupId>
+            <groupId>cn.afterturn</groupId>
             <artifactId>easypoi-web</artifactId>
             <version>${easypoi.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.jeecg</groupId>
+            <groupId>cn.afterturn</groupId>
             <artifactId>easypoi-annotation</artifactId>
             <version>${easypoi.version}</version>
         </dependency>
