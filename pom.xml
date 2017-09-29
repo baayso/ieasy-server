@@ -42,7 +42,7 @@
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <poi.version>3.16</poi.version>
-        <easypoi.version>3.0.1</easypoi.version>
+        <easypoi.version>3.0.2</easypoi.version>
         <springside.version>5.0.0-SNAPSHOT</springside.version>
     </properties>
 
