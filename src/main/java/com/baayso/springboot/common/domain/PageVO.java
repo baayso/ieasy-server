@@ -23,7 +23,7 @@ public class PageVO<T> {
 
     // 页面传递的参数或者是配置的参数
     private Integer pageSize;           // 页大小（每页显示多少条记录）
-    private Integer pageNumber;         // 当前页
+    private Integer pageNum;            // 当前页
     private String  sortName;           // 排序字段名称
     private String  sortOrder;          // 排序方式
 
@@ -47,11 +47,11 @@ public class PageVO<T> {
     }
 
     /**
-     * @param pageSize   页大小（每页显示多少条记录）
-     * @param pageNumber 当前页
+     * @param pageSize 页大小（每页显示多少条记录）
+     * @param pageNum  当前页
      */
-    public PageVO(int pageSize, int pageNumber) {
-        this(pageSize, pageNumber, DEFAULT_SORT_NAME, DEFAULT_SORT_ORDER);
+    public PageVO(int pageSize, int pageNum) {
+        this(pageSize, pageNum, DEFAULT_SORT_NAME, DEFAULT_SORT_ORDER);
     }
 
     /**
@@ -87,18 +87,18 @@ public class PageVO<T> {
     }
 
     /**
-     * @param pageSize   页大小（每页显示多少条记录）
-     * @param pageNumber 当前页
-     * @param sortName   排序字段名称
-     * @param sortOrder  排序方式
+     * @param pageSize  页大小（每页显示多少条记录）
+     * @param pageNum   当前页
+     * @param sortName  排序字段名称
+     * @param sortOrder 排序方式
      */
-    public PageVO(int pageSize, int pageNumber, String sortName, String sortOrder) {
+    public PageVO(int pageSize, int pageNum, String sortName, String sortOrder) {
         if (pageSize < 1) {
             pageSize = DEFAULT_PAGE_SIZE;
         }
 
-        if (pageNumber < 1) {
-            pageNumber = DEFAULT_PAGE_NUMBER;
+        if (pageNum < 1) {
+            pageNum = DEFAULT_PAGE_NUMBER;
         }
 
         if (StringUtils.isBlank(sortName)) {
@@ -110,14 +110,14 @@ public class PageVO<T> {
         }
 
         this.pageSize = pageSize;
-        this.pageNumber = pageNumber;
+        this.pageNum = pageNum;
         this.sortName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, sortName);
         this.sortOrder = sortOrder;
     }
 
 
     public PageVO<T> initBeforePage() {
-        PageHelper.startPage(this.pageNumber, this.pageSize);
+        PageHelper.startPage(this.pageNum, this.pageSize);
 
         if (StringUtils.isNotBlank(this.sortName)) {
             PageHelper.orderBy(this.sortName + " " + this.sortOrder);
@@ -155,12 +155,12 @@ public class PageVO<T> {
         this.pageSize = pageSize;
     }
 
-    public Integer getPageNumber() {
-        return pageNumber;
+    public Integer getPageNum() {
+        return pageNum;
     }
 
-    public void setPageNumber(Integer pageNumber) {
-        this.pageNumber = pageNumber;
+    public void setPageNum(Integer pageNum) {
+        this.pageNum = pageNum;
     }
 
     public String getSortName() {
