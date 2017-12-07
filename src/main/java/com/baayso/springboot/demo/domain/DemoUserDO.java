@@ -3,12 +3,12 @@ package com.baayso.springboot.demo.domain;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import com.baayso.springboot.demo.domain.status.OrderStatus;
+import com.baayso.springboot.demo.domain.enums.OrderStatus;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableName;
+
 
 /**
  * 数据对象：测试实体。
@@ -16,30 +16,32 @@ import com.baayso.springboot.demo.domain.status.OrderStatus;
  * @author ChenFangjie (2016/4/1 16:19)
  * @since 1.0.0
  */
-@Table(name = "demo_user")
+@TableName("demo_user")
 public class DemoUserDO implements Serializable {
 
     private static final long serialVersionUID = -8962566780883631270L;
 
-    @Id
-    @GeneratedValue(generator = "JDBC")
-    // @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long        id;
+    private Long        tenantId; // 租户ID
     private String      name;
+    private Integer     age;
     private OrderStatus status;
     private String      intro;
-    @Transient
-    private Date        datetime;
+
+    @TableField(exist = false)
+    private Date datetime;
 
     @Override
     public String toString() {
-        return "DemoUserDO{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", status=" + status +
-                ", intro='" + intro + '\'' +
-                ", datetime=" + datetime +
-                '}';
+        return new ToStringBuilder(this)
+                .append("id", id)
+                .append("tenantId", tenantId)
+                .append("name", name)
+                .append("age", age)
+                .append("status", status)
+                .append("intro", intro)
+                .append("datetime", datetime)
+                .toString();
     }
 
     public Long getId() {
@@ -50,12 +52,28 @@ public class DemoUserDO implements Serializable {
         this.id = id;
     }
 
+    public Long getTenantId() {
+        return tenantId;
+    }
+
+    public void setTenantId(Long tenantId) {
+        this.tenantId = tenantId;
+    }
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
     }
 
     public OrderStatus getStatus() {

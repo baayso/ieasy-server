@@ -25,7 +25,9 @@ USE springbootdemo;
 DROP TABLE IF EXISTS `demo_user`;
 CREATE TABLE `demo_user` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `tenant_id` BIGINT(20) NOT NULL COMMENT '租户ID',
   `name` varchar(255) DEFAULT NULL,
+  `age` INT(11) NULL DEFAULT NULL,
   `status` smallint UNSIGNED DEFAULT 128,
   `intro` text DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -34,9 +36,9 @@ CREATE TABLE `demo_user` (
 -- ----------------------------
 -- Records of demo_user
 -- ----------------------------
-INSERT INTO `demo_user` VALUES ('1', 'name1', 128, '');
-INSERT INTO `demo_user` VALUES ('2', 'name2', 256, '');
-INSERT INTO `demo_user` VALUES ('3', 'name3', 384, '');
-INSERT INTO `demo_user` VALUES ('4', 'name4', 512, '');
-INSERT INTO `demo_user` VALUES ('5', 'name5', 640, '');
-INSERT INTO `demo_user` VALUES ('6', 'name6', 768, '');
+INSERT INTO `demo_user` VALUES (1, 1, 'name1', 20, 128, '');
+INSERT INTO `demo_user` VALUES (2, 2, 'name2', 20, 256, '');
+INSERT INTO `demo_user` VALUES (3, 2, 'name3', 20, 384, '');
+INSERT INTO `demo_user` VALUES (4, 1, 'name4', 20, 512, '');
+INSERT INTO `demo_user` VALUES (5, 1, 'name5', 21, 640, '');
+INSERT INTO `demo_user` VALUES (6, 1, 'name6', 21, 768, '');

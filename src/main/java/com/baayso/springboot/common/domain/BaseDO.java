@@ -37,8 +37,8 @@ public class BaseDO extends IdEntity {
     @JsonIgnore
     protected Date modifyTime;                  // 记录修改时间
 
-    @JsonIgnore
-    protected Integer modifyNum;                // 记录修改次数
+    // @JsonIgnore
+    // protected Integer modifyNum;                // 记录修改次数
 
 
     public void initBeforeAdd() {

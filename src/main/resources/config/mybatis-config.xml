@@ -41,15 +41,4 @@
                      javaType="com.baayso.api.user.domain.UserGender"/> -->
     </typeHandlers>
 
-    <plugins>
-        <!-- mybatis分页插件 -->
-        <plugin interceptor="com.github.pagehelper.PageHelper">
-            <property name="helperDialect" value="mysql"/>
-            <!-- 分页参数合理化，默认 false -->
-            <!-- 当该参数设置为 true 时，，pageNum<=0 时会查询第一页，pageNum>pages（超过总数时），会查询最后一页 -->
-            <!-- 默认 false 时，直接根据参数进行查询 -->
-            <property name="reasonable" value="false"/>
-        </plugin>
-    </plugins>
-
 </configuration>

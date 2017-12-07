@@ -1,8 +1,7 @@
 package com.baayso.springboot.access.domain;
 
-import javax.persistence.Table;
-
 import com.baayso.springboot.common.domain.BaseDO;
+import com.baomidou.mybatisplus.annotations.TableName;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,7 +20,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "access_group_api_relation")
+@TableName("access_group_api_relation")
 public class AccessGroupApiRelationDO extends BaseDO {
 
     private static final long serialVersionUID = -1553896700967416906L;

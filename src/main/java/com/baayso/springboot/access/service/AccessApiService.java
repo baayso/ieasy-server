@@ -2,13 +2,11 @@ package com.baayso.springboot.access.service;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
 import org.springframework.stereotype.Service;
 
-import com.baayso.commons.service.AbstractCommonService;
 import com.baayso.springboot.access.dao.AccessApiDAO;
 import com.baayso.springboot.access.domain.AccessApiDO;
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 
 
 /**
@@ -18,10 +16,7 @@ import com.baayso.springboot.access.domain.AccessApiDO;
  * @since 1.0.0
  */
 @Service
-public class AccessApiService extends AbstractCommonService<AccessApiDO, Long> {
-
-    @Inject
-    private AccessApiDAO accessApiDAO;
+public class AccessApiService extends ServiceImpl<AccessApiDAO, AccessApiDO> {
 
     /**
      * 根据接入方ID查询其拥有的API列表。
@@ -33,7 +28,7 @@ public class AccessApiService extends AbstractCommonService<AccessApiDO, Long> {
      * @since 1.0.0
      */
     public List<AccessApiDO> listByAccessId(Long accessId) {
-        return this.accessApiDAO.listByAccessId(accessId);
+        return this.baseMapper.listByAccessId(accessId);
     }
 
 }

@@ -2,8 +2,9 @@ package com.baayso.springboot.access.service;
 
 import org.springframework.stereotype.Service;
 
-import com.baayso.commons.service.AbstractCommonService;
+import com.baayso.springboot.access.dao.AccessGroupDAO;
 import com.baayso.springboot.access.domain.AccessGroupDO;
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 
 
 /**
@@ -13,6 +14,6 @@ import com.baayso.springboot.access.domain.AccessGroupDO;
  * @since 1.0.0
  */
 @Service
-public class AccessGroupService extends AbstractCommonService<AccessGroupDO, Long> {
+public class AccessGroupService extends ServiceImpl<AccessGroupDAO, AccessGroupDO> {
 
 }

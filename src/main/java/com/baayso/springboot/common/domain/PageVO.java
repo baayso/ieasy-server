@@ -4,8 +4,7 @@ import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
+import com.baomidou.mybatisplus.plugins.pagination.PageHelper;
 import com.google.common.base.CaseFormat;
 
 /**
@@ -120,22 +119,22 @@ public class PageVO<T> {
         PageHelper.startPage(this.pageNum, this.pageSize);
 
         if (StringUtils.isNotBlank(this.sortName)) {
-            PageHelper.orderBy(this.sortName + " " + this.sortOrder);
+           // PageHelper.orderBy(this.sortName + " " + this.sortOrder);
         }
 
         return this;
     }
 
-    public PageVO<T> initAfterPage(PageInfo<T> pageInfo) {
-        if (pageInfo != null) {
-            this.recordCount = pageInfo.getTotal();
-            this.dataList = pageInfo.getList();
-            // this.pageCount = (this.recordCount + this.pageSize - 1) / this.pageSize;
-            this.pageCount = (long) pageInfo.getPages();
-        }
-
-        return this;
-    }
+    //public PageVO<T> initAfterPage(PageInfo<T> pageInfo) {
+    //    if (pageInfo != null) {
+    //        this.recordCount = pageInfo.getTotal();
+    //        this.dataList = pageInfo.getList();
+    //        // this.pageCount = (this.recordCount + this.pageSize - 1) / this.pageSize;
+    //        this.pageCount = (long) pageInfo.getPages();
+    //    }
+    //
+    //    return this;
+    //}
 
     public PageVO<T> initAfterPage(long recordCount, List<T> list) {
         this.recordCount = recordCount;

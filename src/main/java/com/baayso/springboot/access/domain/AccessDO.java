@@ -3,10 +3,9 @@ package com.baayso.springboot.access.domain;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.Table;
-import javax.persistence.Transient;
-
 import com.baayso.springboot.common.domain.BaseDO;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableName;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,7 +24,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "access")
+@TableName("access")
 public class AccessDO extends BaseDO {
 
     private static final long serialVersionUID = 3877696751248414559L;
@@ -38,10 +37,10 @@ public class AccessDO extends BaseDO {
     private String  salt;            // 数据盐
     private Boolean isEnable;        // 是否启用
 
-    @Transient
+    @TableField(exist = false)
     private List<AccessGroupDO> groups; // 接入组列表
 
-    @Transient
+    @TableField(exist = false)
     private Set<AccessApiDO> apis; // API列表
 
 }

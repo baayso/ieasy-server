@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.baayso.springboot.common.domain.PageVO;
 import com.baayso.springboot.demo.domain.DemoUserDO;
 import com.baayso.springboot.demo.service.DemoUserService;
-import com.github.pagehelper.PageInfo;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
 
 @RestController
 @RequestMapping("/api")
@@ -23,19 +24,27 @@ public class ApiController {
 
     @RequestMapping
     public List<DemoUserDO> now() {
-        List<DemoUserDO> users = this.demoUserService.list();
+        List<DemoUserDO> users = this.demoUserService.selectList( //
+                new EntityWrapper<DemoUserDO>() //
+                        .between("age", "18", "20"));
+
         users.forEach(u -> u.setDatetime(new Date()));
 
         return users;
     }
 
     @RequestMapping("/page")
-    public PageInfo<DemoUserDO> page(String pageSize, String pageNum) {
+    public Page<DemoUserDO> page(String pageSize, String pageNum) {
 
         int ps = StringUtils.isNumeric(pageSize) ? Integer.parseInt(pageSize) : 3;
         int pn = StringUtils.isNumeric(pageNum) ? Integer.parseInt(pageNum) : 2;
 
-        return this.demoUserService.list(pn, ps);
+        Page<DemoUserDO> page = this.demoUserService.selectPage(
+                new Page<>(pn, ps),
+                new EntityWrapper<DemoUserDO>()
+                        .between("age", "18", "20"));
+
+        return page;
     }
 
     @RequestMapping("/page2")
@@ -47,15 +56,15 @@ public class ApiController {
         PageVO<DemoUserDO> page = new PageVO<>(ps, pn);
         page.initBeforePage();
 
-        List<DemoUserDO> list = this.demoUserService.list();
+        // List<DemoUserDO> list = this.demoUserService.list();
 
-        page.initAfterPage(new PageInfo<>(list, ps));
+        // page.initAfterPage(new PageInfo<>(list, ps));
 
         return page;
     }
 
     @RequestMapping("/deletes")
-    public Integer deletes() {
+    public Boolean deletes() {
         return this.demoUserService.deletes();
     }
 

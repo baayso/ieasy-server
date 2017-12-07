@@ -2,10 +2,9 @@ package com.baayso.springboot.access.domain;
 
 import java.util.List;
 
-import javax.persistence.Table;
-import javax.persistence.Transient;
-
 import com.baayso.springboot.common.domain.BaseDO;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableName;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,7 +23,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "access_api")
+@TableName("access_api")
 public class AccessApiDO extends BaseDO {
 
     private static final long serialVersionUID = 7951978574966424420L;
@@ -36,9 +35,10 @@ public class AccessApiDO extends BaseDO {
     private Long    parentId;   // 父操作ID
     private Boolean isParent;   // 是否父级
 
-    @Transient
-    private AccessApiDO       parent;   // 上级操作
-    @Transient
-    private List<AccessApiDO> children; // 子操作
+    @TableField(exist = false)
+    private AccessApiDO parent;   // 上级API
+
+    @TableField(exist = false)
+    private List<AccessApiDO> children; // 子API
 
 }

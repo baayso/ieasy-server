@@ -2,10 +2,9 @@ package com.baayso.springboot.access.domain;
 
 import java.util.List;
 
-import javax.persistence.Table;
-import javax.persistence.Transient;
-
 import com.baayso.springboot.common.domain.BaseDO;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableName;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,7 +23,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "access_group")
+@TableName("access_group")
 public class AccessGroupDO extends BaseDO {
 
     private static final long serialVersionUID = 6603615128410126088L;
@@ -33,7 +32,7 @@ public class AccessGroupDO extends BaseDO {
     private String code;       // 编码
     private String descr;      // 描述
 
-    @Transient
+    @TableField(exist = false)
     private List<AccessApiDO> apis; // 所拥有的API
 
 }
