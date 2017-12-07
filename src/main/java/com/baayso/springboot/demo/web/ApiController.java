@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.baayso.springboot.common.domain.PageVO;
 import com.baayso.springboot.demo.domain.DemoUserDO;
+import com.baayso.springboot.demo.domain.enums.OrderStatus;
 import com.baayso.springboot.demo.service.DemoUserService;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
@@ -23,10 +24,13 @@ public class ApiController {
     private DemoUserService demoUserService;
 
     @RequestMapping
-    public List<DemoUserDO> now() {
+    public List<DemoUserDO> now(String name) {
         List<DemoUserDO> users = this.demoUserService.selectList( //
-                new EntityWrapper<DemoUserDO>() //
-                        .between("age", "18", "20"));
+                new EntityWrapper<>(DemoUserDO.builder() //
+                        .status(OrderStatus.WAIT_PAY) //
+                        .build())
+                        .like(StringUtils.isNotBlank(name), "name", name) //
+                        .between("age", 18, 20));
 
         users.forEach(u -> u.setDatetime(new Date()));
 
