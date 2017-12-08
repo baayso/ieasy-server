@@ -50,8 +50,8 @@ mybatis-plus:
     # config-location: classpath:config/mybatis-config.xml
     mapper-locations: classpath*:mybatis/**/*.xml
     # 实体扫描，多个package用逗号或者分号分隔
-    # typeAliasesPackage: com.baayso.**.domain
-    typeEnumsPackage: com.baayso.**.domain.enums
+    # type-aliases-package: com.baayso.**.domain
+    type-enums-package: com.baayso.**.domain.enums
     global-config:
         # 主键类型  0:"数据库ID自增", 1:"用户输入ID", 2:"全局唯一ID (数字类型唯一ID)", 3:"全局唯一ID UUID";
         id-type: 0
