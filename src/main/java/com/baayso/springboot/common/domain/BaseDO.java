@@ -56,8 +56,8 @@ public class BaseDO extends IdEntity {
     public void initBeforeAdd(String actor, Date date) {
         setCreateBy(actor);
         setCreateTime(date);
-        // setModifyBy(actor);
-        // setModifyTime(date);
+        setModifyBy(actor);
+        setModifyTime(date);
         // setModifyNum(0);
     }
 
