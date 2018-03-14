@@ -9,7 +9,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.9.RELEASE</version>
+        <version>1.5.10.RELEASE</version>
     </parent>
 
     <groupId>com.baayso</groupId>
@@ -52,6 +52,12 @@
             <groupId>com.baayso</groupId>
             <artifactId>commons</artifactId>
             <version>1.0.0.Alpha</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.oschina.durcframework</groupId>
+            <artifactId>easyopen</artifactId>
+            <version>1.4.0</version>
         </dependency>
 
         <!-- GENERAL UTILS begin -->
