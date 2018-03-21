@@ -17,8 +17,8 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 
 @RestController
-@RequestMapping("/api")
-public class ApiController {
+@RequestMapping("/demo/api")
+public class DemoApiController {
 
     @Inject
     private DemoUserService demoUserService;
