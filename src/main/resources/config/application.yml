@@ -1,6 +1,5 @@
 server:
     port: 8888
-    # context-path: /springboot
     compression:
         enabled: true
         mime-types: text/html,application/xml,application/json,application/javascript,text/css,text/plain
@@ -10,11 +9,19 @@ server:
         key-store: classpath:config/sample.jks
         key-store-password: secret
         key-password: password
+    servlet:
+        context-path: /
+    http2:
+      enabled: true
 
 management:
-    context-path: /actuator
-    security:
-        enabled: false
+    server:
+        servlet:
+            context-path: /management
+        port: ${server.port}
+    endpoints:
+        web:
+            base-path: /
 
 spring:
     profiles:

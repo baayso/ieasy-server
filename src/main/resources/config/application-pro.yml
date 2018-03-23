@@ -17,8 +17,6 @@ spring:
         restart:
             enabled: false
         remote:
-            debug:
-                enabled: false
             restart:
                 enabled: false
     redis:
@@ -26,12 +24,13 @@ spring:
         host: 192.168.1.222
         port: 6379
         password:
-        pool:
-            max-active: 2048
-            max-idle: 10
-            max-wait: -1
-            min-idle: 0
-        timeout: 0
+        jedis:
+            pool:
+                max-active: 2048
+                max-idle: 10
+                max-wait: -1ms
+                min-idle: 0
+        timeout: 0ms
     datasource:
         url: jdbc:mysql://192.168.1.222:3306/springbootdemo?useSSL=false
         username: root

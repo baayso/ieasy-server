@@ -41,7 +41,7 @@ public class DemoApiController {
     public Page<DemoUserDO> page(String pageSize, String pageNum) {
 
         int ps = StringUtils.isNumeric(pageSize) ? Integer.parseInt(pageSize) : 3;
-        int pn = StringUtils.isNumeric(pageNum) ? Integer.parseInt(pageNum) : 2;
+        int pn = StringUtils.isNumeric(pageNum) ? Integer.parseInt(pageNum) : 1;
 
         Page<DemoUserDO> page = this.demoUserService.selectPage(
                 new Page<>(pn, ps),
@@ -55,7 +55,7 @@ public class DemoApiController {
     public PageVO<DemoUserDO> page2(String pageSize, String pageNum) {
 
         int ps = StringUtils.isNumeric(pageSize) ? Integer.parseInt(pageSize) : 3;
-        int pn = StringUtils.isNumeric(pageNum) ? Integer.parseInt(pageNum) : 2;
+        int pn = StringUtils.isNumeric(pageNum) ? Integer.parseInt(pageNum) : 1;
 
         PageVO<DemoUserDO> page = new PageVO<>(ps, pn);
         page.initBeforePage();
