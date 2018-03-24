@@ -121,7 +121,7 @@ public enum OrderStatus implements IEnum {
     }
 
     /**
-     * Return the integer value of this status code.
+     * Return the integer value of this code.
      */
     @Override
     public Serializable getValue() {
@@ -129,18 +129,18 @@ public enum OrderStatus implements IEnum {
     }
 
     /**
-     * Return the reason phrase of this status code.
+     * Return the reason phrase of this code.
      */
     public String getDesc() {
         return desc;
     }
 
     /**
-     * Return a string representation of this status code.
+     * Return a string representation of this code.
      */
     @Override
     public String toString() {
-        return this.desc;
+        return String.valueOf(this.value);
     }
 
 }
