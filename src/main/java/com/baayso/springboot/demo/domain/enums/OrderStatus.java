@@ -135,9 +135,6 @@ public enum OrderStatus implements IEnum {
         return desc;
     }
 
-    /**
-     * Return a string representation of this code.
-     */
     @Override
     public String toString() {
         return String.valueOf(this.value);
