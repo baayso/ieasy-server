@@ -30,15 +30,17 @@ CREATE TABLE `demo_user` (
   `age` INT(11) NULL DEFAULT NULL,
   `status` smallint UNSIGNED DEFAULT 128,
   `intro` text DEFAULT NULL,
+  `deleted` boolean DEFAULT FALSE,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of demo_user
 -- ----------------------------
-INSERT INTO `demo_user` VALUES (1, 1, 'name1', 20, 128, '');
-INSERT INTO `demo_user` VALUES (2, 2, 'name2', 20, 256, '');
-INSERT INTO `demo_user` VALUES (3, 2, 'name3', 20, 384, '');
-INSERT INTO `demo_user` VALUES (4, 1, 'name4', 20, 512, '');
-INSERT INTO `demo_user` VALUES (5, 1, 'name5', 21, 640, '');
-INSERT INTO `demo_user` VALUES (6, 1, 'name6', 21, 768, '');
+INSERT INTO `demo_user` VALUES (1, 1, 'name1', 20, 128, '', FALSE);
+INSERT INTO `demo_user` VALUES (2, 2, 'name2', 20, 256, '', FALSE);
+INSERT INTO `demo_user` VALUES (3, 2, 'name3', 20, 384, '', FALSE);
+INSERT INTO `demo_user` VALUES (4, 1, 'name4', 20, 512, '', FALSE);
+INSERT INTO `demo_user` VALUES (5, 1, 'name5', 21, 640, '', FALSE);
+INSERT INTO `demo_user` VALUES (6, 1, 'name6', 21, 768, '', FALSE);
+INSERT INTO `demo_user` VALUES (7, 1, 'name6', 21, 128, '', TRUE);

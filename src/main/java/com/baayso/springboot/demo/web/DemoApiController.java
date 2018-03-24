@@ -28,7 +28,7 @@ public class DemoApiController {
         List<DemoUserDO> users = this.demoUserService.selectList( //
                 new EntityWrapper<>(DemoUserDO.builder() //
                         .status(OrderStatus.WAIT_PAY) //
-                        .build())
+                        .build()) //
                         .like(StringUtils.isNotBlank(name), "name", name) //
                         .between("age", 18, 20));
 

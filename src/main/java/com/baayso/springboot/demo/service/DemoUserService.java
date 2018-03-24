@@ -24,19 +24,21 @@ public class DemoUserService extends ServiceImpl<DemoUserDAO, DemoUserDO> {
     public boolean saveTestUser() {
         DemoUserDO user1 = new DemoUserDO();
         user1.setName("code-1");
+        user1.setIntro("");
 
         super.insert(user1);
 
         DemoUserDO user2 = new DemoUserDO();
         user2.setName("code-2");
+        user2.setIntro("");
 
         super.insert(user2);
 
         int min = 0;
-        int max = 1;
+        int max = 9;
         int random = (int) (Math.random() * (max - min + 1)) + min;
 
-        int i = 1 / (random > 5 ? 1 : 0);
+        int i = 1 / (random >= 5 ? 1 : 0);
 
         return true;
     }
@@ -44,9 +46,11 @@ public class DemoUserService extends ServiceImpl<DemoUserDAO, DemoUserDO> {
     public boolean saveTestUsers() {
         DemoUserDO user3 = new DemoUserDO();
         user3.setName("code-3");
+        user3.setIntro("");
 
         DemoUserDO user4 = new DemoUserDO();
         user4.setName("code-4");
+        user4.setIntro("");
 
         List<DemoUserDO> list = new ArrayList<>();
         list.add(user3);

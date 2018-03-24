@@ -7,6 +7,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.baayso.springboot.demo.domain.enums.OrderStatus;
 import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableLogic;
 import com.baomidou.mybatisplus.annotations.TableName;
 
 import lombok.AllArgsConstructor;
@@ -39,6 +40,9 @@ public class DemoUserDO implements Serializable {
     private OrderStatus status;
     private String      intro;
 
+    @TableLogic
+    private Boolean deleted;
+
     @TableField(exist = false)
     private Date datetime;
 
@@ -51,6 +55,7 @@ public class DemoUserDO implements Serializable {
                 .append("age", age)
                 .append("status", status)
                 .append("intro", intro)
+                .append("deleted", deleted)
                 .append("datetime", datetime)
                 .toString();
     }
