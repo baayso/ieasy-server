@@ -1,7 +1,7 @@
 package com.baayso.springboot.demo2.dao
 
+import com.baayso.commons.mybatis.mapper.BaseMapper
 import com.baayso.springboot.demo2.domain.Demo2UserDO
-import com.baomidou.mybatisplus.mapper.BaseMapper
 
 /**
  * 测试数据访问。

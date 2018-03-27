@@ -1,8 +1,8 @@
 package com.baayso.springboot.demo2.service
 
+import com.baayso.commons.service.AbstractBaseService
 import com.baayso.springboot.demo2.dao.Demo2UserDAO
 import com.baayso.springboot.demo2.domain.Demo2UserDO
-import com.baomidou.mybatisplus.service.impl.ServiceImpl
 import org.springframework.stereotype.Service
 
 /**
@@ -12,4 +12,4 @@ import org.springframework.stereotype.Service
  * @since 2.0.0
  */
 @Service
-class Demo2UserService : ServiceImpl<Demo2UserDAO, Demo2UserDO>()
+class Demo2UserService : AbstractBaseService<Demo2UserDAO, Demo2UserDO>()

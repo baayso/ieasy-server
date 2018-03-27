@@ -6,9 +6,9 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.baayso.commons.service.AbstractBaseService;
 import com.baayso.springboot.demo.dao.DemoUserDAO;
 import com.baayso.springboot.demo.domain.DemoUserDO;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 
 
 /**
@@ -18,7 +18,7 @@ import com.baomidou.mybatisplus.service.impl.ServiceImpl;
  * @since 1.0.0
  */
 @Service
-public class DemoUserService extends ServiceImpl<DemoUserDAO, DemoUserDO> {
+public class DemoUserService extends AbstractBaseService<DemoUserDAO, DemoUserDO> {
 
     @Transactional
     public boolean saveTestUser() {
