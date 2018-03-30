@@ -84,6 +84,11 @@ public class DemoApiController {
         return this.demoUserService.saveTestUsers();
     }
 
+    @RequestMapping("/update")
+    public boolean update() {
+        return this.demoUserService.update();
+    }
+
     @RequestMapping("/hello")
     public String helloWorld() {
         return "hello";

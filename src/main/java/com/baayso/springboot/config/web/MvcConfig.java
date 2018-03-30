@@ -18,7 +18,7 @@ public class MvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new PerformanceInterceptor()).addPathPatterns("/api/**");
+        registry.addInterceptor(new PerformanceInterceptor()).addPathPatterns("/demo/api/**");
 
         //registry.addInterceptor(new AccessTokenVerificationInterceptor()) //
         //        .addPathPatterns("/api/**") //

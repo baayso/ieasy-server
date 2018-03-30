@@ -77,4 +77,14 @@ public class DemoUserService extends AbstractBaseService<DemoUserDAO, DemoUserDO
         return super.deleteBatchIds(ids);
     }
 
+    public boolean update() {
+        DemoUserDO user5 = DemoUserDO.builder()
+                .id(7L)
+                .version(1)
+                .intro("测试乐观锁")
+                .build();
+
+        return super.updateById(user5);
+    }
+
 }

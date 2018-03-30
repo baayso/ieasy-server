@@ -7,6 +7,7 @@ import com.baayso.springboot.demo.domain.enums.OrderStatus;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableLogic;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.annotations.Version;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Builder;
@@ -35,6 +36,9 @@ public class DemoUserDO extends BaseDO {
     private OrderStatus status;
     private String      intro;
 
+    @Version
+    private Integer version;
+
     @TableLogic
     private Boolean deleted;
 
@@ -45,7 +49,7 @@ public class DemoUserDO extends BaseDO {
 
     @Builder
     public DemoUserDO(Long id, String createBy, LocalDateTime createTime, String modifyBy, LocalDateTime modifyTime,
-                      Long tenantId, String name, Integer age, OrderStatus status, String intro, Boolean deleted,
+                      Long tenantId, String name, Integer age, OrderStatus status, String intro, Integer version, Boolean deleted,
                       LocalDateTime datetime) {
 
         super(id, createBy, createTime, modifyBy, modifyTime);
@@ -55,6 +59,7 @@ public class DemoUserDO extends BaseDO {
         this.age = age;
         this.status = status;
         this.intro = intro;
+        this.version = version;
         this.deleted = deleted;
         this.datetime = datetime;
     }
