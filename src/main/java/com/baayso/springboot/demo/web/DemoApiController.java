@@ -1,6 +1,6 @@
 package com.baayso.springboot.demo.web;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -32,7 +32,7 @@ public class DemoApiController {
                         .like(StringUtils.isNotBlank(name), "name", name) //
                         .between("age", 18, 20));
 
-        users.forEach(u -> u.setDatetime(new Date()));
+        users.forEach(u -> u.setDatetime(LocalDateTime.now()));
 
         return users;
     }

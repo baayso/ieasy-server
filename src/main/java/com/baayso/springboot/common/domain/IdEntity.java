@@ -2,7 +2,9 @@ package com.baayso.springboot.common.domain;
 
 import java.io.Serializable;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -13,6 +15,8 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public abstract class IdEntity implements Serializable {
 
     private static final long serialVersionUID = 6836860712036654696L;

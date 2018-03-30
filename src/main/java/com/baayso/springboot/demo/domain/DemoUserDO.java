@@ -1,20 +1,18 @@
 package com.baayso.springboot.demo.domain;
 
-import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-
+import com.baayso.springboot.common.domain.BaseDO;
 import com.baayso.springboot.demo.domain.enums.OrderStatus;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableLogic;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
 /**
@@ -23,17 +21,14 @@ import lombok.NoArgsConstructor;
  * @author ChenFangjie (2016/4/1 16:19)
  * @since 1.0.0
  */
-@Data
-@EqualsAndHashCode(callSuper = false)
+@Getter
+@Setter
 @NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @TableName("demo_user")
-public class DemoUserDO implements Serializable {
+public class DemoUserDO extends BaseDO {
 
     private static final long serialVersionUID = -8962566780883631270L;
 
-    private Long        id;
     private Long        tenantId; // 租户ID
     private String      name;
     private Integer     age;
@@ -44,20 +39,24 @@ public class DemoUserDO implements Serializable {
     private Boolean deleted;
 
     @TableField(exist = false)
-    private Date datetime;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss:SSS")
+    private LocalDateTime datetime;
 
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this)
-                .append("id", id)
-                .append("tenantId", tenantId)
-                .append("name", name)
-                .append("age", age)
-                .append("status", status)
-                .append("intro", intro)
-                .append("deleted", deleted)
-                .append("datetime", datetime)
-                .toString();
+
+    @Builder
+    public DemoUserDO(Long id, String createBy, LocalDateTime createTime, String modifyBy, LocalDateTime modifyTime,
+                      Long tenantId, String name, Integer age, OrderStatus status, String intro, Boolean deleted,
+                      LocalDateTime datetime) {
+
+        super(id, createBy, createTime, modifyBy, modifyTime);
+
+        this.tenantId = tenantId;
+        this.name = name;
+        this.age = age;
+        this.status = status;
+        this.intro = intro;
+        this.deleted = deleted;
+        this.datetime = datetime;
     }
 
 }

@@ -1,10 +1,13 @@
 package com.baayso.springboot.common.domain;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
+import com.baayso.commons.utils.Validator;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -15,9 +18,10 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@NoArgsConstructor
 public class BaseDO extends IdEntity {
 
-    private static final long serialVersionUID = 6787870565161459149L;
+    private static final long serialVersionUID = -3694675102885188955L;
 
     /**
      * A String for {@code "0"}.
@@ -26,73 +30,81 @@ public class BaseDO extends IdEntity {
      */
     public static final String ZERO = "0";
 
+
     @JsonIgnore
     protected String createBy;                  // 记录创建人
 
-    protected Date createTime;                  // 记录创建时间
+    @JsonFormat(pattern = Validator.DEFAULT_DATETIME_PATTERN)
+    protected LocalDateTime createTime;         // 记录创建时间
 
     @JsonIgnore
     protected String modifyBy;                  // 记录修改人
 
-    @JsonIgnore
-    protected Date modifyTime;                  // 记录修改时间
+    @JsonFormat(pattern = Validator.DEFAULT_DATETIME_PATTERN)
+    protected LocalDateTime modifyTime;         // 记录修改时间
 
-    // @JsonIgnore
-    // protected Integer modifyNum;                // 记录修改次数
+
+    public BaseDO(Long id, String createBy, LocalDateTime createTime, String modifyBy, LocalDateTime modifyTime) {
+        super(id);
+
+        this.createBy = createBy;
+        this.createTime = createTime;
+        this.modifyBy = modifyBy;
+        this.modifyTime = modifyTime;
+    }
 
 
     public void initBeforeAdd() {
-        this.initBeforeAdd(ZERO, new Date());
+        this.initBeforeAdd(ZERO, LocalDateTime.now());
     }
 
     public void initBeforeAdd(String actor) {
-        this.initBeforeAdd(actor, new Date());
+        this.initBeforeAdd(actor, LocalDateTime.now());
     }
 
-    public void initBeforeAdd(Date date) {
-        this.initBeforeAdd(ZERO, date);
+    public void initBeforeAdd(LocalDateTime dateTime) {
+        this.initBeforeAdd(ZERO, dateTime);
     }
 
-    public void initBeforeAdd(String actor, Date date) {
+    public void initBeforeAdd(String actor, LocalDateTime dateTime) {
         setCreateBy(actor);
-        setCreateTime(date);
+        setCreateTime(dateTime);
         setModifyBy(actor);
-        setModifyTime(date);
-        // setModifyNum(0);
+        setModifyTime(dateTime);
     }
 
     public void initBeforeUpdate() {
-        this.initBeforeUpdate(ZERO, new Date());
+        this.initBeforeUpdate(ZERO, LocalDateTime.now());
     }
 
     public void initBeforeUpdate(String actor) {
-        this.initBeforeUpdate(actor, new Date());
+        this.initBeforeUpdate(actor, LocalDateTime.now());
     }
 
-    public void initBeforeUpdate(Date date) {
-        this.initBeforeUpdate(ZERO, date);
+    public void initBeforeUpdate(LocalDateTime dateTime) {
+        this.initBeforeUpdate(ZERO, dateTime);
     }
 
-    public void initBeforeUpdate(String actor, Date date) {
+    public void initBeforeUpdate(String actor, LocalDateTime dateTime) {
         setModifyBy(actor);
-        setModifyTime(date);
+        setModifyTime(dateTime);
     }
 
     public void initBeforeDelete() {
-        this.initBeforeDelete(ZERO, new Date());
+        this.initBeforeDelete(ZERO, LocalDateTime.now());
     }
 
     public void initBeforeDelete(String actor) {
-        this.initBeforeDelete(actor, new Date());
+        this.initBeforeDelete(actor, LocalDateTime.now());
     }
 
-    public void initBeforeDelete(Date date) {
-        this.initBeforeDelete(ZERO, date);
+    public void initBeforeDelete(LocalDateTime dateTime) {
+        this.initBeforeDelete(ZERO, dateTime);
     }
 
-    public void initBeforeDelete(String actor, Date date) {
+    public void initBeforeDelete(String actor, LocalDateTime dateTime) {
         setModifyBy(actor);
-        setModifyTime(date);
+        setModifyTime(dateTime);
     }
 
 }
