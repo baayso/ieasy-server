@@ -30,7 +30,9 @@ public class DemoApiController {
                         .status(OrderStatus.WAIT_PAY) //
                         .build()) //
                         .like(StringUtils.isNotBlank(name), "name", name) //
-                        .between("age", 18, 20));
+                        .between("age", 18, 20) //
+                        .orderBy("age", false) //
+                        .orderBy("id"));
 
         users.forEach(u -> u.setDatetime(LocalDateTime.now()));
 
