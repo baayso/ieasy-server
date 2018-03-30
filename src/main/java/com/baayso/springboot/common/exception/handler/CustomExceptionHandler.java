@@ -66,7 +66,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
     public final ResponseEntity<OperationResult> handleGeneralException(Exception ex, HttpServletRequest request) {
         logError(ex, request);
 
-        ResponseStatus status = CommonResponseStatus.UNKNOWN_ERROR;
+        ResponseStatus status = CommonResponseStatus.SERVER_INTERNAL_ERROR;
 
         if (log.isDebugEnabled()) {
             if (ex instanceof ApiException) {
