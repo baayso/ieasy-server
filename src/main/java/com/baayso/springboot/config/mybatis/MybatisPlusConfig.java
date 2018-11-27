@@ -3,20 +3,20 @@ package com.baayso.springboot.config.mybatis;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.ibatis.mapping.MappedStatement;
-import org.apache.ibatis.reflection.MetaObject;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.baomidou.mybatisplus.plugins.OptimisticLockerInterceptor;
-import com.baomidou.mybatisplus.plugins.PaginationInterceptor;
-import com.baomidou.mybatisplus.plugins.PerformanceInterceptor;
-import com.baomidou.mybatisplus.plugins.parser.ISqlParser;
-import com.baomidou.mybatisplus.plugins.parser.ISqlParserFilter;
-import com.baomidou.mybatisplus.plugins.parser.tenant.TenantHandler;
-import com.baomidou.mybatisplus.plugins.parser.tenant.TenantSqlParser;
-import com.baomidou.mybatisplus.toolkit.PluginUtils;
+import com.baomidou.mybatisplus.core.injector.ISqlInjector;
+import com.baomidou.mybatisplus.core.parser.ISqlParser;
+import com.baomidou.mybatisplus.extension.injector.LogicSqlInjector;
+import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.tenant.TenantHandler;
+import com.baomidou.mybatisplus.extension.plugins.tenant.TenantSqlParser;
 
 import net.sf.jsqlparser.expression.Expression;
 import net.sf.jsqlparser.expression.LongValue;
@@ -28,11 +28,19 @@ import net.sf.jsqlparser.expression.LongValue;
  * @since 2.0.0
  */
 @Configuration
+@EnableTransactionManagement
 @MapperScan("com.baayso.**.dao*")
 public class MybatisPlusConfig {
 
-    /** mybatis-plus SQL执行效率插件【生产环境可以关闭】 */
+    /** SQL 逻辑删除注入器 */
     @Bean
+    public ISqlInjector sqlInjector() {
+        return new LogicSqlInjector();
+    }
+
+    /** SQL执行效率插件 */
+    @Bean
+    @Profile({"dev", "test"}) // 设置 dev test 环境开启
     public PerformanceInterceptor performanceInterceptor() {
         return new PerformanceInterceptor();
     }
@@ -46,7 +54,7 @@ public class MybatisPlusConfig {
     /**
      * mybatis-plus 分页插件
      * <p>
-     * 文档：http://mp.baomidou.com
+     * 文档：http://mp.baomidou.com/guide/tenant.html
      */
     @Bean
     public PaginationInterceptor paginationInterceptor() {
@@ -83,20 +91,19 @@ public class MybatisPlusConfig {
         sqlParserList.add(tenantSqlParser);
 
         PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
-        paginationInterceptor.setLocalPage(true);// 开启 PageHelper 的支持
         paginationInterceptor.setSqlParserList(sqlParserList);
-        paginationInterceptor.setSqlParserFilter(new ISqlParserFilter() {
-            @Override
-            public boolean doFilter(MetaObject metaObject) {
-                MappedStatement ms = PluginUtils.getMappedStatement(metaObject);
-                // 过滤自定义查询此时无租户信息约束【 麻花藤 】出现
-                if ("com.baomidou.springboot.mapper.UserMapper.selectListBySQL".equals(ms.getId())) {
-                    return true;
-                }
-
-                return false;
-            }
-        });
+        //paginationInterceptor.setSqlParserFilter(new ISqlParserFilter() {
+        //    @Override
+        //    public boolean doFilter(MetaObject metaObject) {
+        //        MappedStatement ms = PluginUtils.getMappedStatement(metaObject);
+        //        // 过滤自定义查询此时无租户信息约束【 麻花藤 】出现
+        //        if ("com.baomidou.springboot.mapper.UserMapper.selectListBySQL".equals(ms.getId())) {
+        //            return true;
+        //        }
+        //
+        //        return false;
+        //    }
+        //});
 
         return paginationInterceptor;
     }

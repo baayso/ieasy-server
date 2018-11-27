@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.baomidou.mybatisplus.enums.IEnum;
+import com.baomidou.mybatisplus.core.enums.IEnum;
 
 /**
  * 订单状态枚举。

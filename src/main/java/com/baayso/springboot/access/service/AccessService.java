@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.baayso.springboot.access.dao.AccessDAO;
 import com.baayso.springboot.access.domain.AccessDO;
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.baayso.springboot.common.service.AbstractBaseService;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 
 
 /**
@@ -18,7 +18,7 @@ import com.baomidou.mybatisplus.service.impl.ServiceImpl;
  * @since 1.0.0
  */
 @Service
-public class AccessService extends ServiceImpl<AccessDAO, AccessDO> {
+public class AccessService extends AbstractBaseService<AccessDAO, AccessDO> {
 
     @Inject
     private RedisTemplate<String, Object> redisTemplate;
@@ -28,7 +28,7 @@ public class AccessService extends ServiceImpl<AccessDAO, AccessDO> {
         AccessDO access = (AccessDO) this.redisTemplate.opsForValue().get(accessKey);
 
         if (access == null) {
-            access = super.selectOne(new EntityWrapper<AccessDO>().eq("access_key", accessKey));
+            access = super.getOne(new QueryWrapper<AccessDO>().eq("access_key", accessKey));
 
             // 写入缓存
             if (access != null) {

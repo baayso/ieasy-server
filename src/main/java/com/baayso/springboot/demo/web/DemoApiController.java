@@ -13,8 +13,9 @@ import com.baayso.springboot.common.domain.PageVO;
 import com.baayso.springboot.demo.domain.DemoUserDO;
 import com.baayso.springboot.demo.domain.enums.OrderStatus;
 import com.baayso.springboot.demo.service.DemoUserService;
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.plugins.Page;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 @RestController
 @RequestMapping("/demo/api")
@@ -25,14 +26,14 @@ public class DemoApiController {
 
     @RequestMapping
     public List<DemoUserDO> now(String name) {
-        List<DemoUserDO> users = this.demoUserService.selectList( //
-                new EntityWrapper<>(DemoUserDO.builder() //
+        List<DemoUserDO> users = this.demoUserService.list( //
+                new QueryWrapper<>(DemoUserDO.builder() //
                         .status(OrderStatus.WAIT_PAY) //
                         .build()) //
                         .like(StringUtils.isNotBlank(name), "name", name) //
                         .between("age", 18, 20) //
-                        .orderBy("age", false) //
-                        .orderBy("id"));
+                        .orderByDesc("age") //
+                        .orderByAsc("create_time"));
 
         users.forEach(u -> u.setDatetime(LocalDateTime.now()));
 
@@ -40,14 +41,14 @@ public class DemoApiController {
     }
 
     @RequestMapping("/page")
-    public Page<DemoUserDO> page(String pageSize, String pageNum) {
+    public IPage<DemoUserDO> page(String pageSize, String pageNum) {
 
         int ps = StringUtils.isNumeric(pageSize) ? Integer.parseInt(pageSize) : 3;
         int pn = StringUtils.isNumeric(pageNum) ? Integer.parseInt(pageNum) : 1;
 
-        Page<DemoUserDO> page = this.demoUserService.selectPage(
+        IPage<DemoUserDO> page = this.demoUserService.page(
                 new Page<>(pn, ps),
-                new EntityWrapper<DemoUserDO>()
+                new QueryWrapper<DemoUserDO>()
                         .between("age", "18", "20"));
 
         return page;
@@ -60,7 +61,7 @@ public class DemoApiController {
         int pn = StringUtils.isNumeric(pageNum) ? Integer.parseInt(pageNum) : 1;
 
         PageVO<DemoUserDO> page = new PageVO<>(ps, pn);
-        page.initBeforePage();
+        // page.initBeforePage();
 
         // List<DemoUserDO> list = this.demoUserService.list();
 

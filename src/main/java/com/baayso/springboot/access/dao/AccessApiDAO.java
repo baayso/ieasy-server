@@ -4,7 +4,7 @@ package com.baayso.springboot.access.dao;
 import java.util.List;
 
 import com.baayso.springboot.access.domain.AccessApiDO;
-import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.baayso.springboot.common.mybatis.mapper.BaseMapper;
 
 /**
  * API数据访问。

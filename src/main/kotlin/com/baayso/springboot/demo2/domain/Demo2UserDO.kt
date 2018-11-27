@@ -1,8 +1,8 @@
 package com.baayso.springboot.demo2.domain
 
 import com.baayso.springboot.demo.domain.enums.OrderStatus
-import com.baomidou.mybatisplus.annotations.TableField
-import com.baomidou.mybatisplus.annotations.TableName
+import com.baomidou.mybatisplus.annotation.TableField
+import com.baomidou.mybatisplus.annotation.TableName
 import java.time.LocalDateTime
 
 /**

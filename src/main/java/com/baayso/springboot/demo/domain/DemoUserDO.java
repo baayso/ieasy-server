@@ -4,10 +4,10 @@ import java.time.LocalDateTime;
 
 import com.baayso.springboot.common.domain.BaseDO;
 import com.baayso.springboot.demo.domain.enums.OrderStatus;
-import com.baomidou.mybatisplus.annotations.TableField;
-import com.baomidou.mybatisplus.annotations.TableLogic;
-import com.baomidou.mybatisplus.annotations.TableName;
-import com.baomidou.mybatisplus.annotations.Version;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableLogic;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.Version;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Builder;
@@ -40,7 +40,7 @@ public class DemoUserDO extends BaseDO {
     private Integer version;
 
     @TableLogic
-    private Boolean deleted;
+    private Boolean isDeleted;
 
     @TableField(exist = false)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss:SSS")
@@ -60,7 +60,7 @@ public class DemoUserDO extends BaseDO {
         this.status = status;
         this.intro = intro;
         this.version = version;
-        this.deleted = deleted;
+        this.isDeleted = deleted;
         this.datetime = datetime;
     }
 

@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.baomidou.mybatisplus.plugins.pagination.PageHelper;
 import com.google.common.base.CaseFormat;
 
 /**
@@ -115,15 +114,15 @@ public class PageVO<T> {
     }
 
 
-    public PageVO<T> initBeforePage() {
-        PageHelper.startPage(this.pageNum, this.pageSize);
-
-        if (StringUtils.isNotBlank(this.sortName)) {
-           // PageHelper.orderBy(this.sortName + " " + this.sortOrder);
-        }
-
-        return this;
-    }
+    //public PageVO<T> initBeforePage() {
+    //    PageHelper.startPage(this.pageNum, this.pageSize);
+    //
+    //    if (StringUtils.isNotBlank(this.sortName)) {
+    //       // PageHelper.orderBy(this.sortName + " " + this.sortOrder);
+    //    }
+    //
+    //    return this;
+    //}
 
     //public PageVO<T> initAfterPage(PageInfo<T> pageInfo) {
     //    if (pageInfo != null) {

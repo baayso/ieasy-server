@@ -3,8 +3,8 @@ package com.baayso.springboot.access.domain;
 import java.util.List;
 
 import com.baayso.springboot.common.domain.BaseDO;
-import com.baomidou.mybatisplus.annotations.TableField;
-import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
