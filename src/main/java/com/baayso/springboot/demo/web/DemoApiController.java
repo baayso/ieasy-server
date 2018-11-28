@@ -2,6 +2,7 @@ package com.baayso.springboot.demo.web;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.concurrent.Future;
 
 import javax.inject.Inject;
 
@@ -77,12 +78,17 @@ public class DemoApiController {
 
     @RequestMapping("/create")
     public boolean create() {
-        return this.demoUserService.saveTestUser();
+        return this.demoUserService.saveUser();
     }
 
     @RequestMapping("/creates")
     public boolean creates() {
-        return this.demoUserService.saveTestUsers();
+        return this.demoUserService.saveUsers();
+    }
+
+    @RequestMapping("/creates/async")
+    public Future<Boolean> asyncCreates() throws InterruptedException {
+        return this.demoUserService.asyncSaveUsers();
     }
 
     @RequestMapping("/update")

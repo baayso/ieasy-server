@@ -49,7 +49,7 @@ public class DemoUserDO extends BaseDO {
 
     @Builder
     public DemoUserDO(Long id, String createBy, LocalDateTime createTime, String modifyBy, LocalDateTime modifyTime,
-                      Long tenantId, String name, Integer age, OrderStatus status, String intro, Integer version, Boolean deleted,
+                      Long tenantId, String name, Integer age, OrderStatus status, String intro, Integer version, Boolean isDeleted,
                       LocalDateTime datetime) {
 
         super(id, createBy, createTime, modifyBy, modifyTime);
@@ -60,7 +60,7 @@ public class DemoUserDO extends BaseDO {
         this.status = status;
         this.intro = intro;
         this.version = version;
-        this.isDeleted = deleted;
+        this.isDeleted = isDeleted;
         this.datetime = datetime;
     }
 
