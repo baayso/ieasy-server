@@ -30,7 +30,7 @@ public class DemoUserService extends AbstractBaseService<DemoUserDAO, DemoUserDO
     @Transactional
     public boolean saveUser() {
         DemoUserDO user1 = new DemoUserDO();
-        user1.setName("code-1-" + LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+        user1.setName("code-1-" + this.nowTimeStr());
         user1.setIntro("");
         user1.setAge(18);
         user1.initBeforeAdd();
@@ -38,7 +38,7 @@ public class DemoUserService extends AbstractBaseService<DemoUserDAO, DemoUserDO
         super.save(user1);
 
         DemoUserDO user2 = new DemoUserDO();
-        user2.setName("code-2-" + LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+        user2.setName("code-2-" + this.nowTimeStr());
         user2.setIntro(null);
         user2.setAge(18);
         user2.setStatus(OrderStatus.SUCCESS);
@@ -50,6 +50,7 @@ public class DemoUserService extends AbstractBaseService<DemoUserDAO, DemoUserDO
         int max = 9;
         int random = (int) (Math.random() * (max - min + 1)) + min;
 
+        // 模拟异常以测试事务是否回滚
         int i = 1 / (random >= 5 ? 1 : 0);
 
         return true;
@@ -57,13 +58,13 @@ public class DemoUserService extends AbstractBaseService<DemoUserDAO, DemoUserDO
 
     public boolean saveUsers() {
         DemoUserDO user3 = new DemoUserDO();
-        user3.setName("code-555-" + LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+        user3.setName("code-555-" + this.nowTimeStr());
         user3.setIntro("");
         user3.setAge(19);
         user3.initBeforeAdd();
 
         DemoUserDO user4 = new DemoUserDO();
-        user4.setName("code-666-" + LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+        user4.setName("code-666-" + this.nowTimeStr());
         user4.setIntro(null);
         user4.setAge(19);
         user4.setStatus(OrderStatus.CLOSE);
@@ -105,6 +106,10 @@ public class DemoUserService extends AbstractBaseService<DemoUserDAO, DemoUserDO
                 .build();
 
         return super.updateById(user5);
+    }
+
+    private String nowTimeStr() {
+        return LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
     }
 
 }
