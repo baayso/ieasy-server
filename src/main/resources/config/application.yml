@@ -69,7 +69,7 @@ mybatis-plus:
         # mp2.3+ 全局表前缀 mp_
         # table-prefix: mp_
         # 刷新 mapper 调试神器
-        refresh-mapper: true
+        # refresh-mapper: true
         # 数据库大写下划线转换
         # capital-mode: true
         # Sequence序列接口实现类配置

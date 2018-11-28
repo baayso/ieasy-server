@@ -1,6 +1,6 @@
 package com.baayso.springboot.demo.dao;
 
-import com.baayso.commons.mybatis.mapper.BaseMapper;
+import com.baayso.springboot.common.mybatis.mapper.BaseMapper;
 import com.baayso.springboot.demo.domain.DemoUserDO;
 
 /**

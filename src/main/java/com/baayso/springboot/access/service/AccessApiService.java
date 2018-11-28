@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.baayso.springboot.access.dao.AccessApiDAO;
 import com.baayso.springboot.access.domain.AccessApiDO;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.baayso.springboot.common.service.AbstractBaseService;
 
 
 /**
@@ -16,7 +16,7 @@ import com.baomidou.mybatisplus.service.impl.ServiceImpl;
  * @since 1.0.0
  */
 @Service
-public class AccessApiService extends ServiceImpl<AccessApiDAO, AccessApiDO> {
+public class AccessApiService extends AbstractBaseService<AccessApiDAO, AccessApiDO> {
 
     /**
      * 根据接入方ID查询其拥有的API列表。

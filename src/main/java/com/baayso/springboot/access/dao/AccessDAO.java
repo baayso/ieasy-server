@@ -2,7 +2,7 @@ package com.baayso.springboot.access.dao;
 
 
 import com.baayso.springboot.access.domain.AccessDO;
-import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.baayso.springboot.common.mybatis.mapper.BaseMapper;
 
 /**
  * 接入方数据访问。

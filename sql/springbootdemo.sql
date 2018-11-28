@@ -27,8 +27,7 @@ USE springbootdemo;
 DROP TABLE IF EXISTS `demo_user`;
 CREATE TABLE `demo_user` (
     `id`        BIGINT(20) NOT NULL AUTO_INCREMENT,
-    `tenant_id` BIGINT(20) NOT NULL
-    COMMENT '租户ID',
+    `tenant_id` BIGINT(20) NOT NULL COMMENT '租户ID',
     `name`      VARCHAR(255)        DEFAULT NULL,
     `age`       INT(11)    NULL     DEFAULT NULL,
     `status`    SMALLINT UNSIGNED   DEFAULT 128,
