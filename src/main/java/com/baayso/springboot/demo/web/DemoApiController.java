@@ -10,7 +10,10 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.baayso.commons.tool.CommonResponseStatus;
+import com.baayso.springboot.common.controller.CommonController;
 import com.baayso.springboot.common.domain.PageVO;
+import com.baayso.springboot.common.exception.ApiViolationException;
 import com.baayso.springboot.demo.domain.DemoUserDO;
 import com.baayso.springboot.demo.domain.enums.OrderStatus;
 import com.baayso.springboot.demo.service.DemoUserService;
@@ -20,7 +23,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 @RestController
 @RequestMapping("/demo/api")
-public class DemoApiController {
+public class DemoApiController extends CommonController {
 
     @Inject
     private DemoUserService demoUserService;
@@ -61,19 +64,24 @@ public class DemoApiController {
         int ps = StringUtils.isNumeric(pageSize) ? Integer.parseInt(pageSize) : 3;
         int pn = StringUtils.isNumeric(pageNum) ? Integer.parseInt(pageNum) : 1;
 
-        PageVO<DemoUserDO> page = new PageVO<>(ps, pn);
+        // PageVO<DemoUserDO> page = new PageVO<>(ps, pn);
         // page.initBeforePage();
 
         // List<DemoUserDO> list = this.demoUserService.list();
 
         // page.initAfterPage(new PageInfo<>(list, ps));
 
-        return page;
+        return new PageVO<>();
     }
 
     @RequestMapping("/deletes")
-    public Boolean deletes() {
-        return this.demoUserService.deletes();
+    public Boolean deletes(String id) {
+
+        if (!super.validator.isLong(id)) {
+            throw new ApiViolationException(CommonResponseStatus.ILLEGAL_DATA);
+        }
+
+        return this.demoUserService.deletes(Long.valueOf(id));
     }
 
     @RequestMapping("/create")
@@ -92,8 +100,13 @@ public class DemoApiController {
     }
 
     @RequestMapping("/update")
-    public boolean update() {
-        return this.demoUserService.update();
+    public boolean update(String id) {
+
+        if (!super.validator.isLong(id)) {
+            throw new ApiViolationException(CommonResponseStatus.ILLEGAL_DATA);
+        }
+
+        return this.demoUserService.update(Long.valueOf(id));
     }
 
     @RequestMapping("/hello")

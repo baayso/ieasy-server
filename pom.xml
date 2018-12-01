@@ -56,6 +56,12 @@
             <version>1.0.0.Alpha</version>
         </dependency>
 
+        <dependency>
+            <groupId>net.oschina.durcframework</groupId>
+            <artifactId>easyopen</artifactId>
+            <version>1.15.2</version>
+        </dependency>
+
         <!-- kotlin begin -->
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>

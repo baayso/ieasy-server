@@ -56,6 +56,30 @@ public class DemoUserService extends AbstractBaseService<DemoUserDAO, DemoUserDO
         return true;
     }
 
+    @Transactional
+    public boolean saveUser(DemoUserDO user) {
+
+        super.save(user);
+
+        DemoUserDO user2 = new DemoUserDO();
+        user2.setName("he-he-" + this.nowTimeStr());
+        user2.setIntro(null);
+        user2.setAge(18);
+        user2.setStatus(OrderStatus.SUCCESS);
+        user2.initBeforeAdd();
+
+        super.save(user2);
+
+        int min = 0;
+        int max = 9;
+        int random = (int) (Math.random() * (max - min + 1)) + min;
+
+        // 模拟异常以测试事务是否回滚
+        int i = 1 / (random >= 5 ? 1 : 0);
+
+        return true;
+    }
+
     public boolean saveUsers() {
         DemoUserDO user3 = new DemoUserDO();
         user3.setName("code-555-" + this.nowTimeStr());
@@ -87,17 +111,17 @@ public class DemoUserService extends AbstractBaseService<DemoUserDAO, DemoUserDO
         return AsyncResult.forValue(this.saveUser());
     }
 
-    public boolean deletes() {
+    public boolean deletes(Long id) {
         List<Long> ids = new ArrayList<>();
-        ids.add(7L);
+        ids.add(id);
         ids.add(8L);
 
         return super.removeByIds(ids);
     }
 
-    public boolean update() {
+    public boolean update(Long id) {
         DemoUserDO user5 = DemoUserDO.builder() //
-                .id(7L) //
+                .id(id) //
                 .version(2) //
                 .intro("测试乐观锁") //
                 .status(OrderStatus.RETURN_SUCCESS) //

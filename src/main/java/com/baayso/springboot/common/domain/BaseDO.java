@@ -5,6 +5,12 @@ import java.time.LocalDateTime;
 import com.baayso.commons.utils.Validator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+import com.gitee.easyopen.doc.DataType;
+import com.gitee.easyopen.doc.annotation.ApiDocField;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,13 +40,19 @@ public class BaseDO extends IdEntity {
     @JsonIgnore
     protected String createBy;                  // 记录创建人
 
-    @JsonFormat(pattern = Validator.DEFAULT_DATETIME_PATTERN)
+    @ApiDocField(description = "记录创建时间", dataType = DataType.DATETIME)
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = Validator.DEFAULT_DATETIME_PATTERN, timezone = "GMT+8")
     protected LocalDateTime createTime;         // 记录创建时间
 
     @JsonIgnore
     protected String modifyBy;                  // 记录修改人
 
-    @JsonFormat(pattern = Validator.DEFAULT_DATETIME_PATTERN)
+    @ApiDocField(description = "记录修改时间", dataType = DataType.DATETIME)
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = Validator.DEFAULT_DATETIME_PATTERN, timezone = "GMT+8")
     protected LocalDateTime modifyTime;         // 记录修改时间
 
 

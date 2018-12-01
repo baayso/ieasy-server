@@ -9,6 +9,13 @@ import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.Version;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+import com.gitee.easyopen.doc.DataType;
+import com.gitee.easyopen.doc.annotation.ApiDocField;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -30,20 +37,33 @@ public class DemoUserDO extends BaseDO {
 
     private static final long serialVersionUID = -8962566780883631270L;
 
-    private Long        tenantId; // 租户ID
-    private String      name;
-    private Integer     age;
-    private OrderStatus status;
-    private String      intro;
+    @JsonIgnore
+    private Long tenantId; // 租户ID
 
+    @ApiDocField(description = "用户名称")
+    private String name;
+
+    @ApiDocField(description = "用户年龄", dataType = DataType.INT)
+    private Integer age;
+
+    @ApiDocField(description = "状态", dataType = DataType.INT, enumClass = OrderStatus.class, example = "128")
+    private OrderStatus status;
+
+    @ApiDocField(description = "用户简介")
+    private String intro;
+
+    @JsonIgnore
     @Version
     private Integer version;
 
+    @JsonIgnore
     @TableLogic
     private Boolean isDeleted;
 
     @TableField(exist = false)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss:SSS")
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss:SSS", timezone = "GMT+8")
     private LocalDateTime datetime;
 
 

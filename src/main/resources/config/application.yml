@@ -36,6 +36,7 @@ spring:
         time-zone: Asia/Shanghai
         serialization:
             WRITE_ENUMS_USING_TO_STRING: true
+            FAIL_ON_EMPTY_BEANS: false
         deserialization:
             READ_ENUMS_USING_TO_STRING: true
     mvc:
@@ -69,3 +70,32 @@ mybatis-plus:
             # 逻辑删除配置
             logic-delete-value: 'true' # 逻辑已删除值(默认为 1)
             logic-not-delete-value: 'false' # 逻辑未删除值(默认为 0)
+
+easyopen:
+    # 应用名称
+    app-name: spring-boot-demo
+    # API 默认版本号
+    default-version: 1.0
+    # 超时时间，5秒
+    timeout-seconds: 5
+    # 是否生成doc文档
+    show-doc: true
+    # 忽略所有接口验证，默认 false
+    # ignore-validate: true
+    # 是否开启WebFlux
+    mono: false
+    # app_key,secret键值对
+    app-secret: {
+        test: 123456,
+        test2: 123456,
+    }
+    # 拦截器
+    interceptors:
+        - com.baayso.springboot.easyopen.interceptor.PerformanceInterceptor
+        - com.gitee.easyopen.support.LimitInterceptor # 限流拦截器，放在首位
+        - com.gitee.easyopen.support.PermissionInterceptor # 权限拦截器
+        - com.baayso.springboot.easyopen.interceptor.LogInterceptor
+    # 配置国际化消息
+    isv-modules:
+        - i18n/isv/error
+        - i18n/isv/user_error
