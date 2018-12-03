@@ -15,7 +15,7 @@ import com.github.fge.jsonschema.core.report.ProcessingReport;
 import com.github.fge.jsonschema.main.JsonSchemaFactory;
 
 /**
- * EasyOpen业务类。
+ * EasyOpen通用业务类。
  *
  * @author ChenFangjie (2018/12/1 13:53)
  * @since 3.0.0
@@ -31,7 +31,7 @@ public class CommonApi {
      *
      * @return {@linkplain HttpServletRequest}
      *
-     * @since 1.0.0
+     * @since 3.0.0
      */
     public static HttpServletRequest getRequest() {
         return ApiContext.getRequest();
@@ -42,7 +42,7 @@ public class CommonApi {
      *
      * @return 接入应用ID
      *
-     * @since 1.0.0
+     * @since 3.0.0
      */
     public static String getAppKey() {
         return ApiContext.getApiParam().fatchAppKey();
@@ -56,7 +56,7 @@ public class CommonApi {
      *
      * @return 符合要求返回true，否则返回false
      *
-     * @since 1.0.0
+     * @since 3.0.0
      */
     public boolean isJson(JsonNode schema, String json) {
         try {
@@ -78,7 +78,7 @@ public class CommonApi {
      *
      * @return 长整型数组，如果字符串数组中包含非数字则返回长度为0的长整型数组
      *
-     * @since 1.0.0
+     * @since 3.0.0
      */
     public Long[] strArr2LongArr(String[] array) {
         Long[] longs = new Long[array.length];
@@ -104,7 +104,7 @@ public class CommonApi {
      *
      * @return 长整型列表，如果字符串数组中包含非数字则返回 {@linkplain Collections#emptyList()}
      *
-     * @since 1.0.0
+     * @since 3.0.0
      */
     public List<Long> strArr2LongList(String[] array) {
         List<Long> list = new ArrayList<>(array.length);
