@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-import org.springside.modules.web.MediaTypes;
 
 import com.baayso.commons.exception.ApiException;
 import com.baayso.commons.tool.CommonResponseStatus;
 import com.baayso.commons.tool.ResponseStatus;
 import com.baayso.commons.utils.JsonUtils;
+import com.baayso.commons.web.MediaTypes;
 import com.baayso.commons.web.WebUtils;
 import com.baayso.springboot.common.tool.OperationResult;
 import com.baayso.springboot.common.validator.BeanValidators;
