@@ -5,6 +5,6 @@ echo [Pre-Requirement] Makesure install Maven 3.2+ and set the PATH.
 
 set MVN=mvn
 
-call %MVN% clean install
+call %MVN% clean package
 
 pause
