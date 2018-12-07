@@ -22,12 +22,9 @@ spring:
                 min-idle: 0
         timeout: 0ms
     datasource:
-        schema: classpath:/sql/h2/schema-h2.sql
-        data: classpath:/sql/h2/data-h2.sql
-        platform: h2
-        url: jdbc:h2:file:./springbootdemo # ;MODE=MySQL # jdbc:h2:mem:springbootdemo
-        username: sa
-        password: sa
+        url: jdbc:mysql://192.168.1.222:3306/springbootdemo?useSSL=false&serverTimezone=GMT%2B8
+        username: root
+        password: root
         druid:
             initial-size: 1
             min-idle: 1
@@ -50,12 +47,6 @@ spring:
                 enabled: true
                 url-pattern: /*
                 exclusions: /druid,/druid/*
-    h2:
-        console:
-            enabled: true # 开启 h2 web console
-            path: /h2-console # 可以通过 url/h2-console 访问 h2 web
-            settings:
-                web-allow-others: true # 配置后 h2 web console 就可以在远程访问，否则只能在本机访问
 
 mybatis-plus:
     global-config:

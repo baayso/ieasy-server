@@ -70,6 +70,7 @@ public class DemoUserApi extends CommonApi {
                 .status(status) //
                 .intro(intro) //
                 .build();
+        user.initBeforeAdd("ha-ha");
 
         boolean successful = this.demoUserService.saveUser(user);
 
