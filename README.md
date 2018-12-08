@@ -1,5 +1,5 @@
 # Spring Boot Demo  
-Spring Boot 脚手架项目
+> Spring Boot 脚手架项目
 
 [![Jdk Version](https://img.shields.io/badge/JDK-1.8+-green.svg)](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
 [![Build Status](https://travis-ci.org/baayso/spring-boot-demo.svg?branch=master)](https://travis-ci.org/baayso/spring-boot-demo)
@@ -35,6 +35,9 @@ Spring Boot 脚手架项目
 3. 执行 [SQL 脚本](https://github.com/baayso/spring-boot-demo/blob/master/sql/springbootdemo.sql)
 4. `./build.bat` (Windows) Or `./build.sh` (Linux/Mac OS)
 5. `./bin/start.bat` (Windows) Or `./bin/start.sh` (Linux/Mac OS)
+
+## [多租户 SQL 解析器：](https://mybatis.plus/guide/tenant.html)
+> [配置多租户 SQL 解析器](https://github.com/baayso/spring-boot-demo/blob/master/src/main/java/com/baayso/springboot/config/mybatis/MybatisPlusConfig.java#L70)
 
 ## 访问：
 * http://localhost:8888/welcome
