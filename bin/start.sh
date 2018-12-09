@@ -19,6 +19,6 @@ echo ${JAVA_OPTS}
 APP_OPTS="--server.port=${PORT} --spring.profiles.active=${PROFILE}"
 echo ${APP_OPTS}
 
-echo "nohup java ${JAVA_OPTS} -jar spring-boot-demo.jar ${APP_OPTS} > /dev/null 2>&1 &"
+echo "nohup java ${JAVA_OPTS} -jar target/spring-boot-demo.jar ${APP_OPTS} > /dev/null 2>&1 &"
 
-nohup java ${JAVA_OPTS} -jar spring-boot-demo.jar ${APP_OPTS} > /dev/null 2>&1 &
+nohup java ${JAVA_OPTS} -jar target/spring-boot-demo.jar ${APP_OPTS} > /dev/null 2>&1 &

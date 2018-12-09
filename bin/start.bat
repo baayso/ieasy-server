@@ -15,8 +15,8 @@ echo %JAVA_OPTS%
 set APP_OPTS=--server.port=%PORT% --spring.profiles.active=%PROFILE%
 echo %APP_OPTS%
 
-echo java %JAVA_OPTS% -jar spring-boot-demo.jar %APP_OPTS%
+echo java %JAVA_OPTS% -jar target/spring-boot-demo.jar %APP_OPTS%
 
-java %JAVA_OPTS% -jar spring-boot-demo.jar %APP_OPTS%
+java %JAVA_OPTS% -jar target/spring-boot-demo.jar %APP_OPTS%
 
 pause
