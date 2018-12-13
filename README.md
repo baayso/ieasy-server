@@ -20,19 +20,28 @@
 ## 快速开始：
 1. git clone https://github.com/baayso/spring-boot-demo.git
 2. 安装 MySQL 5.5+
-3. 执行 [SQL 脚本](https://github.com/baayso/spring-boot-demo/blob/master/sql/springbootdemo.sql)
-4. `build.bat` (Windows) Or `./build.sh` (Linux/Mac OS)
-5. 执行启动脚本
-   * 开发环境  
-     `bin\start.bat 8888 dev` (Windows) Or `./bin/start.sh 8888 dev` (Linux/Mac OS)
-   * 测试环境  
-     `bin\start.bat 8888 test` (Windows) Or `./bin/start.sh 8888 test` (Linux/Mac OS)
-   * 生产环境（端口号：6666）  
-     `bin\start.bat` (Windows) Or `./bin/start.sh` (Linux/Mac OS)
+3. 执行 [SQL 脚本](https://github.com/baayso/spring-boot-demo/tree/master/sql/mysql/install)（注：默认创建的数据库名称为 **springbootdemo**，可以在[这个SQL文件里](https://github.com/baayso/spring-boot-demo/blob/master/sql/mysql/install/common/common_mysql.sql)进行修改）
+   * Windows  
+     **`sql\install.bat`**  
+     > 注：根据提示输入数据库的 ip、port、username
+   * Linux/Mac OS  
+     **`./sql/install.sh 127.0.0.1 3306 root`**  
+     > 注：在命令后输入数据库的 ip、port、username
+4. **`build.bat`** (Windows) Or **`./build.sh`** (Linux/Mac OS)
+5. 执行[启动脚本](https://github.com/baayso/spring-boot-demo/tree/master/bin)
+   * 开发环境    
+     **`bin\start.bat 8888 dev`** (Windows) Or **`./bin/start.sh 8888 dev`** (Linux/Mac OS)  
+     > 注：端口号为 8888
+   * 测试环境 
+     **`bin\start.bat 8888 test`** (Windows) Or **`./bin/start.sh 8888 test`** (Linux/Mac OS)  
+     > 注：端口号为 8888
+   * 生产环境  
+     **`bin\start.bat 8888 pro`** (Windows) Or **`./bin/start.sh 8888 pro`** (Linux/Mac OS)  
+     > 注：端口号为 8888
 
 ## 配置文件
 * 多环境配置文件
-  * [基础配置文件](https://github.com/baayso/spring-boot-demo/blob/master/src/main/resources/config/application.yml)（[默认加载开发环境配置文件](https://github.com/baayso/spring-boot-demo/blob/master/src/main/resources/config/application.yml#L28)）
+  * [基础配置文件](https://github.com/baayso/spring-boot-demo/blob/master/src/main/resources/config/application.yml)（注：[默认加载开发环境配置文件](https://github.com/baayso/spring-boot-demo/blob/master/src/main/resources/config/application.yml#L28)）
   * [开发环境配置文件](https://github.com/baayso/spring-boot-demo/blob/master/src/main/resources/config/application-dev.yml)
   * [测试环境配置文件](https://github.com/baayso/spring-boot-demo/blob/master/src/main/resources/config/application-test.yml)
   * [生产环境配置文件](https://github.com/baayso/spring-boot-demo/blob/master/src/main/resources/config/application-pro.yml)
@@ -51,7 +60,6 @@
 * http://localhost:8888/demo/api/update?id=7
 * http://localhost:8888/demo/api/hello
 * http://localhost:8888/api/doc
-* http://localhost:8888/h2-console
 
 ## Dependencies:
 * https://github.com/baayso/commons
