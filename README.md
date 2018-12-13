@@ -20,7 +20,7 @@
 ## 快速开始：
 1. git clone https://github.com/baayso/spring-boot-demo.git
 2. 安装 MySQL 5.5+
-3. 执行 [SQL 脚本](https://github.com/baayso/spring-boot-demo/tree/master/sql/mysql/install)
+3. 执行 [SQL 脚本](https://github.com/baayso/spring-boot-demo/tree/master/sql/mysql/install)（默认创建的数据库名称为 **springbootdemo**，可以在[这个SQL文件里](https://github.com/baayso/spring-boot-demo/blob/master/sql/mysql/install/common/common_mysql.sql)进行修改）
    * Windows  
      **`sql\install.bat`**  
      > 注意：根据提示输入数据库的 ip、port、username
