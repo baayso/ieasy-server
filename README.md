@@ -7,7 +7,7 @@
 ## 环境要求：
 * Jdk 8.0+
 * Maven 3.2+
-* 开发环境使用H2数据库，测试环境和生产环境使用MySQL数据库，请查看[配置文件](https://github.com/baayso/spring-boot-demo/tree/master/src/main/resources/config)
+* MySQL 5.5+
 
 ## 框架：
 * [MyBatis](http://www.mybatis.org/mybatis-3)
@@ -17,24 +17,26 @@
 * [Lombok](https://www.projectlombok.org)
 * [其他请看pom.xml](https://github.com/baayso/spring-boot-demo/blob/master/pom.xml)
 
-## 快速开始（开发环境）：
-1. git clone https://github.com/baayso/spring-boot-demo.git
-2. `build.bat` (Windows) Or `./build.sh` (Linux/Mac OS)
-3. `bin\start.bat 8888 dev` (Windows) Or `./bin/start.sh 8888 dev` (Linux/Mac OS)
-
-## 快速开始（测试环境）：
+## 快速开始：
 1. git clone https://github.com/baayso/spring-boot-demo.git
 2. 安装 MySQL 5.5+
 3. 执行 [SQL 脚本](https://github.com/baayso/spring-boot-demo/blob/master/sql/springbootdemo.sql)
 4. `build.bat` (Windows) Or `./build.sh` (Linux/Mac OS)
-5. `bin\start.bat 8888 test` (Windows) Or `./bin/start.sh 8888 test` (Linux/Mac OS)
+5. 执行启动脚本
+   * 开发环境  
+     `bin\start.bat 8888 dev` (Windows) Or `./bin/start.sh 8888 dev` (Linux/Mac OS)
+   * 测试环境  
+     `bin\start.bat 8888 test` (Windows) Or `./bin/start.sh 8888 test` (Linux/Mac OS)
+   * 生产环境（端口号：6666）  
+     `bin\start.bat` (Windows) Or `./bin/start.sh` (Linux/Mac OS)
 
-## 快速开始（生产环境）：
-1. git clone https://github.com/baayso/spring-boot-demo.git
-2. 安装 MySQL 5.5+
-3. 执行 [SQL 脚本](https://github.com/baayso/spring-boot-demo/blob/master/sql/springbootdemo.sql)
-4. `build.bat` (Windows) Or `./build.sh` (Linux/Mac OS)
-5. `bin\start.bat` (Windows) Or `./bin/start.sh` (Linux/Mac OS)
+## 配置文件
+* 多环境配置文件
+  * [基础配置文件](https://github.com/baayso/spring-boot-demo/blob/master/src/main/resources/config/application.yml)（[默认加载开发环境配置文件](https://github.com/baayso/spring-boot-demo/blob/master/src/main/resources/config/application.yml#L28)）
+  * [开发环境配置文件](https://github.com/baayso/spring-boot-demo/blob/master/src/main/resources/config/application-dev.yml)
+  * [测试环境配置文件](https://github.com/baayso/spring-boot-demo/blob/master/src/main/resources/config/application-test.yml)
+  * [生产环境配置文件](https://github.com/baayso/spring-boot-demo/blob/master/src/main/resources/config/application-pro.yml)
+* [MyBatis 配置文件](https://github.com/baayso/spring-boot-demo/blob/master/src/main/resources/config/mybatis-config.xml)
 
 ## [多租户 SQL 解析器：](https://mybatis.plus/guide/tenant.html)
 > [配置多租户 SQL 解析器](https://github.com/baayso/spring-boot-demo/blob/master/src/main/java/com/baayso/springboot/config/mybatis/MybatisPlusConfig.java#L70)
