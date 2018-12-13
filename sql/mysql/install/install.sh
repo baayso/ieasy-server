@@ -13,13 +13,13 @@ log()
     echo "["$(date '+%Y-%m-%d %H:%M:%S')"] $*" >> ${CURRENT_DIR}/install.sql.log
 }
 
-#main()
+# main()
 CURRENT_DIR=$(cd "$(dirname "$0")"; pwd)
 
 SERVER=$1
 PORT=$2
-DATABASE=$3
-USERNAME=$4
+# DATABASE=$3
+USERNAME=$3
 
 if [ -z ${SERVER} ]; then
     SERVER="127.0.0.1"
@@ -29,16 +29,18 @@ if [ -z ${PORT} ]; then
     PORT="3306"
 fi
 
-if [ -z ${DATABASE} ]; then
-    DATABASE="springbootdemo"
-fi
+# if [ -z ${DATABASE} ]; then
+#     DATABASE="springbootdemo"
+# fi
 
 if [ -z ${USERNAME} ]; then
     USERNAME="root"
 fi
 
-log "mysql --host=${SERVER} --port=${PORT} --database=${DATABASE} --user=${USERNAME} --password < install.sql"
+# log "mysql --host=${SERVER} --port=${PORT} --database=${DATABASE} --user=${USERNAME} --password < install.sql"
+log "mysql --host=${SERVER} --port=${PORT} --user=${USERNAME} --password < install.sql"
 
 log "============================================================================================================="
 
-mysql --host=${SERVER} --port=${PORT} --database=${DATABASE} --user=${USERNAME} --password < install.sql
+# mysql --host=${SERVER} --port=${PORT} --database=${DATABASE} --user=${USERNAME} --password < install.sql
+mysql --host=${SERVER} --port=${PORT} --user=${USERNAME} --password < install.sql
