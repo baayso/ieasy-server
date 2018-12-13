@@ -1,4 +1,4 @@
-package com.baayso.springboot.easyopen.interceptor;
+package com.baayso.springboot.common.easyopen.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

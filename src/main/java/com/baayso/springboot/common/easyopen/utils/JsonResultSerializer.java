@@ -1,4 +1,4 @@
-package com.baayso.springboot.easyopen.utils;
+package com.baayso.springboot.common.easyopen.utils;
 
 import com.baayso.commons.utils.JsonUtils;
 import com.gitee.easyopen.ResultSerializer;

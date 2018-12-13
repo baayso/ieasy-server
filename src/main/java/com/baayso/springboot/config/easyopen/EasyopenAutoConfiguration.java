@@ -23,7 +23,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
-import com.baayso.springboot.easyopen.utils.JsonResultSerializer;
+import com.baayso.springboot.common.easyopen.utils.JsonResultSerializer;
 import com.gitee.easyopen.ApiConfig;
 import com.gitee.easyopen.ApiResult;
 import com.gitee.easyopen.config.ConfigClient;
@@ -58,11 +58,7 @@ public class EasyopenAutoConfiguration {
         return new ApiConfig();
     }
 
-    /**
-     * 跨域过滤器
-     *
-     * @return
-     */
+    /** 跨域过滤器 */
     @Bean
     @ConditionalOnProperty(prefix = "easyopen", name = "cors", havingValue = "true", matchIfMissing = true)
     public CorsFilter corsFilter() {
@@ -81,9 +77,7 @@ public class EasyopenAutoConfiguration {
         return corsConfiguration;
     }
 
-    /**
-     * 默认入口
-     */
+    /** 默认入口 */
     @Controller
     @RequestMapping("api")
     public class EayopenIndexController extends ApiController {

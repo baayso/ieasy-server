@@ -1,4 +1,4 @@
-package com.baayso.springboot.easyopen.message;
+package com.baayso.springboot.common.easyopen.message;
 
 import com.gitee.easyopen.message.ErrorMeta;
 
