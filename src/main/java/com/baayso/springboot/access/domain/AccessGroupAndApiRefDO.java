@@ -10,7 +10,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
- * 数据对象：接入方和API关联对象。
+ * 数据对象：接入方与API关联对象。
  *
  * @author ChenFangjie (2017/4/17 10:09)
  * @since 1.0.0
@@ -20,8 +20,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@TableName("access_group_api_relation")
-public class AccessGroupApiRelationDO extends BaseDO {
+@TableName("access_group_and_api_ref")
+public class AccessGroupAndApiRefDO extends BaseDO {
 
     private static final long serialVersionUID = -1553896700967416906L;
 

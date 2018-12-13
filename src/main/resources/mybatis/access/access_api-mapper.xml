@@ -17,9 +17,9 @@
         FROM
             access AS a
         LEFT OUTER JOIN
-            access_group_relation AS ag ON a.id = ag.access_id
+            access_and_access_group_ref AS ag ON a.id = ag.access_id
         LEFT OUTER JOIN
-            access_group_api_relation AS ga ON ag.group_id = ga.group_id
+            access_group_and_api_ref AS ga ON ag.group_id = ga.group_id
         LEFT OUTER JOIN
             access_api AS api ON ga.api_id = api.id
         WHERE

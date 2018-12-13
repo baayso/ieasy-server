@@ -18,7 +18,6 @@ create table access
    create_time          datetime comment '记录创建时间',
    modify_by            varchar(100) comment '记录修改人',
    modify_time          datetime comment '记录修改时间',
-   modify_num           integer default 0 comment '记录修改次数',
    primary key (id)
 ) comment '接入方';
 
@@ -42,7 +41,6 @@ create table access_group
    create_time          datetime comment '记录创建时间',
    modify_by            varchar(100) comment '记录修改人',
    modify_time          datetime comment '记录修改时间',
-   modify_num           integer default 0 comment '记录修改次数',
    primary key (id)
 ) comment '接入组';
 
@@ -50,11 +48,11 @@ INSERT INTO access_group (name, descr) VALUES ('测试', '拥有所有API访问�
 
 
 /*==============================================================*/
-/* 表: 接入方和接入组关联表                                        */
+/* 表: 接入方与接入组关联表                                        */
 /*==============================================================*/
-drop table if exists access_group_relation;
+drop table if exists access_and_access_group_ref;
 
-create table access_group_relation
+create table access_and_access_group_ref
 (
    id                   bigint not null auto_increment comment 'ID',
    access_id            bigint comment '接入方ID',
@@ -63,7 +61,6 @@ create table access_group_relation
    create_time          datetime comment '记录创建时间',
    modify_by            varchar(100) comment '记录修改人',
    modify_time          datetime comment '记录修改时间',
-   modify_num           integer default 0 comment '记录修改次数',
    primary key (id)
 ) comment '接入方和接入组关联表';
 
@@ -86,17 +83,16 @@ create table access_api
    create_time          datetime comment '记录创建时间',
    modify_by            varchar(100) comment '记录修改人',
    modify_time          datetime comment '记录修改时间',
-   modify_num           integer default 0 comment '记录修改次数',
    primary key (id)
 ) comment 'API';
 
 
 /*==============================================================*/
-/* 表：接入方和API关联表                                           */
+/* 表：接入方与API关联表                                           */
 /*==============================================================*/
-drop table if exists access_group_api_relation;
+drop table if exists access_group_and_api_ref;
 
-create table access_group_api_relation
+create table access_group_and_api_ref
 (
    id                   bigint not null auto_increment comment 'ID',
    group_id             bigint comment '接入组ID',
@@ -105,7 +101,6 @@ create table access_group_api_relation
    create_time          datetime comment '记录创建时间',
    modify_by            varchar(100) comment '记录修改人',
    modify_time          datetime comment '记录修改时间',
-   modify_num           integer default 0 comment '记录修改次数',
    primary key (id)
 ) comment '接入组和API关联表';
 
@@ -125,7 +120,6 @@ create table access_ip
    create_time          datetime comment '记录创建时间',
    modify_by            varchar(100) comment '记录修改人',
    modify_time          datetime comment '记录修改时间',
-   modify_num           integer default 0 comment '记录修改次数',
    primary key (id)
 ) comment '接入方IP';
 
