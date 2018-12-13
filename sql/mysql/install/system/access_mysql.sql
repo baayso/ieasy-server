@@ -33,7 +33,7 @@ drop table if exists access_group;
 
 create table access_group
 (
-   id                   bigint not null auto_increment comment '主键',
+   id                   bigint not null auto_increment comment 'ID',
    name                 varchar(100) comment '名称',
    code                 varchar(100) comment '编码',
    descr                varchar(255) comment '描述',
