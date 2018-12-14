@@ -2,6 +2,8 @@
 
 echo "[Pre-Requirement] Makesure install JDK 8.0+ and set the JAVA_HOME."
 
+CURRENT_PATH=$(cd "$(dirname "$0")"; pwd)
+
 PORT=$1
 PROFILE=$2
 
@@ -19,6 +21,10 @@ echo ${JAVA_OPTS}
 APP_OPTS="--server.port=${PORT} --spring.profiles.active=${PROFILE}"
 echo ${APP_OPTS}
 
-echo "nohup java ${JAVA_OPTS} -jar target/spring-boot-demo.jar ${APP_OPTS} > /dev/null 2>&1 &"
+cd ${CURRENT_PATH}
 
-nohup java ${JAVA_OPTS} -jar target/spring-boot-demo.jar ${APP_OPTS} > /dev/null 2>&1 &
+chmod u+x ${CURRENT_PATH}/../target/spring-boot-demo.jar
+
+echo "java ${JAVA_OPTS} -jar ${CURRENT_PATH}/../target/spring-boot-demo.jar ${APP_OPTS}"
+
+java ${JAVA_OPTS} -jar ${CURRENT_PATH}/../target/spring-boot-demo.jar ${APP_OPTS}

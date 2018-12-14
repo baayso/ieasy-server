@@ -10,11 +10,11 @@
 log()
 {
     echo "["$(date '+%Y-%m-%d %H:%M:%S')"] $*"
-    echo "["$(date '+%Y-%m-%d %H:%M:%S')"] $*" >> ${CURRENT_DIR}/install.sql.log
+    echo "["$(date '+%Y-%m-%d %H:%M:%S')"] $*" >> ${CURRENT_PATH}/install.sql.log
 }
 
 # main()
-CURRENT_DIR=$(cd "$(dirname "$0")"; pwd)
+CURRENT_PATH=$(cd "$(dirname "$0")"; pwd)
 
 SERVER=$1
 PORT=$2
@@ -37,10 +37,10 @@ if [ -z ${USERNAME} ]; then
     USERNAME="root"
 fi
 
-# log "mysql --host=${SERVER} --port=${PORT} --database=${DATABASE} --user=${USERNAME} --password < install.sql"
-log "mysql --host=${SERVER} --port=${PORT} --user=${USERNAME} --password < install.sql"
+cd ${CURRENT_PATH}
+
+log "mysql --host=${SERVER} --port=${PORT} --user=${USERNAME} --password < ${CURRENT_PATH}/install.sql"
 
 log "============================================================================================================="
 
-# mysql --host=${SERVER} --port=${PORT} --database=${DATABASE} --user=${USERNAME} --password < install.sql
-mysql --host=${SERVER} --port=${PORT} --user=${USERNAME} --password < install.sql
+mysql --host=${SERVER} --port=${PORT} --user=${USERNAME} --password < ${CURRENT_PATH}/install.sql
