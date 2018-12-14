@@ -12,7 +12,7 @@ import com.baayso.springboot.common.easyopen.message.CommonErrors;
 import com.baayso.springboot.demo.domain.DemoUserDO;
 import com.baayso.springboot.demo.domain.enums.OrderStatus;
 import com.baayso.springboot.demo.service.DemoUserService;
-import com.baayso.springboot.easyopen.message.UserErrors;
+import com.baayso.springboot.easyopen.message.DemoUserErrors;
 import com.baayso.springboot.easyopen.param.UserAddParam;
 import com.baayso.springboot.easyopen.param.UserDeleteParam;
 import com.baayso.springboot.easyopen.param.UserGetParam;
@@ -44,19 +44,19 @@ public class DemoUserApi extends CommonApi {
     public ResultVO<Boolean> add(UserAddParam param) {
 
         if (!super.validator.isChineseAndEnglishAndNumber(param.getName(), 1, 20)) {
-            throw UserErrors.USER_NAME_LENGTH.getException(1, 20); // 这里的“1”和“3”会填充到{0}和{1}中
+            throw DemoUserErrors.USER_NAME_LENGTH.getException(1, 20); // 这里的“1”和“20”会填充到{0}和{1}中
         }
 
         if (!super.validator.isInt(param.getAge(), 0, 200)) {
-            throw UserErrors.USER_AGE_RANGE.getException(0, 200);
+            throw DemoUserErrors.USER_AGE_RANGE.getException(0, 200);
         }
 
         if (!super.validator.isInt(param.getStatus()) || !super.validator.isEnum(OrderStatus.class, Integer.parseInt(param.getStatus()))) {
-            throw UserErrors.USER_STATUS_ERROR.getException();
+            throw DemoUserErrors.USER_STATUS_ERROR.getException();
         }
 
         if (super.validator.required(param.getIntro()) && !super.validator.isChineseAndEnglishAndNumber(param.getIntro(), 1, 200)) {
-            throw UserErrors.USER_INTRO_LENGTH.getException(1, 200);
+            throw DemoUserErrors.USER_INTRO_LENGTH.getException(1, 200);
         }
 
         String name = param.getName();
