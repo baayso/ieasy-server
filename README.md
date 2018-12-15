@@ -27,8 +27,10 @@
    * Linux/Mac OS  
      **`./sql/mysql/install/install.sh 127.0.0.1 3306 root`**  
      > 注：在命令后输入数据库的 ip、port、username
-4. **`build.bat`** (Windows) Or **`./build.sh`** (Linux/Mac OS)
-5. 执行[启动脚本](https://github.com/baayso/spring-boot-demo/tree/master/bin)
+4. 修改项目配置文件里数据库的 ip、port、username、password
+   > 各环境配置文件[请参见](#config)
+5. **`build.bat`** (Windows) Or **`./build.sh`** (Linux/Mac OS)
+6. 执行[启动脚本](https://github.com/baayso/spring-boot-demo/tree/master/bin)
    * 开发环境    
      **`bin\start.bat 8888 dev`** (Windows) Or **`./bin/start.sh 8888 dev`** (Linux/Mac OS)  
      > 注：端口号为 8888
@@ -39,8 +41,8 @@
      **`bin\start.bat 8888 pro`** (Windows) Or **`./bin/start.sh 8888 pro`** (Linux/Mac OS)  
      > 注：端口号为 8888
 
-## 配置文件
-* 多环境配置文件
+## [配置文件：](https://github.com/baayso/spring-boot-demo/blob/master/src/main/resources/config)
+* <span id = "config">多环境配置文件</span>
   * [基础配置文件](https://github.com/baayso/spring-boot-demo/blob/master/src/main/resources/config/application.yml)（注：[默认加载开发环境配置文件](https://github.com/baayso/spring-boot-demo/blob/master/src/main/resources/config/application.yml#L28)）
   * [开发环境配置文件](https://github.com/baayso/spring-boot-demo/blob/master/src/main/resources/config/application-dev.yml)
   * [测试环境配置文件](https://github.com/baayso/spring-boot-demo/blob/master/src/main/resources/config/application-test.yml)
