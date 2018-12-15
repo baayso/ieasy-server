@@ -28,7 +28,7 @@
      **`./sql/mysql/install/install.sh 127.0.0.1 3306 root`**  
      > 注：在命令后输入数据库的 ip、port、username
 4. 修改项目配置文件里数据库的 ip、port、username、password
-   > 各环境配置文件[请参见](#config)
+   > 注：各环境配置文件[请参见](#config)
 5. **`build.bat`** (Windows) Or **`./build.sh`** (Linux/Mac OS)
 6. 执行[启动脚本](https://github.com/baayso/spring-boot-demo/tree/master/bin)
    * 开发环境    
