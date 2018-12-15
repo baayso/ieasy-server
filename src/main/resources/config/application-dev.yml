@@ -22,7 +22,7 @@ spring:
                 min-idle: 0
         timeout: 0ms
     datasource:
-        url: jdbc:mysql://192.168.1.222:3306/springbootdemo?useSSL=false&serverTimezone=GMT%2B8
+        url: jdbc:mysql://192.168.1.222:3306/springbootdemo?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
         username: root
         password: root
         druid:
