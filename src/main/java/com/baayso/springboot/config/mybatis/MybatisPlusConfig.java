@@ -78,10 +78,9 @@ public class MybatisPlusConfig {
             @Override
             public boolean doTableFilter(String tableName) {
                 // 这里可以判断是否过滤表
-                /*
                 if ("user".equals(tableName)) {
                     return true;
-                }*/
+                }
 
                 return false;
             }

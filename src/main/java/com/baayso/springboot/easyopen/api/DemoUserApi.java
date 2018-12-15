@@ -39,7 +39,7 @@ public class DemoUserApi extends CommonApi {
     private DemoUserService demoUserService;
 
 
-    @Api(name = "user.add", version = "1.0")
+    @Api(name = "demo.user.add", version = "1.0")
     @ApiDocMethod(description = "添加一个用户", resultClass = ResultVO.class)
     public ResultVO<Boolean> add(UserAddParam param) {
 
@@ -77,7 +77,7 @@ public class DemoUserApi extends CommonApi {
         return ResultVO.creator(successful);
     }
 
-    @Api(name = "user.delete", version = "1.0")
+    @Api(name = "demo.user.delete", version = "1.0")
     @ApiDocMethod(description = "删除用户", resultClass = ResultVO.class)
     public ResultVO<Boolean> delete(UserDeleteParam param) {
 
@@ -92,7 +92,7 @@ public class DemoUserApi extends CommonApi {
         return ResultVO.creator(successful);
     }
 
-    @Api(name = "user.update", version = "1.0")
+    @Api(name = "demo.user.update", version = "1.0")
     @ApiDocMethod(description = "更新用户", resultClass = ResultVO.class)
     public ResultVO<Boolean> update(UserUpdateParam param) {
 
@@ -107,7 +107,7 @@ public class DemoUserApi extends CommonApi {
         return ResultVO.creator(successful);
     }
 
-    @Api(name = "user.get", version = "1.0")
+    @Api(name = "demo.user.get", version = "1.0")
     @ApiDocMethod(description = "获取一个用户")
     public DemoUserDO get(UserGetParam param) {
 
@@ -120,7 +120,7 @@ public class DemoUserApi extends CommonApi {
         return this.demoUserService.getById(id);
     }
 
-    @Api(name = "user.page.list", version = "1.0")
+    @Api(name = "demo.user.page.list", version = "1.0")
     @ApiDocMethod(description = "分页获取用户列表",
             results = {
                     @ApiDocField(name = "list", description = "数据", dataType = DataType.ARRAY, elementClass = DemoUserDO.class),
@@ -142,7 +142,7 @@ public class DemoUserApi extends CommonApi {
         return PageVO.creator(page);
     }
 
-    @Api(name = "user.list", version = "1.0")
+    @Api(name = "demo.user.list", version = "1.0")
     @ApiDocMethod(description = "获取用户列表",
             results = {
                     @ApiDocField(name = "list", description = "用户列表", dataType = DataType.ARRAY, elementClass = DemoUserDO.class),

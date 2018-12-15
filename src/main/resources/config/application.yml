@@ -29,6 +29,11 @@ spring:
     application:
         admin:
             enabled: false
+    http:
+        encoding:
+            charset: UTF-8
+            enabled: true
+            force: true
     jackson:
         date-format: yyyy-MM-dd HH:mm:ss
         joda-date-time-format: yyyy-MM-dd HH:mm:ss

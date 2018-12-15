@@ -25,6 +25,8 @@ create table user
 
 -- 唯一索引
 ALTER TABLE user ADD UNIQUE uk_username (username) COMMENT '用户名唯一索引';
+ALTER TABLE user ADD UNIQUE uk_phone (phone) COMMENT '手机号码唯一索引';
+ALTER TABLE user ADD UNIQUE uk_email (email) COMMENT '邮箱唯一索引';
 
 
 
