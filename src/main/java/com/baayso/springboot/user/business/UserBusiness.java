@@ -1,18 +1,15 @@
 package com.baayso.springboot.user.business;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
 import com.baayso.commons.security.password.PasswordEncoder;
+import com.baayso.springboot.common.easyopen.utils.JwtUtils;
 import com.baayso.springboot.user.domain.UserDO;
 import com.baayso.springboot.user.message.UserErrors;
 import com.baayso.springboot.user.service.UserService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.gitee.easyopen.ApiContext;
 
 /**
  * 业务逻辑：用户。
@@ -42,9 +39,6 @@ public class UserBusiness {
      */
     public String login(String username, String rawPassword) {
 
-        // 使用jwt
-        // https://durcframework.gitee.io/easyopen/#/guide?id=%E4%BD%BF%E7%94%A8jwt
-
         UserDO user = this.userService.getOne( //
                 new QueryWrapper<>(UserDO.builder() //
                         .username(username) //
@@ -70,11 +64,7 @@ public class UserBusiness {
             throw UserErrors.PASSWORD_ERROR.getException();
         }
 
-        Map<String, String> data = new HashMap<>(2);
-        data.put("id", user.getId().toString());
-        data.put("username", user.getUsername());
-
-        return ApiContext.createJwt(data);
+        return JwtUtils.createToken(user.getId().toString(), username);
     }
 
     /**
@@ -96,14 +86,16 @@ public class UserBusiness {
                        String phone, //
                        String email) {
 
-        UserDO user = UserDO.builder() //
+        String currentLoginUsername = JwtUtils.getUsername();
+
+        UserDO user = (UserDO) UserDO.builder() //
                 .username(username) //
                 .name(name) //
                 .password(this.passwordEncoder.encode(rawPassword)) //
                 .phone(phone) //
                 .email(email) //
-                .build();
-        user.initBeforeAdd();
+                .build() //
+                .initBeforeAdd(currentLoginUsername);
 
         return this.userService.save(user);
     }

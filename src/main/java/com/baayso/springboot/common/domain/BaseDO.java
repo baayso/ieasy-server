@@ -2,6 +2,8 @@ package com.baayso.springboot.common.domain;
 
 import java.time.LocalDateTime;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.baayso.commons.utils.Validator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -28,13 +30,6 @@ import lombok.Setter;
 public class BaseDO extends IdEntity {
 
     private static final long serialVersionUID = -3694675102885188955L;
-
-    /**
-     * A String for {@code "0"}.
-     *
-     * @since 1.0.0
-     */
-    public static final String ZERO = "0";
 
 
     @JsonIgnore
@@ -66,57 +61,63 @@ public class BaseDO extends IdEntity {
     }
 
 
-    public void initBeforeAdd() {
-        this.initBeforeAdd(ZERO, LocalDateTime.now());
+    public BaseDO initBeforeAdd() {
+        return this.initBeforeAdd(StringUtils.EMPTY, LocalDateTime.now());
     }
 
-    public void initBeforeAdd(String actor) {
-        this.initBeforeAdd(actor, LocalDateTime.now());
+    public BaseDO initBeforeAdd(String actor) {
+        return this.initBeforeAdd(actor, LocalDateTime.now());
     }
 
-    public void initBeforeAdd(LocalDateTime dateTime) {
-        this.initBeforeAdd(ZERO, dateTime);
+    public BaseDO initBeforeAdd(LocalDateTime dateTime) {
+        return this.initBeforeAdd(StringUtils.EMPTY, dateTime);
     }
 
-    public void initBeforeAdd(String actor, LocalDateTime dateTime) {
+    public BaseDO initBeforeAdd(String actor, LocalDateTime dateTime) {
         setCreateBy(actor);
         setCreateTime(dateTime);
         setModifyBy(actor);
         setModifyTime(dateTime);
+
+        return this;
     }
 
-    public void initBeforeUpdate() {
-        this.initBeforeUpdate(ZERO, LocalDateTime.now());
+    public BaseDO initBeforeUpdate() {
+        return this.initBeforeUpdate(StringUtils.EMPTY, LocalDateTime.now());
     }
 
-    public void initBeforeUpdate(String actor) {
-        this.initBeforeUpdate(actor, LocalDateTime.now());
+    public BaseDO initBeforeUpdate(String actor) {
+        return this.initBeforeUpdate(actor, LocalDateTime.now());
     }
 
-    public void initBeforeUpdate(LocalDateTime dateTime) {
-        this.initBeforeUpdate(ZERO, dateTime);
+    public BaseDO initBeforeUpdate(LocalDateTime dateTime) {
+        return this.initBeforeUpdate(StringUtils.EMPTY, dateTime);
     }
 
-    public void initBeforeUpdate(String actor, LocalDateTime dateTime) {
+    public BaseDO initBeforeUpdate(String actor, LocalDateTime dateTime) {
         setModifyBy(actor);
         setModifyTime(dateTime);
+
+        return this;
     }
 
-    public void initBeforeDelete() {
-        this.initBeforeDelete(ZERO, LocalDateTime.now());
+    public BaseDO initBeforeDelete() {
+        return this.initBeforeDelete(StringUtils.EMPTY, LocalDateTime.now());
     }
 
-    public void initBeforeDelete(String actor) {
-        this.initBeforeDelete(actor, LocalDateTime.now());
+    public BaseDO initBeforeDelete(String actor) {
+        return this.initBeforeDelete(actor, LocalDateTime.now());
     }
 
-    public void initBeforeDelete(LocalDateTime dateTime) {
-        this.initBeforeDelete(ZERO, dateTime);
+    public BaseDO initBeforeDelete(LocalDateTime dateTime) {
+        return this.initBeforeDelete(StringUtils.EMPTY, dateTime);
     }
 
-    public void initBeforeDelete(String actor, LocalDateTime dateTime) {
+    public BaseDO initBeforeDelete(String actor, LocalDateTime dateTime) {
         setModifyBy(actor);
         setModifyTime(dateTime);
+
+        return this;
     }
 
 }

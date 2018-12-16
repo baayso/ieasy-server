@@ -1,17 +1,13 @@
 package com.baayso.springboot.user.api;
 
-import java.util.Map;
-
 import javax.inject.Inject;
 
-import com.auth0.jwt.interfaces.Claim;
 import com.baayso.springboot.common.CommonApi;
 import com.baayso.springboot.common.domain.ResultVO;
 import com.baayso.springboot.user.business.UserBusiness;
 import com.baayso.springboot.user.message.UserErrors;
 import com.baayso.springboot.user.param.UserAddParam;
 import com.baayso.springboot.user.param.UserLoginParam;
-import com.gitee.easyopen.ApiContext;
 import com.gitee.easyopen.annotation.Api;
 import com.gitee.easyopen.annotation.ApiService;
 import com.gitee.easyopen.doc.annotation.ApiDocField;
@@ -56,8 +52,6 @@ public class UserApi extends CommonApi {
     @Api(name = "user.add", version = "1.0")
     @ApiDocMethod(description = "新增一个用户", resultClass = ResultVO.class)
     public ResultVO<Boolean> add(UserAddParam param) {
-
-        Map<String, Claim> jwtData = ApiContext.getJwtData();
 
         String username = param.getUsername();
         String name = param.getName();

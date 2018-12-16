@@ -116,6 +116,9 @@ public class EasyopenAutoConfiguration {
             // https://durcframework.gitee.io/easyopen/#/guide?id=%E5%BC%80%E5%90%AFapp%E5%AF%B9%E6%8E%A5%E6%A8%A1%E5%BC%8F%EF%BC%88v175%EF%BC%89
             apiConfig.openAppMode();
 
+            // jwt对应的secret
+            apiConfig.setJwtSecret("#35ch56@61tCvR]>7$");
+
             BeanUtils.copyProperties(properties, apiConfig);
             this.initInterceptor(properties, apiConfig);
             this.initOpenClient(properties, apiConfig);
