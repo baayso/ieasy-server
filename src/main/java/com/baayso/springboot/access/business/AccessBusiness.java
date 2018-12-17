@@ -72,7 +72,7 @@ public class AccessBusiness {
             throw new ApiServiceException(AccessResponseStatus.INVALID_ACCESS_KEY);
         }
 
-        if (Boolean.FALSE.equals(access.getIsEnable())) {
+        if (Boolean.FALSE.equals(access.getEnabled())) {
             throw new ApiServiceException(AccessResponseStatus.ACCESS_KEY_DISABLED);
         }
 

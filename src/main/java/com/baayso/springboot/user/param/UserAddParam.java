@@ -15,7 +15,7 @@ import lombok.Setter;
 @Setter
 public class UserAddParam {
 
-    @ApiDocField(description = "用户名", required = true, example = "admin")
+    @ApiDocField(description = "用户名", required = true, example = "xml")
     private String username;
 
     @ApiDocField(description = "真实姓名", required = true, example = "小毛驴")

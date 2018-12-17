@@ -35,13 +35,13 @@ public class UserDO extends BaseDO {
     private String name;
 
     @ApiDocField(description = "密码")
-    private String password;
+    private String password; // 保存至数据库里使用 BCrypt算法 加密
 
     @JsonIgnore
-    private String salt;
+    private String salt; // 盐，备用字段，非密码盐
 
     @JsonIgnore
-    private Integer type;
+    private Integer type; // 类型
 
     @ApiDocField(description = "手机号码")
     private String phone;
@@ -50,20 +50,20 @@ public class UserDO extends BaseDO {
     private String email;
 
     @JsonIgnore
-    private Boolean isLock;
+    private Boolean locked; // 是否已锁定
 
     @JsonIgnore
-    private Boolean isDisable;
+    private Boolean disabled; // 是否已禁用
 
     @JsonIgnore
     @TableLogic
-    private Boolean isDelete;
+    private Boolean deleted; // 是否已删除
 
 
     @Builder
     public UserDO(Long id, String createBy, LocalDateTime createTime, String modifyBy, LocalDateTime modifyTime,
                   String username, String name, String password, String salt, Integer type, String phone, String email,
-                  Boolean isLock, Boolean isDisable, Boolean isDelete) {
+                  Boolean locked, Boolean disabled, Boolean deleted) {
 
         super(id, createBy, createTime, modifyBy, modifyTime);
 
@@ -74,9 +74,9 @@ public class UserDO extends BaseDO {
         this.type = type;
         this.phone = phone;
         this.email = email;
-        this.isLock = isLock;
-        this.isDisable = isDisable;
-        this.isDelete = isDelete;
+        this.locked = locked;
+        this.disabled = disabled;
+        this.deleted = deleted;
     }
 
 }

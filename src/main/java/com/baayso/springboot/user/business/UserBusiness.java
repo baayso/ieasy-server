@@ -48,16 +48,16 @@ public class UserBusiness {
             throw UserErrors.NOT_FOUND.getException();
         }
 
-        if (user.getIsLock()) {
-            throw UserErrors.IS_LOCK.getException();
+        if (user.getLocked()) {
+            throw UserErrors.IS_LOCKED.getException();
         }
 
-        if (user.getIsDisable()) {
-            throw UserErrors.IS_DISABLE.getException();
+        if (user.getDisabled()) {
+            throw UserErrors.IS_DISABLED.getException();
         }
 
-        if (user.getIsDelete()) {
-            throw UserErrors.IS_DELETE.getException();
+        if (user.getDeleted()) {
+            throw UserErrors.IS_DELETED.getException();
         }
 
         if (!this.passwordEncoder.matches(rawPassword, user.getPassword())) {

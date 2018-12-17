@@ -58,7 +58,7 @@ public class DemoUserDO extends BaseDO {
 
     @JsonIgnore
     @TableLogic
-    private Boolean isDeleted;
+    private Boolean deleted;
 
     @TableField(exist = false)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
@@ -69,7 +69,7 @@ public class DemoUserDO extends BaseDO {
 
     @Builder
     public DemoUserDO(Long id, String createBy, LocalDateTime createTime, String modifyBy, LocalDateTime modifyTime,
-                      Long tenantId, String name, Integer age, OrderStatus status, String intro, Integer version, Boolean isDeleted,
+                      Long tenantId, String name, Integer age, OrderStatus status, String intro, Integer version, Boolean deleted,
                       LocalDateTime datetime) {
 
         super(id, createBy, createTime, modifyBy, modifyTime);
@@ -80,7 +80,7 @@ public class DemoUserDO extends BaseDO {
         this.status = status;
         this.intro = intro;
         this.version = version;
-        this.isDeleted = isDeleted;
+        this.deleted = deleted;
         this.datetime = datetime;
     }
 

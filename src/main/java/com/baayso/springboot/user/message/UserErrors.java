@@ -20,9 +20,9 @@ public interface UserErrors {
     ErrorMeta EMAIL_ERROR        = new ErrorMeta(isvModule, "105", "邮箱地址不合法");
 
     ErrorMeta NOT_FOUND      = new ErrorMeta(isvModule, "201", "用户不存在");
-    ErrorMeta IS_LOCK        = new ErrorMeta(isvModule, "202", "用户已被锁定");
-    ErrorMeta IS_DISABLE     = new ErrorMeta(isvModule, "203", "用户已被禁用");
-    ErrorMeta IS_DELETE      = new ErrorMeta(isvModule, "204", "用户已被删除");
+    ErrorMeta IS_LOCKED      = new ErrorMeta(isvModule, "202", "用户已被锁定");
+    ErrorMeta IS_DISABLED    = new ErrorMeta(isvModule, "203", "用户已被禁用");
+    ErrorMeta IS_DELETED     = new ErrorMeta(isvModule, "204", "用户已被删除");
     ErrorMeta PASSWORD_ERROR = new ErrorMeta(isvModule, "205", "用户名或密码不正确");
 
 }
