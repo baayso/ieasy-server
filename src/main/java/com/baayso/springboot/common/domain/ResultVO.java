@@ -36,6 +36,10 @@ public class ResultVO<T> implements Serializable {
     private Boolean successful;  // 是否成功
 
 
+    public ResultVO(T ret) {
+        this.ret = ret;
+    }
+
     public static <T> ResultVO<T> creator(List<T> list) {
         return ResultVO.<T>builder().list(list).build();
     }

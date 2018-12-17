@@ -7,7 +7,7 @@ create table user
 (
     id                   bigint not null auto_increment comment 'ID',
     username             varchar(100) comment '用户名',
-    name                 varchar(100) default '' comment '真实姓名',
+    name                 varchar(100) default '' comment '姓名',
     password             varchar(100) comment '密码',
     salt                 varchar(100) default '' comment '盐',
     type                 smallint default 0 comment '类型',

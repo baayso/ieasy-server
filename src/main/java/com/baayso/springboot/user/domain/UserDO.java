@@ -3,7 +3,6 @@ package com.baayso.springboot.user.domain;
 import java.time.LocalDateTime;
 
 import com.baayso.springboot.common.domain.BaseDO;
-import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gitee.easyopen.doc.annotation.ApiDocField;
@@ -31,11 +30,11 @@ public class UserDO extends BaseDO {
     @ApiDocField(description = "用户名")
     private String username;
 
-    @ApiDocField(description = "真实姓名")
+    @ApiDocField(description = "姓名")
     private String name;
 
-    @ApiDocField(description = "密码")
-    private String password; // 保存至数据库里使用 BCrypt算法 加密
+    @JsonIgnore
+    private String password; // 密码；保存至数据库里使用 BCrypt算法 加密
 
     @JsonIgnore
     private String salt; // 盐，备用字段，非密码盐
@@ -56,7 +55,7 @@ public class UserDO extends BaseDO {
     private Boolean disabled; // 是否已禁用
 
     @JsonIgnore
-    @TableLogic
+    // @TableLogic
     private Boolean deleted; // 是否已删除
 
 
