@@ -34,7 +34,7 @@ public class UserDO extends BaseDO {
     private String name;
 
     @JsonIgnore
-    private String password; // 密码；保存至数据库里使用 BCrypt算法 加密
+    private String password; // 密码；保存至数据库里使用 BCrypt算法 进行编码
 
     @JsonIgnore
     private String salt; // 盐，备用字段，非密码盐
