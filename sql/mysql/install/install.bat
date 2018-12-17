@@ -12,8 +12,10 @@ set /P username="Username [%username%]: "
 cd ./
 set CURRENT_PATH=%cd%
 
-cd %CURRENT_PATH%
+cd %CURRENT_PATH%\sql\mysql\install
 
-mysql --host=%server% --port=%port% --user=%username% --password < %CURRENT_PATH%\install.sql
+mysql --host=%server% --port=%port% --user=%username% --password < %CURRENT_PATH%\sql\mysql\install\install.sql
+
+cd %CURRENT_PATH%
 
 pause
