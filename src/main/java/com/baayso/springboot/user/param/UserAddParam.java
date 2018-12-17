@@ -24,10 +24,10 @@ public class UserAddParam {
     @ApiDocField(description = "密码", required = true, example = "123456")
     private String password;
 
-    @ApiDocField(description = "手机号码", required = true, example = "13712345678")
+    @ApiDocField(description = "手机号码", example = "13712345678")
     private String phone;
 
-    @ApiDocField(description = "邮箱", required = true, example = "i@baayso.com")
+    @ApiDocField(description = "邮箱", example = "i@baayso.com")
     private String email;
 
 }

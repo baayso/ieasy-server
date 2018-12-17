@@ -11,8 +11,8 @@ create table user
     password             varchar(100) comment '密码',
     salt                 varchar(100) default '' comment '盐',
     type                 smallint default 0 comment '类型',
-    phone                varchar(32) default '' comment '手机号码',
-    email                varchar(64) default '' comment '邮箱',
+    phone                varchar(32) comment '手机号码',
+    email                varchar(64) comment '邮箱',
     locked               boolean default FALSE comment '是否已锁定',
     disabled             boolean default FALSE comment '是否已禁用',
     deleted              boolean default FALSE comment '是否已删除',
@@ -38,7 +38,7 @@ create table role
 (
     id                   bigint not null auto_increment comment 'ID',
     name                 varchar(100) comment '名称',
-    code                 varchar(100) default '' comment '编码',
+    code                 varchar(100) comment '编码',
     descr                varchar(255) default '' comment '描述',
     create_by            varchar(100) comment '记录创建人',
     create_time          datetime comment '记录创建时间',
@@ -78,7 +78,7 @@ create table user_group
 (
     id                   bigint not null auto_increment comment 'ID',
     name                 varchar(100) comment '名称',
-    code                 varchar(100) default '' comment '编码',
+    code                 varchar(100) comment '编码',
     descr                varchar(255) default '' comment '描述',
     create_by            varchar(100) comment '记录创建人',
     create_time          datetime comment '记录创建时间',
@@ -124,9 +124,7 @@ create table user_group_and_role_ref
     modify_by            varchar(100) comment '记录修改人',
     modify_time          datetime comment '记录修改时间',
     primary key (id)
-);
-
-alter table user_group_and_role_ref comment '用户组与角色关联表';
+)comment '用户组与角色关联表';
 
 
 
@@ -138,7 +136,7 @@ create table permission
 (
     id                   bigint not null auto_increment comment 'ID',
     name                 varchar(100) default '' comment '名称',
-    code                 varchar(100) default '' comment '编码',
+    code                 varchar(100) comment '编码',
     type                 smallint comment '类型',
     create_by            varchar(100) comment '记录创建人',
     create_time          datetime comment '记录创建时间',
@@ -178,7 +176,7 @@ create table permission_menu
 (
     id                   bigint not null auto_increment comment 'ID',
     name                 varchar(100) comment '名称',
-    code                 varchar(100) default '' comment '编码',
+    code                 varchar(100) comment '编码',
     url                  varchar(255) comment 'URL',
     icon                 varchar(50) default '' comment '图标',
     parent_id            bigint comment '父级ID',
@@ -260,7 +258,7 @@ create table permission_file
 (
     id                   bigint not null auto_increment comment 'ID',
     name                 varchar(100) comment '名称',
-    code                 varchar(100) default '' comment '编码',
+    code                 varchar(100) comment '编码',
     type                 smallint comment '类型',
     path                 varchar(255) comment '路径',
     create_by            varchar(100) comment '记录创建人',

@@ -83,8 +83,8 @@ public class UserApi extends CommonApi {
                 username, //
                 name, //
                 password, //
-                phone, //
-                email);
+                super.validator.required(phone) ? phone : null, //
+                super.validator.required(email) ? email : null);
 
         return ResultVO.creator(successful);
     }
