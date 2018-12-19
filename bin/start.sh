@@ -23,8 +23,8 @@ echo ${APP_OPTS}
 
 cd ${CURRENT_PATH}
 
-chmod u+x ${CURRENT_PATH}/../target/spring-boot-demo.jar
+chmod u+x ${CURRENT_PATH}/../target/ieasy-server.jar
 
-echo "java ${JAVA_OPTS} -jar ${CURRENT_PATH}/../target/spring-boot-demo.jar ${APP_OPTS}"
+echo "java ${JAVA_OPTS} -jar ${CURRENT_PATH}/../target/ieasy-server.jar ${APP_OPTS}"
 
-java ${JAVA_OPTS} -jar ${CURRENT_PATH}/../target/spring-boot-demo.jar ${APP_OPTS}
+java ${JAVA_OPTS} -jar ${CURRENT_PATH}/../target/ieasy-server.jar ${APP_OPTS}

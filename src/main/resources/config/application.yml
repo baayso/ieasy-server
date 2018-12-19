@@ -78,7 +78,7 @@ mybatis-plus:
 
 easyopen:
     # 应用名称
-    app-name: spring-boot-demo
+    app-name: ieasy-server
     # API 默认版本号
     default-version: 1.0
     # 超时时间，5秒

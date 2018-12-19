@@ -16,12 +16,12 @@
 * [EasyOpen](https://gitee.com/durcframework/easyopen)
 * [vjkit](https://github.com/vipshop/vjtools/tree/master/vjkit)
 * [Lombok](https://www.projectlombok.org)
-* [其他请查看pom.xml](https://github.com/baayso/spring-boot-demo/blob/master/pom.xml)
+* [其他请查看pom.xml](https://github.com/baayso/ieasy-server/blob/master/pom.xml)
 
 ## 快速开始：
 1. git clone https://github.com/baayso/ieasy-server.git
 2. 安装 MySQL 5.5+
-3. 执行 [SQL 脚本](https://github.com/baayso/spring-boot-demo/tree/master/sql/mysql/install)（注：默认创建的数据库名称为 **springbootdemo**，可以在[这个SQL文件里](https://github.com/baayso/spring-boot-demo/blob/master/sql/mysql/install/common/common_mysql.sql)进行修改）
+3. 执行 [SQL 脚本](https://github.com/baayso/ieasy-server/tree/master/sql/mysql/install)（注：默认创建的数据库名称为 **ieasy_server**，可以在[这个SQL文件里](https://github.com/baayso/ieasy-server/blob/master/sql/mysql/install/common/common_mysql.sql)进行修改）
    * Windows  
      **`sql\mysql\install\install.bat`**  
      > 注：根据提示输入数据库的 ip、port、username
@@ -31,27 +31,27 @@
 4. 修改项目配置文件里数据库的 ip、port、username、password
    > 注：各环境配置文件[请参见](#config)
 5. **`build.bat`** (Windows) Or **`./build.sh`** (Linux/Mac OS)
-6. 执行[启动脚本](https://github.com/baayso/spring-boot-demo/tree/master/bin)
-   * 开发环境    
+6. 执行[启动脚本](https://github.com/baayso/ieasy-server/tree/master/bin)
+   * 开发环境
      **`bin\start.bat 8888 dev`** (Windows) Or **`./bin/start.sh 8888 dev`** (Linux/Mac OS)  
      > 注：端口号为 8888
-   * 测试环境 
+   * 测试环境
      **`bin\start.bat 8888 test`** (Windows) Or **`./bin/start.sh 8888 test`** (Linux/Mac OS)  
      > 注：端口号为 8888
    * 生产环境  
      **`bin\start.bat 8888 pro`** (Windows) Or **`./bin/start.sh 8888 pro`** (Linux/Mac OS)  
      > 注：端口号为 8888
 
-## [配置文件：](https://github.com/baayso/spring-boot-demo/blob/master/src/main/resources/config)
+## [配置文件：](https://github.com/baayso/ieasy-server/blob/master/src/main/resources/config)
 * <span id = "config">多环境配置文件</span>
-  * [基础配置文件](https://github.com/baayso/spring-boot-demo/blob/master/src/main/resources/config/application.yml)（注：[默认加载开发环境配置文件](https://github.com/baayso/spring-boot-demo/blob/master/src/main/resources/config/application.yml#L28)）
-  * [开发环境配置文件](https://github.com/baayso/spring-boot-demo/blob/master/src/main/resources/config/application-dev.yml)
-  * [测试环境配置文件](https://github.com/baayso/spring-boot-demo/blob/master/src/main/resources/config/application-test.yml)
-  * [生产环境配置文件](https://github.com/baayso/spring-boot-demo/blob/master/src/main/resources/config/application-pro.yml)
-* [MyBatis 配置文件](https://github.com/baayso/spring-boot-demo/blob/master/src/main/resources/config/mybatis-config.xml)
+  * [基础配置文件](https://github.com/baayso/ieasy-server/blob/master/src/main/resources/config/application.yml)（注：[默认加载开发环境配置文件](https://github.com/baayso/ieasy-server/blob/master/src/main/resources/config/application.yml#L28)）
+  * [开发环境配置文件](https://github.com/baayso/ieasy-server/blob/master/src/main/resources/config/application-dev.yml)
+  * [测试环境配置文件](https://github.com/baayso/ieasy-server/blob/master/src/main/resources/config/application-test.yml)
+  * [生产环境配置文件](https://github.com/baayso/ieasy-server/blob/master/src/main/resources/config/application-pro.yml)
+* [MyBatis 配置文件](https://github.com/baayso/ieasy-server/blob/master/src/main/resources/config/mybatis-config.xml)
 
 ## [多租户 SQL 解析器：](https://mybatis.plus/guide/tenant.html)
-> [配置多租户 SQL 解析器](https://github.com/baayso/spring-boot-demo/blob/master/src/main/java/com/baayso/springboot/config/mybatis/MybatisPlusConfig.java#L70)
+> [配置多租户 SQL 解析器](https://github.com/baayso/ieasy-server/blob/master/src/main/java/com/baayso/springboot/config/mybatis/MybatisPlusConfig.java#L70)
 
 ## 访问：
 * http://localhost:8888/welcome
