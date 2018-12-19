@@ -15,8 +15,8 @@
     <groupId>com.baayso</groupId>
     <artifactId>spring-boot-demo</artifactId>
     <version>3.0.0.Alpha</version>
-    <name>spring-boot-demo</name>
-    <description>Spring Boot Demo</description>
+    <name>ieasy-server</name>
+    <description>Spring Boot 脚手架项目</description>
     <packaging>jar</packaging>
 
     <repositories>
@@ -368,7 +368,7 @@
     </dependencies>
 
     <build>
-        <finalName>spring-boot-demo</finalName>
+        <finalName>ieasy-server</finalName>
 
         <plugins>
 
