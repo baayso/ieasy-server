@@ -1,8 +1,8 @@
-# Spring Boot Demo  
+# iEasy Server  
 > Spring Boot 脚手架项目
 
 [![Jdk Version](https://img.shields.io/badge/JDK-1.8+-green.svg)](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
-[![Build Status](https://travis-ci.org/baayso/spring-boot-demo.svg?branch=master)](https://travis-ci.org/baayso/spring-boot-demo)
+[![Build Status](https://travis-ci.org/baayso/ieasy-server.svg?branch=master)](https://travis-ci.org/baayso/ieasy-server)
 
 ## 环境要求：
 * Jdk 8.0+
@@ -15,7 +15,7 @@
 * [EasyOpen](https://gitee.com/durcframework/easyopen)
 * [vjkit](https://github.com/vipshop/vjtools/tree/master/vjkit)
 * [Lombok](https://www.projectlombok.org)
-* [其他请看pom.xml](https://github.com/baayso/spring-boot-demo/blob/master/pom.xml)
+* [其他请查看pom.xml](https://github.com/baayso/spring-boot-demo/blob/master/pom.xml)
 
 ## 快速开始：
 1. git clone https://github.com/baayso/spring-boot-demo.git
