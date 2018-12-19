@@ -1,5 +1,6 @@
 # iEasy Server  
-> Spring Boot 脚手架项目
+> Spring Boot 脚手架项目  
+> 项目原地址: https://github.com/baayso/spring-boot-demo
 
 [![Jdk Version](https://img.shields.io/badge/JDK-1.8+-green.svg)](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
 [![Build Status](https://travis-ci.org/baayso/ieasy-server.svg?branch=master)](https://travis-ci.org/baayso/ieasy-server)
@@ -18,7 +19,7 @@
 * [其他请查看pom.xml](https://github.com/baayso/spring-boot-demo/blob/master/pom.xml)
 
 ## 快速开始：
-1. git clone https://github.com/baayso/spring-boot-demo.git
+1. git clone https://github.com/baayso/ieasy-server.git
 2. 安装 MySQL 5.5+
 3. 执行 [SQL 脚本](https://github.com/baayso/spring-boot-demo/tree/master/sql/mysql/install)（注：默认创建的数据库名称为 **springbootdemo**，可以在[这个SQL文件里](https://github.com/baayso/spring-boot-demo/blob/master/sql/mysql/install/common/common_mysql.sql)进行修改）
    * Windows  
