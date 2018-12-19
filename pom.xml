@@ -13,7 +13,7 @@
     </parent>
 
     <groupId>com.baayso</groupId>
-    <artifactId>spring-boot-demo</artifactId>
+    <artifactId>ieasy-server</artifactId>
     <version>3.0.0.Alpha</version>
     <name>ieasy-server</name>
     <description>Spring Boot 脚手架项目</description>
