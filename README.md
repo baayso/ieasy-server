@@ -32,10 +32,10 @@
    > 注：各环境配置文件[请参见](#config)
 5. **`build.bat`** (Windows) Or **`./build.sh`** (Linux/Mac OS)
 6. 执行[启动脚本](https://github.com/baayso/ieasy-server/tree/master/bin)
-   * 开发环境
+   * 开发环境  
      **`bin\start.bat 8888 dev`** (Windows) Or **`./bin/start.sh 8888 dev`** (Linux/Mac OS)  
      > 注：端口号为 8888
-   * 测试环境
+   * 测试环境  
      **`bin\start.bat 8888 test`** (Windows) Or **`./bin/start.sh 8888 test`** (Linux/Mac OS)  
      > 注：端口号为 8888
    * 生产环境  
