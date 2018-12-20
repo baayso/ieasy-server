@@ -1,5 +1,7 @@
 @echo off
 
+CHCP 65001
+
 echo [Pre-Requirement] Makesure install JDK 8.0+ and set the JAVA_HOME.
 
 set CURRENT_PATH=%cd%
@@ -11,7 +13,7 @@ if "%1%" == "" (set PORT=6666)
 
 if "%2%" == "" (set PROFILE=pro)
 
-set JAVA_OPTS=-server -Xms2048m -Xmx2048m -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true
+set JAVA_OPTS=-server -Xms2048m -Xmx2048m -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Dfile.encoding=UTF-8
 echo %JAVA_OPTS%
 
 set APP_OPTS=--server.port=%PORT% --spring.profiles.active=%PROFILE%

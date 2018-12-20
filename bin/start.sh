@@ -15,7 +15,7 @@ if [ -z ${PROFILE} ]; then
     PROFILE="pro"
 fi
 
-JAVA_OPTS="-server -Xms2048m -Xmx2048m -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true"
+JAVA_OPTS="-server -Xms2048m -Xmx2048m -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Dfile.encoding=UTF-8"
 echo ${JAVA_OPTS}
 
 APP_OPTS="--server.port=${PORT} --spring.profiles.active=${PROFILE}"
