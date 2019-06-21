@@ -55,6 +55,7 @@
 
 ## 访问：
 * http://localhost:8888/welcome
+* http://localhost:8888/welcome/index (LayUI后台布局)
 * http://localhost:8888/demo/api
 * http://localhost:8888/demo/api/page?pageSize=100&pageNum=1
 * http://localhost:8888/demo/api/deletes?id=1
