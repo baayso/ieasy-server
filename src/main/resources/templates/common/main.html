@@ -1,0 +1,32 @@
+#define main()
+
+#-- common/layout.html --#
+#@layout()
+
+#define main_css()
+#@css?()
+#end
+
+#define main_content()
+<div class="layui-layout layui-layout-admin">
+
+    #-- common/header.html --#
+    #@header()
+
+    #-- common/menu.html --#
+    #@menu()
+
+    <!-- content -->
+    #@content()
+
+    #-- common/footer.html --#
+    #@footer()
+
+</div>
+#end
+
+#define main_script()
+#@script?()
+#end
+
+#end

@@ -1,0 +1,119 @@
+.layui-btn-blue {
+  background-color: #1582FF;
+}
+.layui-btn-primary:hover {
+  border-color: #2188FF;
+  color: #2188FF;
+}
+.layui-laypage .layui-laypage-curr .layui-laypage-em {
+  background-color: #1582FF;
+}
+.layui-btn-warm {
+  background-color: #009688;
+}
+.layui-nav-tree {
+  width: 250px;
+}
+.layui-nav {
+  background-color: transparent;
+}
+.layui-btn-danger {
+  background-color: #009688;
+}
+.layui-nav .layui-this:after,
+.layui-nav-bar,
+.layui-nav-tree .layui-nav-itemed:after {
+  background-color: transparent;
+}
+.layui-header {
+  height: 75px;
+  background-color: #409DFF !important;
+  overflow: hidden;
+  min-width: 1366px;
+}
+.layui-layout-admin .layui-side {
+  top: 75px;
+  width: 250px;
+}
+.layui-nav-tree .layui-nav-child a {
+  height: 45px;
+  line-height: 45px;
+}
+.layui-nav-tree .layui-nav-child dd.layui-this,
+.layui-nav-tree .layui-this,
+.layui-nav-tree .layui-this > a,
+.layui-nav-tree .layui-this > a:hover {
+  background-color: #1582FF !important;
+}
+.layui-nav-tree .layui-nav-bar {
+  background-color: #1582FF;
+}
+.layui-side-scroll {
+  width: 270px;
+}
+.layui-layout-admin .layui-footer {
+  background-color: #EFF3F6;
+  left: 250px;
+}
+.layui-layout-admin .layui-body {
+  top: 75px;
+  left: 250px;
+}
+.layui-table {
+  margin: 0;
+}
+.layui-form-select dl dd.layui-this {
+  background-color: #1582FF;
+}
+.layui-input:focus,
+.layui-textarea:focus {
+  border-color: #2188FF !important;
+}
+.layui-input:hover,
+.layui-textarea:hover {
+  border-color: #2188FF !important;
+}
+.layui-tab-brief > .layui-tab-title .layui-this {
+  color: #2188FF !important;
+}
+.layui-tab-brief > .layui-tab-more li.layui-this:after,
+.layui-tab-brief > .layui-tab-title .layui-this:after {
+  border: none;
+  border-radius: 0;
+  border-bottom: 2px solid #2188FF;
+}
+.layui-form-checked[lay-skin=primary] i {
+  border-color: #2188FF;
+  background-color: #2188FF;
+}
+.layui-form-checkbox[lay-skin=primary]:hover i {
+  border-color: #2188FF;
+}
+.layui-form-radio i:hover,
+.layui-form-radioed i {
+  color: #2188FF;
+}
+.layui-laydate .layui-this {
+  background-color: #1582FF !important;
+}
+.layui-laydate-header i:hover,
+.layui-laydate-header span:hover {
+  color: #1582FF !important;
+}
+.layui-laydate-footer span:hover {
+  color: #1582FF !important;
+}
+.layui-layer-tips .layui-layer-content {
+  background-color: #282A32 !important;
+  color: white !important;
+}
+.layui-layer-tips i.layui-layer-TipsL,
+.layui-layer-tips i.layui-layer-TipsR {
+  border-bottom-color: #282A32 !important;
+}
+.layui-form-select dl dd {
+  text-align: left !important;
+}
+.layui-breadcrumb a:hover {
+  color: #999 !important;
+}

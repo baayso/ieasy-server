@@ -12,10 +12,10 @@ import org.springframework.scheduling.annotation.EnableAsync;
  */
 @EnableAsync
 @SpringBootApplication
-public class Application {
+public class IEasyServerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(IEasyServerApplication.class, args);
     }
 
 }

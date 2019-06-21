@@ -48,9 +48,9 @@ spring:
         date-format: yyyy-MM-dd HH:mm:ss
         view:
             prefix: /templates/
-            suffix: .ftl
+            suffix: .html
     freemarker:
-        enabled: true
+        enabled: false
         cache: false
         request-context-attribute: request
         template-loader-path: classpath:/templates/
@@ -69,8 +69,6 @@ mybatis-plus:
     # 指定 MyBatis 的执行器
     executor-type: REUSE
     global-config:
-        # 开启 SQL 解析缓存注解生效
-        sql-parser-cache: true
         db-config:
             # 逻辑删除配置
             logic-delete-value: 'true' # 逻辑已删除值(默认为 1)

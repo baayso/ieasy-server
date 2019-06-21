@@ -33,6 +33,9 @@
 
         <!-- 设置在查询结果遇到有下划线的命名时时，是否自动转化为驼峰式命名，默认：false -->
         <setting name="mapUnderscoreToCamelCase" value="true"/>
+
+        <!-- 默认枚举处理类，如果配置了该属性，枚举将统一使用指定处理器进行处理 -->
+        <setting name="defaultEnumTypeHandler" value="com.baomidou.mybatisplus.extension.handlers.EnumTypeHandler"/>
     </settings>
 
     <typeHandlers>

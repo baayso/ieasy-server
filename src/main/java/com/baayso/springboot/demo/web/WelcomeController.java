@@ -18,6 +18,14 @@ public class WelcomeController {
         return "welcome";
     }
 
+    @RequestMapping("/index")
+    public String index(Map<String, Object> model) {
+        model.put("time", new Date());
+        model.put("message", "baayso");
+
+        return "index";
+    }
+
     @RequestMapping("/fail")
     public String fail() {
         throw new IllegalStateException("Oh dear!");
