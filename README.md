@@ -11,14 +11,16 @@
 * MySQL 5.5+
 
 ## 框架：
-* [MyBatis](http://www.mybatis.org/mybatis-3)
-* [MyBatis-Plus](https://gitee.com/baomidou/mybatis-plus)
-* [EasyOpen](https://gitee.com/durcframework/easyopen)
-* [vjkit](https://github.com/vipshop/vjtools/tree/master/vjkit)
-* [Lombok](https://www.projectlombok.org)
-* [JFinal Enjoy](https://www.jfinal.com/doc/6-1)
-* [LayUI前端框架](https://www.layui.com)
-* [其他请查看pom.xml](https://github.com/baayso/ieasy-server/blob/master/pom.xml)
+* 后端
+  * [MyBatis](http://www.mybatis.org/mybatis-3)
+  * [MyBatis-Plus](https://gitee.com/baomidou/mybatis-plus)
+  * [EasyOpen](https://gitee.com/durcframework/easyopen)
+  * [vjkit](https://github.com/vipshop/vjtools/tree/master/vjkit)
+  * [Lombok](https://www.projectlombok.org)
+  * [JFinal Enjoy](https://www.jfinal.com/doc/6-1)
+  * [其他请查看pom.xml](https://github.com/baayso/ieasy-server/blob/master/pom.xml)
+* 前端
+  * [LayUI前端框架](https://www.layui.com)
 
 ## 快速开始：
 1. git clone https://github.com/baayso/ieasy-server.git
