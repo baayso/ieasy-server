@@ -26,6 +26,14 @@ public class WelcomeController {
         return "index";
     }
 
+    @RequestMapping("/index2")
+    public String index2(Map<String, Object> model) {
+        model.put("time", new Date());
+        model.put("message", "baayso");
+
+        return "index2";
+    }
+
     @RequestMapping("/fail")
     public String fail() {
         throw new IllegalStateException("Oh dear!");
