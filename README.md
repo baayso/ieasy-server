@@ -20,7 +20,7 @@
   * [JFinal Enjoy](https://www.jfinal.com/doc/6-1)
   * [其他请查看pom.xml](https://github.com/baayso/ieasy-server/blob/master/pom.xml)
 * 前端
-  * [LayUI前端框架](https://www.layui.com)
+  * [LayUI](https://www.layui.com)
 
 ## 快速开始：
 1. git clone https://github.com/baayso/ieasy-server.git
