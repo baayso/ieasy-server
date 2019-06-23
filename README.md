@@ -16,6 +16,8 @@
 * [EasyOpen](https://gitee.com/durcframework/easyopen)
 * [vjkit](https://github.com/vipshop/vjtools/tree/master/vjkit)
 * [Lombok](https://www.projectlombok.org)
+* [JFinal Enjoy](https://www.jfinal.com/doc/6-1)
+* [LayUI前端框架](https://www.layui.com)
 * [其他请查看pom.xml](https://github.com/baayso/ieasy-server/blob/master/pom.xml)
 
 ## 快速开始：
@@ -63,7 +65,7 @@
 * http://localhost:8888/demo/api/creates
 * http://localhost:8888/demo/api/update?id=7
 * http://localhost:8888/demo/api/hello
-* http://localhost:8888/api/doc
+* http://localhost:8888/api/doc (EasyOpen API文档页面)
 
 ## Dependencies:
 * https://github.com/baayso/commons
