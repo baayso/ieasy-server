@@ -69,7 +69,7 @@
 
                 <ul class="layui-nav layui-nav-tree" lay-shrink="all" id="system-side-menu" lay-filter="admin-system-side-menu">
                     <li class="layui-nav-item">
-                        <a lay-href="/welcome" lay-tips="主页" lay-direction="2">
+                        <a href="javascript:void(0);" lay-href="/welcome" lay-tips="主页" lay-direction="2">
                             <i class="layui-icon layui-icon-home"></i>
                             <cite>主页</cite>
                         </a>
@@ -82,9 +82,9 @@
                         </a>
                         <dl class="layui-nav-child">
                             <dd><a href="javascript:void(0);" lay-href="/welcome/index">列表一</a></dd>
-                            <dd><a href="javascript:void(0);" lay-href="/welcome">列表二</a></dd>
-                            <dd><a href="javascript:void(0);" lay-href="/welcome">列表三</a></dd>
-                            <dd class="layui-this"><a href="javascript:void(0);" lay-href="/welcome">超链接</a></dd>
+                            <dd><a href="javascript:void(0);" lay-href="">列表二</a></dd>
+                            <dd><a href="javascript:void(0);" lay-href="">列表三</a></dd>
+                            <dd class="layui-this"><a href="javascript:void(0);" lay-href="">超链接</a></dd>
                         </dl>
                     </li>
 
@@ -94,21 +94,31 @@
                             <cite>解决方案</cite>
                         </a>
                         <dl class="layui-nav-child">
-                            <dd><a href="javascript:void(0);">列表一</a></dd>
-                            <dd><a href="javascript:void(0);">列表二</a></dd>
-                            <dd><a href="javascript:void(0);">超链接</a></dd>
+
+                            <dd>
+                                <a href="javascript:void(0);">二级菜单</a>
+                                <dl class="layui-nav-child">
+                                    <dd><a href="javascript:void(0);" lay-href="">三级菜单一</a></dd>
+                                    <dd><a href="javascript:void(0);" lay-href="">三级菜单二</a></dd>
+                                    <dd><a href="javascript:void(0);" lay-href="">三级菜单三</a></dd>
+                                </dl>
+                            </dd>
+
+                            <dd><a href="javascript:void(0);" lay-href="">列表一</a></dd>
+                            <dd><a href="javascript:void(0);" lay-href="">列表二</a></dd>
+                            <dd><a href="javascript:void(0);" lay-href="">超链接</a></dd>
                         </dl>
                     </li>
 
                     <li class="layui-nav-item">
-                        <a href="javascript:void(0);" lay-href="/welcome" lay-tips="云市场" lay-direction="2">
+                        <a href="javascript:void(0);" lay-href="" lay-tips="云市场" lay-direction="2">
                             <i class="layui-icon layui-icon-chart-screen"></i>
                             <cite>云市场</cite>
                         </a>
                     </li>
 
                     <li class="layui-nav-item">
-                        <a href="javascript:void(0);" lay-href="/welcome" lay-tips="发布商品" lay-direction="2">
+                        <a href="javascript:void(0);" lay-href="" lay-tips="发布商品" lay-direction="2">
                             <i class="layui-icon layui-icon-file"></i>
                             <cite>发布商品</cite>
                         </a>
@@ -142,13 +152,13 @@
                         <i class="layui-icon layui-icon-home"></i> 主页
                     </li>
                 </ul>
-            </div>
-        </div>
 
-        <!-- 主体内容 -->
-        <div class="layui-body" id="app_body">
-            <div class="admin-tabs-body-item layui-show">
-                <iframe src="/welcome" frameborder="0" class="admin-iframe"></iframe>
+                <!-- 主体内容 -->
+                <div class="layui-tab-content layui-body" id="app_body">
+                    <div class="layui-tab-item admin-tabs-body-item layui-show">
+                        <iframe src="/welcome" frameborder="0" class="admin-iframe"></iframe>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -163,9 +173,9 @@
 <script src="/libs/ie/respond.min.js"></script>
 <![endif]-->
 
-<script src="/libs/jquery/jquery.min.js"></script>
+<!--<script src="/libs/jquery/jquery.min.js"></script>-->
 
-<script src="/libs/layui/layui.all.js"></script>
+<script src="/libs/layui/layui.js"></script>
 
 <script src="/js/index.js?t=2"></script>
 
