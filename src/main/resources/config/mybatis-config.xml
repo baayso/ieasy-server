@@ -35,7 +35,8 @@
         <setting name="mapUnderscoreToCamelCase" value="true"/>
 
         <!-- 默认枚举处理类，如果配置了该属性，枚举将统一使用指定处理器进行处理 -->
-        <setting name="defaultEnumTypeHandler" value="com.baomidou.mybatisplus.extension.handlers.EnumTypeHandler"/>
+        <setting name="defaultEnumTypeHandler"
+                 value="com.baomidou.mybatisplus.extension.handlers.MybatisEnumTypeHandler"/>
     </settings>
 
     <typeHandlers>
