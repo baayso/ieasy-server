@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebRTC</title>
+
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+
+</head>
+
+<body>
+
+<div id="app">
+
+    <h1>Realtime communication with WebRTC </h1>
+
+    <form>
+        <label for="audioInput">音频输入设备: </label>
+        <select id="audioInput" name="audioInput">
+        </select>
+
+        <label for="videoInput">视频输入设备: </label>
+        <select id="videoInput" name="videoInput">
+        </select>
+
+        <label for="audioOutput">音频输出设备: </label>
+        <select id="audioOutput" name="audioOutput">
+        </select>
+
+        <button type="button" onclick="confirm()">确定</button>
+    </form>
+
+    <br>
+
+    <video id="video" autoplay playsinline></video>
+
+</div>
+
+<script>
+
+    const mediaStreamConstraints = {
+        video: {
+            frameRate: {min: 20},
+            width: {min: 640, ideal: 1280},
+            height: {min: 360, ideal: 720},
+            aspectRatio: 16 / 9,
+            facingMode: "environment", // user:前置摄像头，environment:后置摄像头
+        },
+        audio: {
+            echoCancellation: true,
+            noiseSuppression: true,
+            autoGainControl: true,
+        }
+    };
+
+    function gotLocalMediaStream(mediaStream) {
+        const localVideo = document.querySelector('#video');
+        localVideo.srcObject = mediaStream;
+    }
+
+    function handleLocalMediaStreamError(error) {
+        console.log('navigator.getUserMedia error: ', error);
+    }
+
+    window.onload = function () {
+
+        // 判断浏览器是否支持这些 API
+        if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
+            console.log("enumerateDevices() not supported.");
+        }
+        else {
+            // 枚举 cameras and microphones.
+            navigator.mediaDevices.enumerateDevices()
+                .then(function (devices) {
+                    // 打印出每一个设备的信息
+                    devices.forEach(function (deviceInfo) {
+                        console.log(`${deviceInfo.kind}: ${deviceInfo.label}  id = ${deviceInfo.deviceId}`);
+
+                        const audioInput = document.querySelector('#audioInput');
+                        const audioOutput = document.querySelector('#audioOutput');
+                        const videoInput = document.querySelector('#videoInput');
+
+                        if (deviceInfo.kind === 'audioinput') {
+                            audioInput.add(new Option(deviceInfo.label, deviceInfo.deviceId));
+                        }
+                        else if (deviceInfo.kind === 'audiooutput') {
+                            audioOutput.add(new Option(deviceInfo.label, deviceInfo.deviceId));
+                        }
+                        else if (deviceInfo.kind === 'videoinput') {
+                            videoInput.add(new Option(deviceInfo.label, deviceInfo.deviceId));
+                        }
+
+                    });
+                })
+                .catch(function (err) {
+                    console.log(err.name + ": " + err.message);
+                });
+        }
+
+        collect();
+    };
+
+    function collect() {
+        // 采集音视频数据
+        navigator.mediaDevices.getUserMedia(mediaStreamConstraints)
+            .then(gotLocalMediaStream)
+            .catch(handleLocalMediaStreamError);
+    }
+
+    function confirm() {
+        const audioInput = document.querySelector('#audioInput');
+        const videoInput = document.querySelector('#videoInput');
+
+        mediaStreamConstraints.video.deviceId = videoInput.value;
+        mediaStreamConstraints.audio.deviceId = audioInput.value;
+
+        collect();
+    }
+
+</script>
+
+</body>
+</html>
