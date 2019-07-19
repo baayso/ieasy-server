@@ -18,27 +18,33 @@
 
 <div id="app">
 
-    <h1>Realtime communication with WebRTC </h1>
+    <h1>Realtime communication with WebRTC</h1>
 
     <form>
-        <label for="audioInput">音频输入设备: </label>
-        <select id="audioInput" name="audioInput">
-        </select>
+        <label>
+            音频输入设备:
+            <select id="audioInput" name="audioInput">
+            </select>
+        </label>
 
-        <label for="videoInput">视频输入设备: </label>
-        <select id="videoInput" name="videoInput">
-        </select>
+        <label>
+            视频输入设备:
+            <select id="videoInput" name="videoInput">
+            </select>
+        </label>
 
-        <label for="audioOutput">音频输出设备: </label>
-        <select id="audioOutput" name="audioOutput">
-        </select>
+        <label>
+            音频输出设备:
+            <select id="audioOutput" name="audioOutput">
+            </select>
+        </label>
 
         <button type="button" onclick="confirm()">确定</button>
     </form>
 
-    <br>
+    <br/>
 
-    <video id="video" autoplay playsinline></video>
+    <video id="video" autoplay playsinline>您的浏览器不支持视频播放！</video>
 
 </div>
 
