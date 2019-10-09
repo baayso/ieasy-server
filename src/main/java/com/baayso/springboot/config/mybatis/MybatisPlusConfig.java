@@ -6,13 +6,11 @@ import java.util.List;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.baomidou.mybatisplus.core.parser.ISqlParser;
 import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
-import com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.tenant.TenantHandler;
 import com.baomidou.mybatisplus.extension.plugins.tenant.TenantSqlParser;
 
@@ -29,13 +27,6 @@ import net.sf.jsqlparser.expression.LongValue;
 @EnableTransactionManagement
 @MapperScan("com.baayso.**.dao*")
 public class MybatisPlusConfig {
-
-    /** SQL执行效率插件 */
-    @Bean
-    @Profile({"dev", "test"}) // 设置 dev test 环境开启
-    public PerformanceInterceptor performanceInterceptor() {
-        return new PerformanceInterceptor();
-    }
 
     /** 乐观锁插件 */
     @Bean
@@ -58,7 +49,7 @@ public class MybatisPlusConfig {
         TenantSqlParser tenantSqlParser = new TenantSqlParser();
         tenantSqlParser.setTenantHandler(new TenantHandler() {
             @Override
-            public Expression getTenantId() {
+            public Expression getTenantId(boolean where) {
                 return new LongValue(1L);
             }
 

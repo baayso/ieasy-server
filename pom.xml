@@ -9,7 +9,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.5.RELEASE</version>
+        <version>2.1.9.RELEASE</version>
     </parent>
 
     <groupId>com.baayso</groupId>
@@ -57,6 +57,8 @@
         <kotlin.compiler.incremental>true</kotlin.compiler.incremental>
         <poi.version>3.17</poi.version>
         <easypoi.version>3.3.0</easypoi.version>
+        <druid.version>1.1.20</druid.version>
+        <mybatis-plus.version>3.2.0</mybatis-plus.version>
     </properties>
 
     <dependencies>
@@ -70,7 +72,7 @@
         <dependency>
             <groupId>net.oschina.durcframework</groupId>
             <artifactId>easyopen</artifactId>
-            <version>1.16.2</version>
+            <version>1.16.3</version>
         </dependency>
 
         <!-- GENERAL UTILS begin -->
@@ -82,7 +84,7 @@
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>okhttp</artifactId>
-            <version>3.14.2</version>
+            <version>3.14.4</version>
         </dependency>
         <dependency>
             <groupId>de.ruedigermoeller</groupId>
@@ -119,7 +121,7 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>28.0-jre</version>
+            <version>28.1-jre</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -243,32 +245,32 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
-            <version>1.1.18</version>
+            <version>${druid.version}</version>
         </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
-            <version>1.1.18</version>
+            <version>${druid.version}</version>
         </dependency>
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
-            <version>3.5.1</version>
+            <version>3.5.2</version>
         </dependency>
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>2.0.1</version>
+            <version>2.1.0</version>
         </dependency>
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus</artifactId>
-            <version>3.1.2</version>
+            <version>${mybatis-plus.version}</version>
         </dependency>
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.1.2</version>
+            <version>${mybatis-plus.version}</version>
         </dependency>
         <!-- ORM end -->
 
@@ -365,7 +367,7 @@
         <dependency>
             <groupId>com.jfinal</groupId>
             <artifactId>enjoy</artifactId>
-            <version>4.2</version>
+            <version>4.5</version>
         </dependency>
 
         <dependency>

@@ -7,6 +7,7 @@ import java.util.concurrent.Future;
 import javax.inject.Inject;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -122,6 +123,13 @@ public class DemoApiController extends CommonController {
     @RequestMapping("/fail2")
     public String fail2() {
         throw new IllegalStateException();
+    }
+
+    @RequestMapping("/test")
+    public String test(@RequestBody String json) {
+        System.out.println(json);
+
+        return json;
     }
 
 }
