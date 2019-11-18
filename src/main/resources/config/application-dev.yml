@@ -3,6 +3,10 @@ server:
         accesslog:
             enabled: false
             dir: /var/logs/${server.port}
+    servlet:
+        jsp:
+            init-parameters:
+                development: true
 
 logging:
     level:
@@ -33,8 +37,8 @@ spring:
             poolPreparedStatements: false
             filter:
                 stat:
-                  enabled: true
-                  log-slow-sql: true
+                    enabled: true
+                    log-slow-sql: true
                 wall:
                     enabled: true
             stat-view-servlet:
@@ -47,8 +51,3 @@ spring:
                 enabled: true
                 url-pattern: /*
                 exclusions: /druid,/druid/*
-
-mybatis-plus:
-    global-config:
-        # 是否自动刷新 Mapper 对应的 XML 文件，默认不自动刷新。更改 XML 文件后，无需再次重启工程。该配置不建议在生产环境打开。
-        refresh: true

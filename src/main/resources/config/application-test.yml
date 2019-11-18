@@ -5,8 +5,9 @@ server:
             dir: /var/logs/${server.port}
 
 logging:
-    path: /var/logs
-    file: ieasy-server-${server.port}.log
+    file:
+        path: /var/logs
+        name: ieasy-server-${server.port}.log
     level:
         com.baayso: DEBUG
 
@@ -43,8 +44,8 @@ spring:
             poolPreparedStatements: false
             filter:
                 stat:
-                  enabled: true
-                  log-slow-sql: true
+                    enabled: true
+                    log-slow-sql: true
                 wall:
                     enabled: true
             stat-view-servlet:

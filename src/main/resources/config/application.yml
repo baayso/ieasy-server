@@ -12,7 +12,7 @@ server:
     servlet:
         context-path: /
     http2:
-      enabled: true
+        enabled: true
 
 management:
     server:

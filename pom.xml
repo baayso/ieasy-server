@@ -9,7 +9,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.9.RELEASE</version>
+        <version>2.2.1.RELEASE</version>
     </parent>
 
     <groupId>com.baayso</groupId>
@@ -57,7 +57,7 @@
         <kotlin.compiler.incremental>true</kotlin.compiler.incremental>
         <poi.version>3.17</poi.version>
         <easypoi.version>3.3.0</easypoi.version>
-        <druid.version>1.1.20</druid.version>
+        <druid.version>1.1.21</druid.version>
         <mybatis-plus.version>3.2.0</mybatis-plus.version>
     </properties>
 
@@ -94,10 +94,6 @@
         <dependency>
             <groupId>jaxen</groupId>
             <artifactId>jaxen</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>dom4j</groupId>
-            <artifactId>dom4j</artifactId>
         </dependency>
         <dependency>
             <groupId>javax.persistence</groupId>
