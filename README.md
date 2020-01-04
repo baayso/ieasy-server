@@ -26,6 +26,9 @@
   * [LayUI](https://www.layui.com)
 
 ## 快速开始：
+0. 准备依赖
+   * git clone https://github.com/baayso/commons
+   * **`build.bat`** (Windows) Or **`./build.sh`** (Linux/Mac OS)
 1. git clone https://github.com/baayso/ieasy-server.git
 2. 安装 MySQL 5.5+
 3. 执行 [SQL 脚本](https://github.com/baayso/ieasy-server/tree/master/sql/mysql/install)（注：默认创建的数据库名称为 **ieasy_server**，可以在[这个SQL文件里](https://github.com/baayso/ieasy-server/blob/master/sql/mysql/install/common/common_mysql.sql)进行修改）
