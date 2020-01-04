@@ -2,7 +2,7 @@ package com.baayso.springboot.common.utils;
 
 import java.util.UUID;
 
-import com.baayso.commons.utils.ObjectId;
+import com.baayso.commons.sequence.ObjectId;
 
 /**
  * ID生成工具类。
