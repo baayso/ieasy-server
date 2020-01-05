@@ -49,6 +49,12 @@ spring:
         view:
             prefix: /templates/
             suffix: .html
+    cache:
+        type: redis
+        cache-names: ieasy
+        redis:
+            time-to-live: 5000ms
+            cache-null-values: false
     freemarker:
         enabled: false
         cache: false
