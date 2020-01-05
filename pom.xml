@@ -231,6 +231,7 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-pool2</artifactId>
         </dependency>
+        <!--
         <dependency>
             <groupId>commons-configuration</groupId>
             <artifactId>commons-configuration</artifactId>
@@ -241,6 +242,7 @@
             <artifactId>commons-jxpath</artifactId>
             <version>1.3</version>
         </dependency>
+        -->
         <!-- COMMONS end -->
 
         <!-- ORM begin -->
