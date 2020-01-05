@@ -18,7 +18,7 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
  * @since 1.0.0
  */
 @Configuration
-@EnableCaching
+@EnableCaching(proxyTargetClass = true)
 public class CachingConfig extends CachingConfigurerSupport {
 
     @Bean
