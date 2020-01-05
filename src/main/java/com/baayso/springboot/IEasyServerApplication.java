@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 /**
- * 主要配置类。
+ * 程序启动类。
  *
  * @author ChenFangjie (2016/3/31 14:32)
  * @since 1.0.0
