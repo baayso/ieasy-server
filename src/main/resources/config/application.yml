@@ -13,6 +13,13 @@ server:
         context-path: /
     http2:
         enabled: true
+    undertow:
+        accesslog:
+            enabled: false
+            dir: ./logs/undertow
+
+logging:
+    config: classpath:config/log4j2.xml
 
 management:
     server:

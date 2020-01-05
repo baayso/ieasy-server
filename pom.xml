@@ -17,8 +17,10 @@
     <groupId>com.baayso</groupId>
     <artifactId>ieasy-server</artifactId>
     <version>3.0.0.Alpha</version>
-    <name>ieasy-server</name>
+
+    <name>${project.artifactId}</name>
     <description>Spring Boot 脚手架项目</description>
+
     <packaging>jar</packaging>
 
     <repositories>
@@ -320,6 +322,23 @@
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <exclusions>
+                <!-- 去掉logback的依赖 -->
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
         <dependency>
@@ -331,10 +350,6 @@
                     <artifactId>HikariCP</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-logging</artifactId>
         </dependency>
 
         <dependency>
@@ -398,7 +413,7 @@
     </dependencies>
 
     <build>
-        <finalName>ieasy-server</finalName>
+        <finalName>${project.artifactId}</finalName>
 
         <plugins>
 

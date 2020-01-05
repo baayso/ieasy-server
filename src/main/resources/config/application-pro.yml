@@ -1,13 +1,9 @@
 server:
     undertow:
         accesslog:
-            enabled: false
-            dir: /var/logs/${server.port}
+            enabled: true
 
 logging:
-    file:
-        path: /var/logs
-        name: ieasy-server-${server.port}.log
     level:
         com.baayso: INFO
 
@@ -48,6 +44,12 @@ spring:
                     log-slow-sql: true
                 wall:
                     enabled: true
+                slf4j:
+                    enabled: true
+                    statement-create-after-log-enabled: false
+                    statement-close-after-log-enabled: false
+                    result-set-open-after-log-enabled: false
+                    result-set-close-after-log-enabled: false
             stat-view-servlet:
                 enabled: true
                 url-pattern: /druid/*
