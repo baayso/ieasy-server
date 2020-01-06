@@ -14,8 +14,8 @@ CREATE TABLE `demo_user` (
     `deleted`       BOOLEAN                DEFAULT FALSE,
     create_by       VARCHAR(100)                              COMMENT '记录创建人',
     create_time     DATETIME                                  COMMENT '记录创建时间',
-    modify_by       VARCHAR(100)                              COMMENT '记录修改人',
-    modify_time     DATETIME                                  COMMENT '记录修改时间',
+    update_by       VARCHAR(100)                              COMMENT '记录修改人',
+    update_time     DATETIME                                  COMMENT '记录修改时间',
     PRIMARY KEY (`id`)
 )
     ENGINE = InnoDB

@@ -60,11 +60,11 @@ public class UserDO extends BaseDO {
 
 
     @Builder
-    public UserDO(Long id, String createBy, LocalDateTime createTime, String modifyBy, LocalDateTime modifyTime,
+    public UserDO(Long id, String createBy, LocalDateTime createTime, String updateBy, LocalDateTime updateTime,
                   String username, String name, String password, String salt, Integer type, String phone, String email,
                   Boolean locked, Boolean disabled, Boolean deleted) {
 
-        super(id, createBy, createTime, modifyBy, modifyTime);
+        super(id, createBy, createTime, updateBy, updateTime);
 
         this.username = username;
         this.name = name;

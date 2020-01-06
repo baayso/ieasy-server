@@ -37,10 +37,10 @@ public class RoleDO extends BaseDO {
 
 
     @Builder
-    public RoleDO(Long id, String createBy, LocalDateTime createTime, String modifyBy, LocalDateTime modifyTime,
+    public RoleDO(Long id, String createBy, LocalDateTime createTime, String updateBy, LocalDateTime updateTime,
                   String name, String code, String descr) {
 
-        super(id, createBy, createTime, modifyBy, modifyTime);
+        super(id, createBy, createTime, updateBy, updateTime);
 
         this.name = name;
         this.code = code;

@@ -1,3 +1,8 @@
+info:
+    name: ieasy-server # @project.artifactId@
+    version: 3.0.0.Alpha # @project.version@
+    description: Spring Boot 脚手架项目 # @project.description@
+
 server:
     port: 8888
     compression:
@@ -34,6 +39,7 @@ spring:
     profiles:
         active: dev
     application:
+        name: ${info.name}
         admin:
             enabled: false
     http:
@@ -89,7 +95,7 @@ mybatis-plus:
 
 easyopen:
     # 应用名称
-    app-name: ieasy-server
+    app-name: ${info.name}
     # API 默认版本号
     default-version: 1.0
     # 超时时间，5秒

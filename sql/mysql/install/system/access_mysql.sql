@@ -16,8 +16,8 @@ create table access
    enabled              boolean default FALSE comment '是否启用',
    create_by            varchar(100) comment '记录创建人',
    create_time          datetime comment '记录创建时间',
-   modify_by            varchar(100) comment '记录修改人',
-   modify_time          datetime comment '记录修改时间',
+   update_by            varchar(100) comment '记录修改人',
+   update_time          datetime comment '记录修改时间',
    primary key (id)
 ) comment '接入方';
 
@@ -39,8 +39,8 @@ create table access_group
    descr                varchar(255) comment '描述',
    create_by            varchar(100) comment '记录创建人',
    create_time          datetime comment '记录创建时间',
-   modify_by            varchar(100) comment '记录修改人',
-   modify_time          datetime comment '记录修改时间',
+   update_by            varchar(100) comment '记录修改人',
+   update_time          datetime comment '记录修改时间',
    primary key (id)
 ) comment '接入组';
 
@@ -59,8 +59,8 @@ create table access_and_access_group_ref
    group_id             bigint comment '接入组ID',
    create_by            varchar(100) comment '记录创建人',
    create_time          datetime comment '记录创建时间',
-   modify_by            varchar(100) comment '记录修改人',
-   modify_time          datetime comment '记录修改时间',
+   update_by            varchar(100) comment '记录修改人',
+   update_time          datetime comment '记录修改时间',
    primary key (id)
 ) comment '接入方和接入组关联表';
 
@@ -81,8 +81,8 @@ create table access_api
    is_parent            boolean default false comment '是否父级',
    create_by            varchar(100) comment '记录创建人',
    create_time          datetime comment '记录创建时间',
-   modify_by            varchar(100) comment '记录修改人',
-   modify_time          datetime comment '记录修改时间',
+   update_by            varchar(100) comment '记录修改人',
+   update_time          datetime comment '记录修改时间',
    primary key (id)
 ) comment 'API';
 
@@ -99,8 +99,8 @@ create table access_group_and_api_ref
    api_id               bigint comment 'API_ID',
    create_by            varchar(100) comment '记录创建人',
    create_time          datetime comment '记录创建时间',
-   modify_by            varchar(100) comment '记录修改人',
-   modify_time          datetime comment '记录修改时间',
+   update_by            varchar(100) comment '记录修改人',
+   update_time          datetime comment '记录修改时间',
    primary key (id)
 ) comment '接入组和API关联表';
 
@@ -118,8 +118,8 @@ create table access_ip
    address              varchar(64) comment 'IP地址',
    create_by            varchar(100) comment '记录创建人',
    create_time          datetime comment '记录创建时间',
-   modify_by            varchar(100) comment '记录修改人',
-   modify_time          datetime comment '记录修改时间',
+   update_by            varchar(100) comment '记录修改人',
+   update_time          datetime comment '记录修改时间',
    primary key (id)
 ) comment '接入方IP';
 

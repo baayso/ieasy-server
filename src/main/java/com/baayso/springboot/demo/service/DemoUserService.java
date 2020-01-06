@@ -125,8 +125,8 @@ public class DemoUserService extends AbstractBaseService<DemoUserDAO, DemoUserDO
                 .version(2) //
                 .intro("测试乐观锁") //
                 .status(OrderStatus.RETURN_SUCCESS) //
-                .modifyBy("测试乐观锁") //
-                .modifyTime(LocalDateTime.now()) //
+                .updateBy("测试乐观锁") //
+                .updateTime(LocalDateTime.now()) //
                 .build();
 
         return super.updateById(user5);

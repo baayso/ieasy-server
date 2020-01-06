@@ -42,22 +42,22 @@ public class BaseDO extends IdEntity {
     protected LocalDateTime createTime;         // 记录创建时间
 
     @JsonIgnore
-    protected String modifyBy;                  // 记录修改人
+    protected String updateBy;                  // 记录修改人
 
     @ApiDocField(description = "记录修改时间", dataType = DataType.DATETIME)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = Validator.DEFAULT_DATETIME_PATTERN, timezone = "GMT+8")
-    protected LocalDateTime modifyTime;         // 记录修改时间
+    protected LocalDateTime updateTime;         // 记录修改时间
 
 
-    public BaseDO(Long id, String createBy, LocalDateTime createTime, String modifyBy, LocalDateTime modifyTime) {
+    public BaseDO(Long id, String createBy, LocalDateTime createTime, String updateBy, LocalDateTime updateTime) {
         super(id);
 
         this.createBy = createBy;
         this.createTime = createTime;
-        this.modifyBy = modifyBy;
-        this.modifyTime = modifyTime;
+        this.updateBy = updateBy;
+        this.updateTime = updateTime;
     }
 
 
@@ -76,8 +76,8 @@ public class BaseDO extends IdEntity {
     public BaseDO initBeforeAdd(String actor, LocalDateTime dateTime) {
         setCreateBy(actor);
         setCreateTime(dateTime);
-        setModifyBy(actor);
-        setModifyTime(dateTime);
+        setUpdateBy(actor);
+        setUpdateTime(dateTime);
 
         return this;
     }
@@ -95,8 +95,8 @@ public class BaseDO extends IdEntity {
     }
 
     public BaseDO initBeforeUpdate(String actor, LocalDateTime dateTime) {
-        setModifyBy(actor);
-        setModifyTime(dateTime);
+        setUpdateBy(actor);
+        setUpdateTime(dateTime);
 
         return this;
     }
@@ -114,8 +114,8 @@ public class BaseDO extends IdEntity {
     }
 
     public BaseDO initBeforeDelete(String actor, LocalDateTime dateTime) {
-        setModifyBy(actor);
-        setModifyTime(dateTime);
+        setUpdateBy(actor);
+        setUpdateTime(dateTime);
 
         return this;
     }
