@@ -16,7 +16,7 @@
 
     <groupId>com.baayso</groupId>
     <artifactId>ieasy-server</artifactId>
-    <version>3.0.0.Alpha</version>
+    <version>3.1.0.Alpha</version>
 
     <name>${project.artifactId}</name>
     <description>Spring Boot 脚手架项目</description>

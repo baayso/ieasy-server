@@ -1,6 +1,6 @@
 info:
     name: ieasy-server # @project.artifactId@
-    version: 3.0.0.Alpha # @project.version@
+    version: 3.1.0.Alpha # @project.version@
     description: Spring Boot 脚手架项目 # @project.description@
 
 server:
