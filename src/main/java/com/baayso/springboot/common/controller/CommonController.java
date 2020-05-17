@@ -3,11 +3,13 @@ package com.baayso.springboot.common.controller;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -37,7 +39,15 @@ public class CommonController {
      * @since 1.0.0
      */
     public static HttpServletRequest getRequest() {
-        return ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpServletRequest request = null;
+
+        RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
+
+        if (requestAttributes != null) {
+            request = ((ServletRequestAttributes) requestAttributes).getRequest();
+        }
+
+        return request;
     }
 
     /**
@@ -48,7 +58,30 @@ public class CommonController {
      * @since 1.0.0
      */
     public static HttpServletResponse getResponse() {
-        return ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getResponse();
+        HttpServletResponse response = null;
+
+        RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
+
+        if (requestAttributes != null) {
+            response = ((ServletRequestAttributes) requestAttributes).getResponse();
+        }
+
+        return response;
+    }
+
+    /**
+     * 获取本地化，从HttpServletRequest中获取，没有则返回Locale.SIMPLIFIED_CHINESE
+     *
+     * @return Locale
+     */
+    public static Locale getLocal() {
+        HttpServletRequest request = getRequest();
+
+        if (request == null) {
+            return Locale.SIMPLIFIED_CHINESE;
+        }
+
+        return request.getLocale();
     }
 
     /**

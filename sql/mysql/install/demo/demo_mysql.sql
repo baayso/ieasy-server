@@ -20,7 +20,7 @@ CREATE TABLE `demo_user` (
 )
     ENGINE = InnoDB
     AUTO_INCREMENT = 8
-    DEFAULT CHARSET = utf8;
+    DEFAULT CHARSET = utf8mb4;
 
 -- ----------------------------
 -- Records of demo_user

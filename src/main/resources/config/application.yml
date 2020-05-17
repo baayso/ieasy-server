@@ -93,31 +93,20 @@ mybatis-plus:
             logic-delete-value: 'true' # 逻辑已删除值(默认为 1)
             logic-not-delete-value: 'false' # 逻辑未删除值(默认为 0)
 
-easyopen:
-    # 应用名称
-    app-name: ${info.name}
-    # API 默认版本号
-    default-version: 1.0
-    # 超时时间，5秒
-    timeout-seconds: 5
-    # 是否生成doc文档
-    show-doc: true
-    # 忽略所有接口验证，默认 false
-    # ignore-validate: true
-    # 是否开启WebFlux
-    mono: false
-    # app_key,secret键值对
-    app-secret: {
-        test: 123456,
-        test2: 123456,
-    }
-    # 拦截器
-    interceptors:
-        - com.baayso.springboot.common.easyopen.interceptor.PerformanceInterceptor
-        - com.gitee.easyopen.support.LimitInterceptor # 限流拦截器，放在首位
-        - com.gitee.easyopen.support.PermissionInterceptor # 权限拦截器
-        - com.baayso.springboot.common.easyopen.interceptor.LogInterceptor
+i18n:
     # 配置国际化消息
     isv-modules:
         - i18n/isv/error
         - i18n/isv/user_error
+
+# Dataway: https://www.hasor.net/web/dataway/for_boot.html
+# 是否启用 Dataway 功能（必选：默认false）
+HASOR_DATAQL_DATAWAY: true
+# 是否开启 Dataway 后台管理界面（必选：默认false）
+HASOR_DATAQL_DATAWAY_ADMIN: true
+# dataway  API工作路径（可选，默认：/api/）
+HASOR_DATAQL_DATAWAY_API_URL: /app/api/
+# dataway-ui 的工作路径（可选，默认：/interface-ui/）
+HASOR_DATAQL_DATAWAY_UI_URL: /app/interface-ui/
+# SQL执行器方言设置（可选，建议设置）
+HASOR_DATAQL_FX_PAGE_DIALECT: mysql

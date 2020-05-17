@@ -14,8 +14,6 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
-import com.gitee.easyopen.doc.DataType;
-import com.gitee.easyopen.doc.annotation.ApiDocField;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -40,16 +38,12 @@ public class DemoUserDO extends BaseDO {
     @JsonIgnore
     private Long tenantId; // 租户ID
 
-    @ApiDocField(description = "用户名称")
     private String name;
 
-    @ApiDocField(description = "用户年龄", dataType = DataType.INT)
     private Integer age;
 
-    @ApiDocField(description = "状态", dataType = DataType.INT, enumClass = OrderStatus.class, example = "128")
     private OrderStatus status;
 
-    @ApiDocField(description = "用户简介")
     private String intro;
 
     @JsonIgnore

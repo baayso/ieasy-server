@@ -11,8 +11,6 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
-import com.gitee.easyopen.doc.DataType;
-import com.gitee.easyopen.doc.annotation.ApiDocField;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,11 +29,9 @@ public class BaseDO extends IdEntity {
 
     private static final long serialVersionUID = -3694675102885188955L;
 
-
     @JsonIgnore
     protected String createBy;                  // 记录创建人
 
-    @ApiDocField(description = "记录创建时间", dataType = DataType.DATETIME)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = Validator.DEFAULT_DATETIME_PATTERN, timezone = "GMT+8")
@@ -44,7 +40,6 @@ public class BaseDO extends IdEntity {
     @JsonIgnore
     protected String updateBy;                  // 记录修改人
 
-    @ApiDocField(description = "记录修改时间", dataType = DataType.DATETIME)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = Validator.DEFAULT_DATETIME_PATTERN, timezone = "GMT+8")

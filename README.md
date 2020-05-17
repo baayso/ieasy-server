@@ -1,8 +1,6 @@
 # iEasy Server  
 > Spring Boot 脚手架项目  
 > 项目原地址: https://github.com/baayso/spring-boot-demo
-> 
-> 请注意：druid升级到1.1.20版本，实体类中有LocalDateTime类型字段时报SQLFeatureNotSupportedException的问题依旧没有解决(相关issues: https://github.com/alibaba/druid/issues/3302 )。目前解决办法：1.换数据库连接池，推荐HikariCP；2.使用低版本mybatis和mybatis-plus
 
 
 [![Jdk Version](https://img.shields.io/badge/JDK-1.8+-green.svg)](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
@@ -17,7 +15,7 @@
 * 后端
   * [MyBatis](http://www.mybatis.org/mybatis-3)
   * [MyBatis-Plus](https://gitee.com/baomidou/mybatis-plus)
-  * [EasyOpen](https://gitee.com/durcframework/easyopen)
+  * [Dataway](https://www.hasor.net/web/dataway/index.html)
   * [vjkit](https://github.com/vipshop/vjtools/tree/master/vjkit)
   * [Lombok](https://www.projectlombok.org)
   * [JFinal Enjoy](https://www.jfinal.com/doc/6-1)
@@ -74,7 +72,8 @@
 * http://localhost:8888/demo/api/creates
 * http://localhost:8888/demo/api/update?id=7
 * http://localhost:8888/demo/api/hello
-* http://localhost:8888/api/doc (EasyOpen API文档页面)
+* http://localhost:8888/app/interface-ui/ (Dataway 接口管理页面)
+* http://localhost:8888/app/api/dataway/test (使用 Dataway 创建的 API)
 
 ## Dependencies:
 * https://github.com/baayso/commons

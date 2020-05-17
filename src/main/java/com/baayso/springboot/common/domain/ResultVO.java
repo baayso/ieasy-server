@@ -3,10 +3,6 @@ package com.baayso.springboot.common.domain;
 import java.io.Serializable;
 import java.util.List;
 
-import com.gitee.easyopen.doc.DataType;
-import com.gitee.easyopen.doc.annotation.ApiDocBean;
-import com.gitee.easyopen.doc.annotation.ApiDocField;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -24,9 +20,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@ApiDocBean(fields = {
-        @ApiDocField(name = "successful", description = "是否成功", dataType = DataType.BOOLEAN, example = "true"),
-})
 public class ResultVO<T> implements Serializable {
 
     private static final long serialVersionUID = 7579387903427921919L;
