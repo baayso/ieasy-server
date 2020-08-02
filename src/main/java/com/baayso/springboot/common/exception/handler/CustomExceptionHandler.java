@@ -23,7 +23,7 @@ import com.baayso.commons.tool.ResponseStatus;
 import com.baayso.commons.utils.JsonUtils;
 import com.baayso.commons.web.MediaTypes;
 import com.baayso.commons.web.WebUtils;
-import com.baayso.springboot.common.tool.OperationResult;
+import com.baayso.springboot.common.domain.ResultVO;
 import com.baayso.springboot.common.validator.BeanValidators;
 
 import lombok.extern.slf4j.Slf4j;
@@ -44,14 +44,14 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
      * @since 1.0.0
      */
     @ExceptionHandler(value = {ApiException.class})
-    public final ResponseEntity<OperationResult> handleApiServiceException(ApiException ex, HttpServletRequest request) {
+    public final ResponseEntity<ResultVO> handleApiServiceException(ApiException ex, HttpServletRequest request) {
         // 注入servletRequest，用于出错时打印请求URL与来源地址
         logError(ex, request);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.parseMediaType(MediaTypes.JSON_UTF_8));
 
-        OperationResult result = new OperationResult(false, ex.responseStatus.value());
+        ResultVO result = new ResultVO(false, ex.responseStatus.value());
         result.setMessage(ex.responseStatus.getReason());
 
         return new ResponseEntity<>(result, headers, HttpStatus.OK);
@@ -63,7 +63,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
      * @since 1.0.0
      */
     @ExceptionHandler(value = {Exception.class})
-    public final ResponseEntity<OperationResult> handleGeneralException(Exception ex, HttpServletRequest request) {
+    public final ResponseEntity<ResultVO> handleGeneralException(Exception ex, HttpServletRequest request) {
         logError(ex, request);
 
         ResponseStatus status = CommonResponseStatus.SERVER_INTERNAL_ERROR;
@@ -77,7 +77,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
                 status = new ResponseStatus() {
                     @Override
                     public int value() {
-                        return 0;
+                        return 500;
                     }
 
                     @Override
@@ -91,7 +91,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.parseMediaType(MediaTypes.JSON_UTF_8));
 
-        OperationResult result = new OperationResult(false, status.value());
+        ResultVO result = new ResultVO(false, status.value());
         result.setMessage(status.getReason());
 
         return new ResponseEntity<>(result, headers, HttpStatus.OK);
@@ -109,7 +109,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.parseMediaType(MediaTypes.JSON_UTF_8));
 
-        OperationResult result = new OperationResult(false, CommonResponseStatus.ILLEGAL_DATA.value());
+        ResultVO result = new ResultVO(false, CommonResponseStatus.ILLEGAL_DATA.value());
         result.setMessage(errors);
 
         return super.handleExceptionInternal(ex, result, headers, HttpStatus.OK, request);

@@ -1,6 +1,6 @@
 info:
     name: ieasy-server # @project.artifactId@
-    version: 3.1.0.Alpha # @project.version@
+    version: 4.0.0.Alpha # @project.version@
     description: Spring Boot 脚手架项目 # @project.description@
 
 server:
@@ -16,6 +16,10 @@ server:
         key-password: password
     servlet:
         context-path: /
+        encoding:
+            charset: UTF-8
+            enabled: true
+            force: true
     http2:
         enabled: true
     undertow:
@@ -42,14 +46,9 @@ spring:
         name: ${info.name}
         admin:
             enabled: false
-    http:
-        encoding:
-            charset: UTF-8
-            enabled: true
-            force: true
     jackson:
         date-format: yyyy-MM-dd HH:mm:ss
-        joda-date-time-format: yyyy-MM-dd HH:mm:ss
+        # joda-date-time-format: yyyy-MM-dd HH:mm:ss
         default-property-inclusion: NON_NULL
         time-zone: Asia/Shanghai
         serialization:
@@ -58,7 +57,9 @@ spring:
         deserialization:
             READ_ENUMS_USING_TO_STRING: true
     mvc:
-        date-format: yyyy-MM-dd HH:mm:ss
+        format:
+            date: yyyy-MM-dd
+            date-time: yyyy-MM-dd HH:mm:ss
         view:
             prefix: /templates/
             suffix: .html
