@@ -1,6 +1,7 @@
 # iEasy Server  
 > Spring Boot 脚手架项目  
-> 项目原地址: https://github.com/baayso/spring-boot-demo
+> 项目原地址: https://github.com/baayso/spring-boot-demo  
+> 代码生成器：https://gitee.com/baayso/ieasy-generator  
 
 
 [![Jdk Version](https://img.shields.io/badge/JDK-1.8+-green.svg)](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
