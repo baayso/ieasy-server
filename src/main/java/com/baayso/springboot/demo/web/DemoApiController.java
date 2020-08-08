@@ -7,14 +7,14 @@ import java.util.concurrent.Future;
 import javax.inject.Inject;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.baayso.commons.tool.CommonResponseStatus;
 import com.baayso.springboot.common.controller.CommonController;
 import com.baayso.springboot.common.domain.PageVO;
-import com.baayso.springboot.common.exception.ApiViolationException;
 import com.baayso.springboot.demo.domain.DemoUserDO;
 import com.baayso.springboot.demo.domain.enums.OrderStatus;
 import com.baayso.springboot.demo.service.DemoUserService;
@@ -46,13 +46,11 @@ public class DemoApiController extends CommonController {
     }
 
     @RequestMapping("/page")
-    public IPage<DemoUserDO> page(String pageSize, String pageNum) {
-
-        int ps = StringUtils.isNumeric(pageSize) ? Integer.parseInt(pageSize) : 3;
-        int pn = StringUtils.isNumeric(pageNum) ? Integer.parseInt(pageNum) : 1;
+    public IPage<DemoUserDO> page(@RequestParam(defaultValue = "1") Integer pageNum,
+                                  @RequestParam(defaultValue = "10") Integer pageSize) {
 
         IPage<DemoUserDO> page = this.demoUserService.page(
-                new Page<>(pn, ps),
+                new Page<>(pageNum, pageSize),
                 new QueryWrapper<DemoUserDO>()
                         .between("age", "18", "20"));
 
@@ -60,29 +58,14 @@ public class DemoApiController extends CommonController {
     }
 
     @RequestMapping("/page2")
-    public PageVO<DemoUserDO> page2(String pageSize, String pageNum) {
-
-        int ps = StringUtils.isNumeric(pageSize) ? Integer.parseInt(pageSize) : 3;
-        int pn = StringUtils.isNumeric(pageNum) ? Integer.parseInt(pageNum) : 1;
-
-        // PageVO<DemoUserDO> page = new PageVO<>(ps, pn);
-        // page.initBeforePage();
-
-        // List<DemoUserDO> list = this.demoUserService.list();
-
-        // page.initAfterPage(new PageInfo<>(list, ps));
-
-        return new PageVO<>();
+    public PageVO<DemoUserDO> page2(@RequestParam(defaultValue = "1") Integer pageNum,
+                                    @RequestParam(defaultValue = "10") Integer pageSize) {
+        return this.demoUserService.page(pageNum, pageSize);
     }
 
     @RequestMapping("/deletes")
-    public Boolean deletes(String id) {
-
-        if (!super.validator.isLong(id)) {
-            throw new ApiViolationException(CommonResponseStatus.ILLEGAL_DATA);
-        }
-
-        return this.demoUserService.deletes(Long.valueOf(id));
+    public Boolean deletes(@RequestParam Long id) {
+        return this.demoUserService.deletes(id);
     }
 
     @RequestMapping("/create")
@@ -101,13 +84,8 @@ public class DemoApiController extends CommonController {
     }
 
     @RequestMapping("/update")
-    public boolean update(String id) {
-
-        if (!super.validator.isLong(id)) {
-            throw new ApiViolationException(CommonResponseStatus.ILLEGAL_DATA);
-        }
-
-        return this.demoUserService.update(Long.valueOf(id));
+    public boolean update(@RequestParam Long id) {
+        return this.demoUserService.update(id);
     }
 
     @RequestMapping("/hello")
@@ -125,8 +103,8 @@ public class DemoApiController extends CommonController {
         throw new IllegalStateException();
     }
 
-    @RequestMapping("/test")
-    public String test(@RequestBody String json) {
+    @PostMapping("/json")
+    public String json(@RequestBody String json) {
         System.out.println(json);
 
         return json;

@@ -12,6 +12,8 @@ import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.baayso.commons.tool.BasicResponseStatus;
+import com.baayso.springboot.common.exception.ApiServiceException;
 import com.baayso.springboot.common.service.AbstractBaseService;
 import com.baayso.springboot.demo.dao.DemoUserDAO;
 import com.baayso.springboot.demo.domain.DemoUserDO;
@@ -50,8 +52,12 @@ public class DemoUserService extends AbstractBaseService<DemoUserDAO, DemoUserDO
         int max = 9;
         int random = (int) (Math.random() * (max - min + 1)) + min;
 
+        if (random <= 2) {
+            throw new ApiServiceException(BasicResponseStatus.SERVICE_UNAVAILABLE);
+        }
+
         // 模拟异常以测试事务是否回滚
-        int i = 1 / (random >= 5 ? 1 : 0);
+        int i = 1 / (random > 5 ? 1 : 0);
 
         return true;
     }

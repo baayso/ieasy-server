@@ -4,39 +4,36 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.ConstraintViolationException;
 
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import com.baayso.commons.exception.ApiException;
-import com.baayso.commons.tool.CommonResponseStatus;
+import com.baayso.commons.tool.BasicResponseStatus;
 import com.baayso.commons.tool.ResponseStatus;
 import com.baayso.commons.utils.JsonUtils;
-import com.baayso.commons.web.MediaTypes;
 import com.baayso.commons.web.WebUtils;
 import com.baayso.springboot.common.domain.ResultVO;
-import com.baayso.springboot.common.validator.BeanValidators;
 
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 异常处理器。
+ * 全局异常处理器。
  *
  * @author ChenFangjie
+ * @see org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler
  * @since 1.0.0
  */
 @Slf4j
-@ControllerAdvice(annotations = {RestController.class})
-public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
+@RestControllerAdvice
+public final class CustomExceptionHandler {
 
     /**
      * 处理ApiException异常。
@@ -44,17 +41,8 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
      * @since 1.0.0
      */
     @ExceptionHandler(value = {ApiException.class})
-    public final ResponseEntity<ResultVO> handleApiServiceException(ApiException ex, HttpServletRequest request) {
-        // 注入servletRequest，用于出错时打印请求URL与来源地址
-        logError(ex, request);
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.parseMediaType(MediaTypes.JSON_UTF_8));
-
-        ResultVO result = new ResultVO(false, ex.responseStatus.value());
-        result.setMessage(ex.responseStatus.getReason());
-
-        return new ResponseEntity<>(result, headers, HttpStatus.OK);
+    public ResultVO<String> handleApiServiceException(ApiException ex, HttpServletRequest request) {
+        return this.handleException(ex.getResponseStatus(), ex, request);
     }
 
     /**
@@ -63,56 +51,88 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
      * @since 1.0.0
      */
     @ExceptionHandler(value = {Exception.class})
-    public final ResponseEntity<ResultVO> handleGeneralException(Exception ex, HttpServletRequest request) {
-        logError(ex, request);
-
-        ResponseStatus status = CommonResponseStatus.SERVER_INTERNAL_ERROR;
-
-        if (log.isDebugEnabled()) {
-            if (ex instanceof ApiException) {
-                ApiException exception = (ApiException) ex;
-                status = exception.responseStatus;
-            }
-            else {
-                status = new ResponseStatus() {
-                    @Override
-                    public int value() {
-                        return 500;
-                    }
-
-                    @Override
-                    public String getReason() {
-                        return ex.getMessage();
-                    }
-                };
-            }
-        }
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.parseMediaType(MediaTypes.JSON_UTF_8));
-
-        ResultVO result = new ResultVO(false, status.value());
-        result.setMessage(status.getReason());
-
-        return new ResponseEntity<>(result, headers, HttpStatus.OK);
+    public ResultVO<String> handleGeneralException(Exception ex, HttpServletRequest request) {
+        return this.handleException(BasicResponseStatus.SERVER_INTERNAL_ERROR, ex, request);
     }
 
     /**
-     * 处理JSR349 Validation异常。
+     * 处理缺少请求参数异常。
      *
-     * @since 1.0.0
+     * @since 4.0.0
      */
-    @ExceptionHandler(value = {ConstraintViolationException.class})
-    public final ResponseEntity<?> handleConstraintViolationException(ConstraintViolationException ex, WebRequest request) {
-        Map<String, String> errors = BeanValidators.extractPropertyAndMessage(ex.getConstraintViolations());
+    @ExceptionHandler({MissingServletRequestParameterException.class})
+    public ResultVO<String> handleMissingServletRequestParameter(MissingServletRequestParameterException ex,
+                                                                 HttpServletRequest request) {
+        return this.handleException(BasicResponseStatus.PARAMETER_MISSING, ex, request);
+    }
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.parseMediaType(MediaTypes.JSON_UTF_8));
+    /**
+     * 处理请求参数类型不匹配异常。
+     *
+     * @since 4.0.0
+     */
+    @ExceptionHandler({MethodArgumentTypeMismatchException.class})
+    public ResultVO<String> handleMethodArgumentTypeMismatch(MethodArgumentTypeMismatchException ex,
+                                                             HttpServletRequest request) {
+        return this.handleException(BasicResponseStatus.PARAMETER_TYPE_ERROR, ex, request);
+    }
 
-        ResultVO result = new ResultVO(false, CommonResponseStatus.ILLEGAL_DATA.value());
-        result.setMessage(errors);
+    /**
+     * 处理请求method不匹配异常。
+     *
+     * @since 4.0.0
+     */
+    @ExceptionHandler({HttpRequestMethodNotSupportedException.class})
+    public ResultVO<String> handleHttpRequestMethodNotSupported(HttpRequestMethodNotSupportedException ex,
+                                                                HttpServletRequest request) {
+        return this.handleException(BasicResponseStatus.METHOD_NOT_ALLOWED, ex, request);
+    }
 
-        return super.handleExceptionInternal(ex, result, headers, HttpStatus.OK, request);
+    /**
+     * 处理Controller方法中@RequestBody类型参数数据类型转换异常。
+     *
+     * @since 4.0.0
+     */
+    @ExceptionHandler({HttpMessageNotReadableException.class})
+    public ResultVO<String> handleHttpMessageNotReadable(HttpMessageNotReadableException ex,
+                                                         HttpServletRequest request) {
+        return this.handleException(BasicResponseStatus.REQUEST_BODY_DATA_CONVERT_ERROR, ex, request);
+    }
+
+    /**
+     * 处理Controller方法参数校验异常。
+     *
+     * @since 4.0.0
+     */
+    @ExceptionHandler(value = {MethodArgumentNotValidException.class})
+    public ResultVO<String> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
+                                                         HttpServletRequest request) {
+        // 注入ServletRequest，用于出错时打印请求URL与来源地址
+        this.logError(ex, request);
+
+        // 从异常对象中拿到ObjectError对象
+        ObjectError objectError = ex.getBindingResult().getAllErrors().get(0);
+
+        ResultVO<String> result = new ResultVO<>();
+        result.setSuccess(false);
+        result.setCode(BasicResponseStatus.PARAMETER_CHECK_FAILED.value());
+        result.setMessage(BasicResponseStatus.PARAMETER_CHECK_FAILED.getReason());
+        result.setData(objectError.getDefaultMessage()); // 错误提示信息
+
+        return result;
+    }
+
+    private ResultVO<String> handleException(ResponseStatus responseStatus, Exception ex, HttpServletRequest request) {
+        // 注入ServletRequest，用于出错时打印请求URL与来源地址
+        this.logError(ex, request);
+
+        ResultVO<String> result = new ResultVO<>();
+        result.setSuccess(false);
+        result.setCode(responseStatus.value());
+        result.setMessage(responseStatus.getReason());
+        result.setData(ex.getMessage()); // 错误提示信息
+
+        return result;
     }
 
     /**

@@ -2,18 +2,17 @@ package com.baayso.springboot.demo.web;
 
 import java.util.Arrays;
 
-import org.apache.commons.lang3.StringUtils;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.baayso.commons.tool.CommonResponseStatus;
 import com.baayso.springboot.common.controller.CommonController;
 import com.baayso.springboot.common.domain.PageVO;
-import com.baayso.springboot.common.domain.ResultVO;
-import com.baayso.springboot.common.exception.ApiViolationException;
 import com.baayso.springboot.demo.domain.DemoUserDO;
 import com.baayso.springboot.demo.service.DemoUserService;
 
@@ -43,20 +42,9 @@ public class DemoUserController extends CommonController {
      * @return 返回给客户端的操作结果
      */
     @RequestMapping("/list")
-    public ResultVO<PageVO<DemoUserDO>> list(String pageNum, String pageSize) {
-
-        pageNum = StringUtils.isEmpty(pageNum) ? "1" : pageNum;
-        pageSize = StringUtils.isEmpty(pageNum) ? "10" : pageSize;
-
-        if (!this.validator.isInt(pageNum)) {
-            throw new ApiViolationException(CommonResponseStatus.ILLEGAL_DATA);
-        }
-
-        if (!this.validator.isInt(pageSize)) {
-            throw new ApiViolationException(CommonResponseStatus.ILLEGAL_DATA);
-        }
-
-        return ResultVO.ok(this.demoUserService.page(Integer.parseInt(pageNum), Integer.parseInt(pageSize)));
+    public PageVO<DemoUserDO> list(@RequestParam(defaultValue = "1") Integer pageNum,
+                                   @RequestParam(defaultValue = "10") Integer pageSize) {
+        return this.demoUserService.page(pageNum, pageSize);
     }
 
     /**
@@ -67,10 +55,8 @@ public class DemoUserController extends CommonController {
      * @return 返回给客户端的操作结果
      */
     @RequestMapping("/get/{id}")
-    public ResultVO<DemoUserDO> get(@PathVariable("id") Long id) {
-        DemoUserDO demoUser = this.demoUserService.getById(id);
-
-        return ResultVO.ok(demoUser);
+    public DemoUserDO get(@PathVariable("id") Long id) {
+        return this.demoUserService.getById(id);
     }
 
     /**
@@ -81,10 +67,8 @@ public class DemoUserController extends CommonController {
      * @return 返回给客户端的操作结果
      */
     @RequestMapping("/create")
-    public ResultVO<Boolean> create(@RequestBody DemoUserDO demoUser) {
-        boolean result = this.demoUserService.save(demoUser);
-
-        return ResultVO.ok(result);
+    public Boolean create(@RequestBody @Valid DemoUserDO demoUser) {
+        return this.demoUserService.save(demoUser);
     }
 
     /**
@@ -95,10 +79,8 @@ public class DemoUserController extends CommonController {
      * @return 返回给客户端的操作结果
      */
     @RequestMapping("/update")
-    public ResultVO<Boolean> update(@RequestBody DemoUserDO demoUser) {
-        boolean result = this.demoUserService.updateById(demoUser);
-
-        return ResultVO.ok(result);
+    public Boolean update(@RequestBody @Valid DemoUserDO demoUser) {
+        return this.demoUserService.updateById(demoUser);
     }
 
     /**
@@ -109,10 +91,8 @@ public class DemoUserController extends CommonController {
      * @return 返回给客户端的操作结果
      */
     @RequestMapping("/delete")
-    public ResultVO<Boolean> delete(@RequestBody Long[] ids) {
-        boolean result = this.demoUserService.removeByIds(Arrays.asList(ids));
-
-        return ResultVO.ok(result);
+    public Boolean delete(@RequestBody Long[] ids) {
+        return this.demoUserService.removeByIds(Arrays.asList(ids));
     }
 
 }

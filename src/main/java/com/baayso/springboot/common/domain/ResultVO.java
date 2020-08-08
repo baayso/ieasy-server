@@ -1,6 +1,8 @@
 package com.baayso.springboot.common.domain;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.baayso.commons.tool.ResponseStatus;
 
@@ -17,95 +19,81 @@ import lombok.Setter;
 @Setter
 public class ResultVO<T> implements Serializable {
 
-    private static final long serialVersionUID = -2741908447112918130L;
+    private static final long serialVersionUID = 4L;
 
-    private boolean status;     // 返回状态
-    private Integer statusCode; // 返回编码
-    private Object  message;    // 返回提示
+    private boolean success;    // 请求状态
+    private Integer code;       // 返回编码
+    private String  message;    // 提示消息
     private T       data;       // 返回数据
 
     public ResultVO() {
     }
 
-    public ResultVO(T data) {
-        this(true, data);
-    }
-
-    public ResultVO(boolean status, int statusCode) {
-        this.status = status;
-        this.statusCode = statusCode;
-    }
-
-    public ResultVO(boolean status, T data) {
-        this.status = status;
+    public ResultVO(boolean success, Integer code, String message, T data) {
+        this.success = success;
+        this.code = code;
+        this.message = message;
         this.data = data;
     }
 
-    public ResultVO(boolean status, int statusCode, T data) {
-        this.status = status;
-        this.statusCode = statusCode;
+    public ResultVO(boolean success, ResponseStatus status, T data) {
+        this.success = success;
+        this.code = status.value();
+        this.message = status.getReason();
         this.data = data;
     }
 
-    public ResultVO(ResponseStatus responseStatus, T data) {
-        this(true, responseStatus, data);
+    public Map<String, Object> toMap() {
+        Map<String, Object> map = new HashMap<>(4);
+        map.put("success", this.success);
+        map.put("code", this.code);
+        map.put("message", this.message);
+        map.put("data", this.data);
+
+        return map;
     }
 
-    public ResultVO(boolean status, ResponseStatus responseStatus, T data) {
-        this.status = status;
-        this.statusCode = responseStatus.value();
-        this.message = responseStatus.getReason();
-        this.data = data;
-    }
+    public static final class ResultVOBuilder<T> {
+        private boolean success;    // 请求状态
+        private Integer code;       // 返回编码
+        private String  message;    // 提示消息
+        private T       data;       // 返回数据
 
-    // =====================================================================
+        private ResultVOBuilder() {
+        }
 
-    public static <T> ResultVO<T> ok() {
-        return new ResultVO<>(null);
-    }
+        public static <T> ResultVOBuilder<T> builder() {
+            return new ResultVOBuilder<>();
+        }
 
-    public static <T> ResultVO<T> ok(T data) {
-        return new ResultVO<>(data);
-    }
+        public ResultVOBuilder<T> success(boolean success) {
+            this.success = success;
+            return this;
+        }
 
-    public static <T> ResultVO<T> ok(String message) {
-        ResultVO<T> result = new ResultVO<>(true, null);
-        result.setMessage(message);
+        public ResultVOBuilder<T> code(Integer code) {
+            this.code = code;
+            return this;
+        }
 
-        return result;
-    }
+        public ResultVOBuilder<T> message(String message) {
+            this.message = message;
+            return this;
+        }
 
-    public static <T> ResultVO<T> ok(T data, String message) {
-        ResultVO<T> result = new ResultVO<>(true, data);
-        result.setMessage(message);
+        public ResultVOBuilder<T> data(T data) {
+            this.data = data;
+            return this;
+        }
 
-        return result;
-    }
-
-    // =====================================================================
-
-    public static <T> ResultVO<T> error() {
-        ResultVO<T> result = new ResultVO<>(false, null);
-        result.setStatusCode(500);
-        result.setMessage("服务器内部错误");
-
-        return result;
-    }
-
-    public static <T> ResultVO<T> error(String message) {
-        ResultVO<T> result = new ResultVO<>(false, null);
-        result.setStatusCode(500);
-        result.setMessage(message);
-
-        return result;
-    }
-
-    public static <T> ResultVO<T> error(int statusCode, String message) {
-        ResultVO<T> result = new ResultVO<>(false, null);
-        result.setStatusCode(statusCode);
-        result.setMessage(message);
-
-        return result;
+        public ResultVO<T> build() {
+            ResultVO<T> resultVO = new ResultVO<>();
+            resultVO.setSuccess(success);
+            resultVO.setCode(code);
+            resultVO.setMessage(message);
+            resultVO.setData(data);
+            return resultVO;
+        }
     }
 
 }
