@@ -27,9 +27,9 @@ import com.github.fge.jsonschema.main.JsonSchemaFactory;
  */
 public class CommonController {
 
-    /** 默认每页记录数 */
+    /** 默认页码 */
     protected static final String DEFAULT_PAGE_NUM  = "1";
-    /** 默认当前页 */
+    /** 默认每页记录数 */
     protected static final String DEFAULT_PAGE_SIZE = "10";
 
     @Inject
