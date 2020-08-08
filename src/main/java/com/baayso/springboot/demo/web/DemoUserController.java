@@ -42,8 +42,8 @@ public class DemoUserController extends CommonController {
      * @return 返回给客户端的操作结果
      */
     @RequestMapping("/list")
-    public PageVO<DemoUserDO> list(@RequestParam(defaultValue = "1") Integer pageNum,
-                                   @RequestParam(defaultValue = "10") Integer pageSize) {
+    public PageVO<DemoUserDO> list(@RequestParam(defaultValue = DEFAULT_PAGE_NUM) Integer pageNum,
+                                   @RequestParam(defaultValue = DEFAULT_PAGE_SIZE) Integer pageSize) {
         return this.demoUserService.page(pageNum, pageSize);
     }
 

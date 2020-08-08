@@ -30,7 +30,7 @@ import com.baayso.springboot.demo.domain.enums.OrderStatus;
 public class DemoUserService extends AbstractBaseService<DemoUserDAO, DemoUserDO> {
 
     @Transactional
-    public boolean saveUser() {
+    public boolean save() {
         DemoUserDO user1 = new DemoUserDO();
         user1.setName("code-1-" + this.nowTimeStr());
         user1.setIntro("");
@@ -63,7 +63,7 @@ public class DemoUserService extends AbstractBaseService<DemoUserDAO, DemoUserDO
     }
 
     @Transactional
-    public boolean saveUser(DemoUserDO user) {
+    public boolean saves(DemoUserDO user) {
 
         super.save(user);
 
@@ -86,7 +86,7 @@ public class DemoUserService extends AbstractBaseService<DemoUserDAO, DemoUserDO
         return true;
     }
 
-    public boolean saveUsers() {
+    public boolean saves() {
         DemoUserDO user3 = new DemoUserDO();
         user3.setName("code-555-" + this.nowTimeStr());
         user3.setIntro("");
@@ -110,11 +110,11 @@ public class DemoUserService extends AbstractBaseService<DemoUserDAO, DemoUserDO
     }
 
     @Async
-    public Future<Boolean> asyncSaveUsers() throws InterruptedException {
+    public Future<Boolean> asyncSaves() throws InterruptedException {
 
         TimeUnit.SECONDS.sleep(3L);
 
-        return AsyncResult.forValue(this.saveUser());
+        return AsyncResult.forValue(this.save());
     }
 
     public boolean deletes(Long id) {

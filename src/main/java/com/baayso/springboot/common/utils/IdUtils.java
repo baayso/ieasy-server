@@ -1,6 +1,7 @@
 package com.baayso.springboot.common.utils;
 
 import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 
 import com.baayso.commons.sequence.mongo.ObjectId;
 
@@ -25,7 +26,20 @@ public final class IdUtils {
      * @since 1.0.0
      */
     public static String uuid() {
-        return UUID.randomUUID().toString().replaceAll("-", "");
+        return fastUUID().toString().replaceAll("-", "");
+    }
+
+    /**
+     * 返回使用 {@linkplain ThreadLocalRandom} 的UUID，比默认的 {@linkplain UUID#randomUUID()} 性能更优。
+     *
+     * @return {@linkplain UUID}
+     *
+     * @see com.vip.vjtools.vjkit.id.IdUtil#fastUUID()
+     * @since 4.0.0
+     */
+    public static UUID fastUUID() {
+        ThreadLocalRandom random = ThreadLocalRandom.current();
+        return new UUID(random.nextLong(), random.nextLong());
     }
 
     /**

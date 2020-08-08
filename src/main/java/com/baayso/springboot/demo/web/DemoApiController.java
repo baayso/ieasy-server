@@ -46,8 +46,8 @@ public class DemoApiController extends CommonController {
     }
 
     @RequestMapping("/page")
-    public IPage<DemoUserDO> page(@RequestParam(defaultValue = "1") Integer pageNum,
-                                  @RequestParam(defaultValue = "10") Integer pageSize) {
+    public IPage<DemoUserDO> page(@RequestParam(defaultValue = DEFAULT_PAGE_NUM) Integer pageNum,
+                                  @RequestParam(defaultValue = DEFAULT_PAGE_SIZE) Integer pageSize) {
 
         IPage<DemoUserDO> page = this.demoUserService.page(
                 new Page<>(pageNum, pageSize),
@@ -58,8 +58,8 @@ public class DemoApiController extends CommonController {
     }
 
     @RequestMapping("/page2")
-    public PageVO<DemoUserDO> page2(@RequestParam(defaultValue = "1") Integer pageNum,
-                                    @RequestParam(defaultValue = "10") Integer pageSize) {
+    public PageVO<DemoUserDO> page2(@RequestParam(defaultValue = DEFAULT_PAGE_NUM) Integer pageNum,
+                                    @RequestParam(defaultValue = DEFAULT_PAGE_SIZE) Integer pageSize) {
         return this.demoUserService.page(pageNum, pageSize);
     }
 
@@ -70,17 +70,17 @@ public class DemoApiController extends CommonController {
 
     @RequestMapping("/create")
     public boolean create() {
-        return this.demoUserService.saveUser();
+        return this.demoUserService.save();
     }
 
     @RequestMapping("/creates")
     public boolean creates() {
-        return this.demoUserService.saveUsers();
+        return this.demoUserService.saves();
     }
 
     @RequestMapping("/creates/async")
     public Future<Boolean> asyncCreates() throws InterruptedException {
-        return this.demoUserService.asyncSaveUsers();
+        return this.demoUserService.asyncSaves();
     }
 
     @RequestMapping("/update")
