@@ -23,7 +23,7 @@ import com.baayso.springboot.demo.service.DemoUserService;
  * @since 1.0.0
  */
 @RestController
-@RequestMapping("/demo/user/api")
+@RequestMapping("/api/demo/user")
 public class DemoUserController extends CommonController {
 
     private final DemoUserService demoUserService;

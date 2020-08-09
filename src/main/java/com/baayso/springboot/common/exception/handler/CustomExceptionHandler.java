@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
@@ -61,8 +62,8 @@ public final class CustomExceptionHandler {
      * @since 4.0.0
      */
     @ExceptionHandler({MissingServletRequestParameterException.class})
-    public ResultVO<String> handleMissingServletRequestParameter(MissingServletRequestParameterException ex,
-                                                                 HttpServletRequest request) {
+    public ResultVO<String> handleMissingServletRequestParameterException(MissingServletRequestParameterException ex,
+                                                                          HttpServletRequest request) {
         return this.handleException(BasicResponseStatus.PARAMETER_MISSING, ex, request);
     }
 
@@ -72,8 +73,8 @@ public final class CustomExceptionHandler {
      * @since 4.0.0
      */
     @ExceptionHandler({MethodArgumentTypeMismatchException.class})
-    public ResultVO<String> handleMethodArgumentTypeMismatch(MethodArgumentTypeMismatchException ex,
-                                                             HttpServletRequest request) {
+    public ResultVO<String> handleMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException ex,
+                                                                      HttpServletRequest request) {
         return this.handleException(BasicResponseStatus.PARAMETER_TYPE_ERROR, ex, request);
     }
 
@@ -83,9 +84,20 @@ public final class CustomExceptionHandler {
      * @since 4.0.0
      */
     @ExceptionHandler({HttpRequestMethodNotSupportedException.class})
-    public ResultVO<String> handleHttpRequestMethodNotSupported(HttpRequestMethodNotSupportedException ex,
-                                                                HttpServletRequest request) {
+    public ResultVO<String> handleHttpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException ex,
+                                                                         HttpServletRequest request) {
         return this.handleException(BasicResponseStatus.METHOD_NOT_ALLOWED, ex, request);
+    }
+
+    /**
+     * 处理请求头Content-Type属性不匹配异常。
+     *
+     * @since 4.0.0
+     */
+    @ExceptionHandler({HttpMediaTypeNotSupportedException.class})
+    public ResultVO<String> handleHttpMediaTypeNotSupportedException(HttpMediaTypeNotSupportedException ex,
+                                                                     HttpServletRequest request) {
+        return this.handleException(BasicResponseStatus.CONTENT_TYPE_NOT_SUPPORTED, ex, request);
     }
 
     /**
@@ -94,8 +106,8 @@ public final class CustomExceptionHandler {
      * @since 4.0.0
      */
     @ExceptionHandler({HttpMessageNotReadableException.class})
-    public ResultVO<String> handleHttpMessageNotReadable(HttpMessageNotReadableException ex,
-                                                         HttpServletRequest request) {
+    public ResultVO<String> handleHttpMessageNotReadableException(HttpMessageNotReadableException ex,
+                                                                  HttpServletRequest request) {
         return this.handleException(BasicResponseStatus.REQUEST_BODY_DATA_CONVERT_ERROR, ex, request);
     }
 
@@ -105,8 +117,8 @@ public final class CustomExceptionHandler {
      * @since 4.0.0
      */
     @ExceptionHandler(value = {MethodArgumentNotValidException.class})
-    public ResultVO<String> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
-                                                         HttpServletRequest request) {
+    public ResultVO<String> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex,
+                                                                  HttpServletRequest request) {
         // 注入ServletRequest，用于出错时打印请求URL与来源地址
         this.logError(ex, request);
 

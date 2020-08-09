@@ -4,20 +4,21 @@
 -- ----------------------------
 DROP TABLE IF EXISTS `demo_user`;
 CREATE TABLE `demo_user` (
-    `id`            BIGINT(20) NOT NULL    AUTO_INCREMENT,
-    `tenant_id`     BIGINT(20) NOT NULL                       COMMENT '租户ID',
-    `name`          VARCHAR(255)           DEFAULT NULL,
-    `age`           INT(11)    NULL        DEFAULT NULL,
-    `status`        SMALLINT   UNSIGNED    DEFAULT 128,
-    `intro`         TEXT                   DEFAULT NULL,
-    `version`       INTEGER                DEFAULT 0,
-    `deleted`       BOOLEAN                DEFAULT FALSE,
+    `id`            BIGINT(20) NOT NULL    AUTO_INCREMENT     COMMENT '主键',
+    `tenant_id`     BIGINT(20) NOT NULL    DEFAULT 1          COMMENT '租户ID',
+    `name`          VARCHAR(255)           DEFAULT NULL       COMMENT '姓名',
+    `age`           INT(11)    NULL        DEFAULT NULL       COMMENT '年龄',
+    `status`        SMALLINT   UNSIGNED    DEFAULT 128        COMMENT '状态',
+    `intro`         TEXT                   DEFAULT NULL       COMMENT '简介',
+    `version`       INTEGER                DEFAULT 0          COMMENT '乐观锁',
+    `deleted`       BOOLEAN                DEFAULT FALSE      COMMENT '是否删除',
     create_by       VARCHAR(100)                              COMMENT '记录创建人',
     create_time     DATETIME                                  COMMENT '记录创建时间',
     update_by       VARCHAR(100)                              COMMENT '记录修改人',
     update_time     DATETIME                                  COMMENT '记录修改时间',
     PRIMARY KEY (`id`)
 )
+    COMMENT '测试'
     ENGINE = InnoDB
     AUTO_INCREMENT = 8
     DEFAULT CHARSET = utf8mb4;

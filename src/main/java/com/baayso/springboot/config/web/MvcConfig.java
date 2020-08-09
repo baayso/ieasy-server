@@ -6,6 +6,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.baayso.commons.interceptor.PerformanceInterceptor;
+import com.baayso.springboot.common.interceptor.TenantInterceptor;
 
 /**
  * Spring MVC 配置。
@@ -19,19 +20,25 @@ public class MvcConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new PerformanceInterceptor())
-                .addPathPatterns("/demo/api/**")
+                .addPathPatterns("/demo/**")
                 .addPathPatterns("/api/**")
                 .addPathPatterns("/app/api/**");
 
-        //registry.addInterceptor(new AccessTokenVerificationInterceptor()) //
-        //        .addPathPatterns("/api/**") //
-        //        .excludePathPatterns("/api/token") //
+        registry.addInterceptor(new TenantInterceptor())
+                .addPathPatterns("/demo/**")
+                .addPathPatterns("/api/**")
+                .addPathPatterns("/app/api/**");
+
+        //registry.addInterceptor(new AccessTokenVerificationInterceptor())
+        //        .addPathPatterns("/api/**")
+        //        .excludePathPatterns("/api/token")
         //        .excludePathPatterns("/api/order/alipay/web/notify");
 
-        //registry.addInterceptor(new DataDigestInterceptor()).addPathPatterns("/api/**");
+        //registry.addInterceptor(new DataDigestInterceptor())
+        //        .addPathPatterns("/api/**");
 
-        //registry.addInterceptor(new AccessApiAuthenticationInterceptor()) //
-        //        .addPathPatterns("/api/**") //
+        //registry.addInterceptor(new AccessApiAuthenticationInterceptor())
+        //        .addPathPatterns("/api/**")
         //        .excludePathPatterns("/api/token");
     }
 

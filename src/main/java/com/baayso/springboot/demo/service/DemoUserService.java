@@ -138,6 +138,21 @@ public class DemoUserService extends AbstractBaseService<DemoUserDAO, DemoUserDO
         return super.updateById(user5);
     }
 
+    @Transactional
+    public List<DemoUserDO> test() {
+        int inserts = super.baseMapper.inserts();
+        int insertIntoSelect = super.baseMapper.insertIntoSelect();
+
+        List<DemoUserDO> listInnerJoin = super.baseMapper.listInnerJoin();
+        List<DemoUserDO> listLeftJoin = super.baseMapper.listLeftJoin();
+        List<DemoUserDO> listRightJoin = super.baseMapper.listRightJoin();
+
+        // TODO 请注意：租户SQL解析器(Schema 级)未支持在WHERE条件中使用子查询
+        List<DemoUserDO> listSubQuery = super.baseMapper.listSubQuery();
+
+        return super.baseMapper.listUnion();
+    }
+
     private String nowTimeStr() {
         return LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
     }

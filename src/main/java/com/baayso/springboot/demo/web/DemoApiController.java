@@ -23,7 +23,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 @RestController
-@RequestMapping("/demo/api")
+@RequestMapping("/api/demo")
 public class DemoApiController extends CommonController {
 
     @Inject
@@ -61,6 +61,11 @@ public class DemoApiController extends CommonController {
     public PageVO<DemoUserDO> page2(@RequestParam(defaultValue = DEFAULT_PAGE_NUM) Integer pageNum,
                                     @RequestParam(defaultValue = DEFAULT_PAGE_SIZE) Integer pageSize) {
         return this.demoUserService.page(pageNum, pageSize);
+    }
+
+    @RequestMapping("/test")
+    public List<DemoUserDO> test() {
+        return this.demoUserService.test();
     }
 
     @RequestMapping("/deletes")

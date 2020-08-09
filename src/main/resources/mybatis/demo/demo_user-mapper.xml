@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!-- namespace 必须指向 MyBatis DAO 接口 -->
+<mapper namespace="com.baayso.springboot.demo.dao.DemoUserDAO">
+
+    <resultMap id="demoUserResultMap" type="com.baayso.springboot.demo.domain.DemoUserDO">
+        <id property="id" column="id"/>
+    </resultMap>
+
+    <select id="listUnion" resultMap="demoUserResultMap">
+        SELECT u.* FROM demo_user AS u WHERE u.id = 1
+        UNION
+        SELECT * FROM demo_user  AS u2 WHERE u2.id = 5
+        UNION
+        SELECT * FROM demo_user WHERE id = 6
+    </select>
+
+    <select id="listInnerJoin" resultMap="demoUserResultMap">
+        SELECT
+            u.id     AS id,
+            u2.name  AS name,
+            u3.age   AS age
+        FROM
+            demo_user AS u
+        INNER JOIN
+            demo_user AS u2 ON u2.id = u.id
+        INNER JOIN
+            demo_user AS u3 ON u3.id = u2.id
+        WHERE
+            u.id = 1
+    </select>
+
+    <select id="listLeftJoin" resultMap="demoUserResultMap">
+        SELECT
+            u.id      AS id,
+            u2.name   AS name,
+            u3.age    AS age,
+            u4.status AS status
+        FROM
+            demo_user AS u
+        INNER JOIN
+            demo_user AS u2 ON u2.id = u.id
+        LEFT OUTER JOIN
+            demo_user AS u3 ON u3.id = u2.id
+        LEFT OUTER JOIN
+            demo_user AS u4 ON u4.id = u3.id
+        WHERE
+            u.id = 1
+    </select>
+
+    <select id="listRightJoin" resultMap="demoUserResultMap">
+        SELECT
+            u.id      AS id,
+            u2.name   AS name,
+            u3.age    AS age,
+            u4.status AS status
+        FROM
+            demo_user AS u
+        INNER JOIN
+            demo_user AS u2 ON u2.id = u.id
+        RIGHT OUTER JOIN
+            demo_user AS u3 ON u3.id = u2.id
+        RIGHT OUTER JOIN
+            demo_user AS u4 ON u4.id = u3.id
+        WHERE
+            u.id = 1
+    </select>
+
+    <select id="listSubQuery" resultMap="demoUserResultMap">
+        SELECT
+            u.id      AS id,
+            u2.name   AS name,
+            u3.age    AS age,
+            u4.status AS status
+        FROM
+            (SELECT * FROM demo_user) AS u
+        INNER JOIN
+            (SELECT * FROM demo_user) AS u2 ON u2.id = u.id
+        RIGHT OUTER JOIN
+            (SELECT * FROM demo_user) AS u3 ON u3.id = u2.id
+        RIGHT OUTER JOIN
+            (SELECT * FROM demo_user) AS u4 ON u4.id = u3.id
+        WHERE
+            u.id = (SELECT id FROM demo_user WHERE id = 1)
+    </select>
+
+    <insert id="inserts">
+        INSERT INTO `demo_user`(
+            name,
+            age,
+            status,
+            intro,
+            version,
+            deleted,
+            create_by,
+            create_time,
+            update_by,
+            update_time)
+        VALUES
+            ('name9', 91, 128, '', 2, FALSE, 'init', NOW(), 'init', NOW()),
+            ('name10', 101, 128, '', 2, FALSE, 'init', NOW(), 'init', NOW());
+    </insert>
+
+    <insert id="insertIntoSelect">
+        INSERT INTO demo_user(
+            name,
+            age,
+            status,
+            intro,
+            version,
+            deleted,
+            create_by,
+            create_time,
+            update_by,
+            update_time)
+        SELECT
+            name,
+            age,
+            status,
+            intro,
+            version,
+            deleted,
+            create_by,
+            create_time,
+            update_by,
+            update_time
+        FROM
+            demo_user
+        WHERE
+            id = 1;
+    </insert>
+
+
+</mapper>

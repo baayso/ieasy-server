@@ -11,11 +11,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.baomidou.mybatisplus.core.parser.ISqlParser;
 import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
-import com.baomidou.mybatisplus.extension.plugins.tenant.TenantHandler;
-import com.baomidou.mybatisplus.extension.plugins.tenant.TenantSqlParser;
-
-import net.sf.jsqlparser.expression.Expression;
-import net.sf.jsqlparser.expression.LongValue;
 
 /**
  * Mybatis-Plus 配置。
@@ -37,55 +32,24 @@ public class MybatisPlusConfig {
     /**
      * mybatis-plus 分页插件
      * <p>
-     * 文档：http://mp.baomidou.com/guide/tenant.html
+     * 文档： https://mybatis.plus/guide/tenant.html
      */
     @Bean
     public PaginationInterceptor paginationInterceptor() {
 
-        /*
-         * 【测试多租户】 SQL 解析处理拦截器
-         * 这里固定写成租户 1 实际情况你可以从cookie读取，因此数据看不到 【 麻花藤 】 这条记录（ 注意观察 SQL ）
-         */
-        TenantSqlParser tenantSqlParser = new TenantSqlParser();
-        tenantSqlParser.setTenantHandler(new TenantHandler() {
-            @Override
-            public Expression getTenantId(boolean where) {
-                return new LongValue(1L);
-            }
+        // 租户SQL解析器(TenantId 行级)
+        // TenantSqlParser tenantSqlParser = new TenantSqlParser();
+        // tenantSqlParser.setTenantHandler(new BasicTenantHandler());
 
-            @Override
-            public String getTenantIdColumn() {
-                return "tenant_id";
-            }
-
-            @Override
-            public boolean doTableFilter(String tableName) {
-                // 这里可以判断是否过滤表
-                if ("user".equals(tableName)) {
-                    return true;
-                }
-
-                return false;
-            }
-        });
+        // 租户SQL解析器(schema 级)
+        CustomTenantSchemaSqlParser tenantSchemaSqlParser = new CustomTenantSchemaSqlParser();
+        tenantSchemaSqlParser.setTenantSchemaHandler(new BasicTenantSchemaHandler());
 
         List<ISqlParser> sqlParserList = new ArrayList<>();
-        sqlParserList.add(tenantSqlParser);
+        sqlParserList.add(tenantSchemaSqlParser);
 
         PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
         paginationInterceptor.setSqlParserList(sqlParserList);
-        //paginationInterceptor.setSqlParserFilter(new ISqlParserFilter() {
-        //    @Override
-        //    public boolean doFilter(MetaObject metaObject) {
-        //        MappedStatement ms = PluginUtils.getMappedStatement(metaObject);
-        //        // 过滤自定义查询此时无租户信息约束【 麻花藤 】出现
-        //        if ("com.baomidou.springboot.mapper.UserMapper.selectListBySQL".equals(ms.getId())) {
-        //            return true;
-        //        }
-        //
-        //        return false;
-        //    }
-        //});
 
         return paginationInterceptor;
     }
