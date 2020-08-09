@@ -16,8 +16,20 @@ public class ApiViolationException extends ApiException {
     public ApiViolationException() {
     }
 
+    public ApiViolationException(String message) {
+        super(message);
+    }
+
     public ApiViolationException(ResponseStatus responseStatus) {
         super(responseStatus);
+    }
+
+    public ApiViolationException(int code, String message) {
+        super(code, message);
+    }
+
+    public ApiViolationException(ResponseStatus responseStatus, String message) {
+        super(responseStatus, message);
     }
 
 }

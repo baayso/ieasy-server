@@ -16,8 +16,20 @@ public class ApiServiceException extends ApiException {
     public ApiServiceException() {
     }
 
+    public ApiServiceException(String message) {
+        super(message);
+    }
+
     public ApiServiceException(ResponseStatus responseStatus) {
         super(responseStatus);
+    }
+
+    public ApiServiceException(int code, String message) {
+        super(code, message);
+    }
+
+    public ApiServiceException(ResponseStatus responseStatus, String message) {
+        super(responseStatus, message);
     }
 
 }
