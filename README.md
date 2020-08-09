@@ -60,21 +60,28 @@
 * [MyBatis 配置文件](https://github.com/baayso/ieasy-server/blob/master/src/main/resources/config/mybatis-config.xml)
 
 ## [多租户 SQL 解析器：](https://mybatis.plus/guide/tenant.html)
-> [配置多租户 SQL 解析器](https://github.com/baayso/ieasy-server/blob/master/src/main/java/com/baayso/springboot/config/mybatis/MybatisPlusConfig.java#L70)
+> [配置多租户 SQL 解析器](https://github.com/baayso/ieasy-server/blob/master/src/main/java/com/baayso/springboot/config/mybatis/MybatisPlusConfig.java#L44)
+* [验证租户参数拦截器](https://github.com/baayso/ieasy-server/blob/master/src/main/java/com/baayso/springboot/common/interceptor/TenantInterceptor.java#L23)
+* [配置验证租户参数拦截器](https://github.com/baayso/ieasy-server/blob/master/src/main/java/com/baayso/springboot/config/web/MvcConfig.java#L27)
+* [MyBatis-Plus租户处理器(schema 级)](https://github.com/baayso/ieasy-server/blob/master/src/main/java/com/baayso/springboot/config/mybatis/BasicTenantSchemaHandler.java#L21): 执行SQL前自动在表名前增加schema，如: `demo_user -> ieasy_server.demo_user`
+* [application-*.yml配置文件中 datasource url 去掉了数据库名](https://github.com/baayso/ieasy-server/blob/master/src/main/resources/config/application-dev.yml#L28)
+* 注意：[租户SQL解析器(Schema 级)](https://github.com/baayso/ieasy-server/blob/master/src/main/java/com/baayso/springboot/config/mybatis/CustomTenantSchemaSqlParser.java#L29) 未支持在WHERE条件中使用子查询，即在WHERE条件中使用子查询时不会自动在子查询的表名前增加schema
 
 ## 访问：
+> 因为[配置了验证租户参数拦截器](https://github.com/baayso/ieasy-server/blob/master/src/main/java/com/baayso/springboot/config/mybatis/MybatisPlusConfig.java#L44), 所以必须在请求头中增加`tenantId`参数，参数值为`ieasy_server`
 * http://localhost:8888/welcome
-* http://localhost:8888/welcome/index (LayUI后台布局)
-* http://localhost:8888/welcome/index2 (LayUI后台布局2)
-* http://localhost:8888/demo/api
-* http://localhost:8888/demo/api/page?pageSize=100&pageNum=1
-* http://localhost:8888/demo/api/deletes?id=1
-* http://localhost:8888/demo/api/create
-* http://localhost:8888/demo/api/creates
-* http://localhost:8888/demo/api/update?id=7
-* http://localhost:8888/demo/api/hello
-* http://localhost:8888/app/interface-ui/ (Dataway 接口管理页面)
-* http://localhost:8888/app/api/dataway/test (使用 Dataway 创建的 API)
+* http://localhost:8888/welcome/index  LayUI后台布局
+* http://localhost:8888/welcome/index2  LayUI后台布局2
+* http://localhost:8888/api/demo
+* http://localhost:8888/api/demo/page?pageSize=100&pageNum=1
+* http://localhost:8888/api/demo/deletes?id=1
+* http://localhost:8888/api/demo/create
+* http://localhost:8888/api/demo/creates
+* http://localhost:8888/api/demo/update?id=7
+* http://localhost:8888/api/demo/hello
+* http://localhost:8888/api/demo/test  测试多租户(schema级)自动在表名前增加schema
+* http://localhost:8888/app/interface-ui/  Dataway 接口管理页面
+* http://localhost:8888/app/api/dataway/test 使用  Dataway 创建的 API
 
 ## Dependencies:
 * https://github.com/baayso/commons
