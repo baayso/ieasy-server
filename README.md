@@ -45,13 +45,13 @@
 5. **`build.bat`** (Windows) Or **`./build.sh`** (Linux/Mac OS)
 6. 执行[启动脚本](https://github.com/baayso/ieasy-server/tree/master/bin)
    * 开发环境  
-     **`bin\start.bat 8888 dev`** (Windows) Or **`./bin/start.sh 8888 dev`** (Linux/Mac OS)  
+     **`bin\start.bat 8888 dev`** (Windows) or **`./bin/start.sh 8888 dev`** (Linux/Mac OS)  
      > 注：端口号为 8888
    * 测试环境  
-     **`bin\start.bat 8888 test`** (Windows) Or **`./bin/start.sh 8888 test`** (Linux/Mac OS)  
+     **`bin\start.bat 8888 test`** (Windows) or **`./bin/start.sh 8888 test`** (Linux/Mac OS)  
      > 注：端口号为 8888
    * 生产环境  
-     **`bin\start.bat 8888 pro`** (Windows) Or **`./bin/start.sh 8888 pro`** (Linux/Mac OS)  
+     **`bin\start.bat 8888 pro`** (Windows) or **`./bin/start.sh 8888 pro`** (Linux/Mac OS)  
      > 注：端口号为 8888
 
 ## [配置文件：](https://github.com/baayso/ieasy-server/blob/master/src/main/resources/config)
@@ -66,7 +66,7 @@
 > [配置多租户 SQL 解析器](https://github.com/baayso/ieasy-server/blob/master/src/main/java/com/baayso/springboot/config/mybatis/MybatisPlusConfig.java#L44)
 * [验证租户参数拦截器](https://github.com/baayso/ieasy-server/blob/master/src/main/java/com/baayso/springboot/common/interceptor/TenantInterceptor.java#L23)
 * [配置验证租户参数拦截器](https://github.com/baayso/ieasy-server/blob/master/src/main/java/com/baayso/springboot/config/web/MvcConfig.java#L27)
-* [MyBatis-Plus租户处理器(schema 级)](https://github.com/baayso/ieasy-server/blob/master/src/main/java/com/baayso/springboot/config/mybatis/BasicTenantSchemaHandler.java#L21): 执行SQL前自动在表名前增加schema，如: `demo_user -> ieasy_server.demo_user`
+* [MyBatis-Plus租户处理器(schema 级)](https://github.com/baayso/ieasy-server/blob/master/src/main/java/com/baayso/springboot/config/mybatis/BasicTenantSchemaHandler.java#L21): 执行SQL前自动在表名前增加schema，如: `demo_user -> ieasy_tenant_1.demo_user`
 * [application-*.yml配置文件中 datasource url 去掉了数据库名](https://github.com/baayso/ieasy-server/blob/master/src/main/resources/config/application-dev.yml#L28)
 * 注意：[租户SQL解析器(Schema 级)](https://github.com/baayso/ieasy-server/blob/master/src/main/java/com/baayso/springboot/config/mybatis/CustomTenantSchemaSqlParser.java#L29) 未支持在WHERE条件中使用子查询，即在WHERE条件中使用子查询时不会自动在子查询的表名前增加schema
 
