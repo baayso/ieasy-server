@@ -68,7 +68,7 @@
 * [配置验证租户参数拦截器](https://github.com/baayso/ieasy-server/blob/master/src/main/java/com/baayso/springboot/config/web/MvcConfig.java#L27)
 * [MyBatis-Plus租户处理器(schema 级)](https://github.com/baayso/ieasy-server/blob/master/src/main/java/com/baayso/springboot/config/mybatis/BasicTenantSchemaHandler.java#L21): 执行SQL前自动在表名前增加schema，如: `demo_user -> ieasy_tenant_1.demo_user`
 * [application-*.yml配置文件中 datasource url 去掉了数据库名](https://github.com/baayso/ieasy-server/blob/master/src/main/resources/config/application-dev.yml#L28)
-* 注意：[租户SQL解析器(Schema 级)](https://github.com/baayso/ieasy-server/blob/master/src/main/java/com/baayso/springboot/config/mybatis/CustomTenantSchemaSqlParser.java#L29) 未支持在WHERE条件中使用子查询，即在WHERE条件中使用子查询时不会自动在子查询的表名前增加schema
+* 注意：[租户SQL解析器(schema 级)](https://github.com/baayso/ieasy-server/blob/master/src/main/java/com/baayso/springboot/config/mybatis/CustomTenantSchemaSqlParser.java#L29) 未支持在WHERE条件中使用子查询，即在WHERE条件中使用子查询时不会自动在子查询的表名前增加schema
 
 ## 访问：
 > 因为[配置了验证租户参数拦截器](https://github.com/baayso/ieasy-server/blob/master/src/main/java/com/baayso/springboot/config/mybatis/MybatisPlusConfig.java#L44), 所以必须在请求头中增加`tenantCode`参数，参数值为`ieasy_tenant_1`
