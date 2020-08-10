@@ -27,13 +27,13 @@
 ## 快速开始：
 0. 准备依赖
    * git clone https://github.com/baayso/commons
-   * **`build.bat`** (Windows) Or **`./build.sh`** (Linux/Mac OS)
+   * **`build.bat`** (Windows) or **`./build.sh`** (Linux/Mac OS)
 1. git clone https://github.com/baayso/ieasy-server.git
 2. 安装 MySQL 5.5+
 3. 执行 [SQL 脚本](https://github.com/baayso/ieasy-server/tree/master/sql/mysql/install)
    > 注：默认创建的数据库有两个，分别为：[**ieasy_server**](https://github.com/baayso/ieasy-server/blob/master/sql/mysql/install/common/common_mysql.sql) 和 [**ieasy_tenant_1**](https://github.com/baayso/ieasy-server/blob/master/sql/mysql/install/demo/demo_mysql.sql)  
-   > ieasy_server 为主数据库，存储系统数据及所有租户共享的数据  
-   > ieasy_tenant_1 为`测试租户`数据库，存储租户专有数据  
+   > **ieasy_server** 为主数据库(默认连接的数据库)，存储系统数据及所有租户共享的数据  
+   > **ieasy_tenant_1** 为`测试租户`的数据库，存储租户的专有数据。每一个租户都有其专有的数据库，既新增一个租户时会为其单独创建一个数据库  
    * Windows  
      **`sql\mysql\install\install.bat`**  
      > 注：根据提示输入数据库的 ip、port、username
@@ -42,7 +42,7 @@
      > 注：在命令后输入数据库的 ip、port、username
 4. 修改项目配置文件里数据库的 ip、port、username、password
    > 注：各环境配置文件[请参见](#config)
-5. **`build.bat`** (Windows) Or **`./build.sh`** (Linux/Mac OS)
+5. **`build.bat`** (Windows) or **`./build.sh`** (Linux/Mac OS)
 6. 执行[启动脚本](https://github.com/baayso/ieasy-server/tree/master/bin)
    * 开发环境  
      **`bin\start.bat 8888 dev`** (Windows) or **`./bin/start.sh 8888 dev`** (Linux/Mac OS)  
@@ -67,7 +67,6 @@
 * [验证租户参数拦截器](https://github.com/baayso/ieasy-server/blob/master/src/main/java/com/baayso/springboot/common/interceptor/TenantInterceptor.java#L23)
 * [配置验证租户参数拦截器](https://github.com/baayso/ieasy-server/blob/master/src/main/java/com/baayso/springboot/config/web/MvcConfig.java#L27)
 * [MyBatis-Plus租户处理器(schema 级)](https://github.com/baayso/ieasy-server/blob/master/src/main/java/com/baayso/springboot/config/mybatis/BasicTenantSchemaHandler.java#L21): 执行SQL前自动在表名前增加schema，如: `demo_user -> ieasy_tenant_1.demo_user`
-* [application-*.yml配置文件中 datasource url 去掉了数据库名](https://github.com/baayso/ieasy-server/blob/master/src/main/resources/config/application-dev.yml#L28)
 * 注意：[租户SQL解析器(schema 级)](https://github.com/baayso/ieasy-server/blob/master/src/main/java/com/baayso/springboot/config/mybatis/CustomTenantSchemaSqlParser.java#L29) 未支持在WHERE条件中使用子查询，即在WHERE条件中使用子查询时不会自动在子查询的表名前增加schema
 
 ## 访问：
