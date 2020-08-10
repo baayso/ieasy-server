@@ -36,7 +36,7 @@ public class DemoUserDO extends BaseDO {
     private static final long serialVersionUID = -8962566780883631270L;
 
     @JsonIgnore
-    private Long tenantId; // 租户ID
+    private String tenantCode; // 租户编码
 
     private String name;
 
@@ -63,12 +63,12 @@ public class DemoUserDO extends BaseDO {
 
     @Builder
     public DemoUserDO(Long id, String createBy, LocalDateTime createTime, String updateBy, LocalDateTime updateTime,
-                      Long tenantId, String name, Integer age, OrderStatus status, String intro, Integer version, Boolean deleted,
+                      String tenantCode, String name, Integer age, OrderStatus status, String intro, Integer version, Boolean deleted,
                       LocalDateTime datetime) {
 
         super(id, createBy, createTime, updateBy, updateTime);
 
-        this.tenantId = tenantId;
+        this.tenantCode = tenantCode;
         this.name = name;
         this.age = age;
         this.status = status;

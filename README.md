@@ -30,7 +30,10 @@
    * **`build.bat`** (Windows) Or **`./build.sh`** (Linux/Mac OS)
 1. git clone https://github.com/baayso/ieasy-server.git
 2. 安装 MySQL 5.5+
-3. 执行 [SQL 脚本](https://github.com/baayso/ieasy-server/tree/master/sql/mysql/install)（注：默认创建的数据库名称为 **ieasy_server**，可以在[这个SQL文件里](https://github.com/baayso/ieasy-server/blob/master/sql/mysql/install/common/common_mysql.sql)进行修改）
+3. 执行 [SQL 脚本](https://github.com/baayso/ieasy-server/tree/master/sql/mysql/install)
+   > 注：默认创建的数据库有两个，分别为：[**ieasy_server**](https://github.com/baayso/ieasy-server/blob/master/sql/mysql/install/common/common_mysql.sql) 和 [**ieasy_tenant_1**](https://github.com/baayso/ieasy-server/blob/master/sql/mysql/install/demo/demo_mysql.sql)  
+   > ieasy_server 为主数据库，存储系统数据及所有租户共享的数据  
+   > ieasy_tenant_1 为`测试租户`数据库，存储租户专有数据  
    * Windows  
      **`sql\mysql\install\install.bat`**  
      > 注：根据提示输入数据库的 ip、port、username
@@ -68,7 +71,7 @@
 * 注意：[租户SQL解析器(Schema 级)](https://github.com/baayso/ieasy-server/blob/master/src/main/java/com/baayso/springboot/config/mybatis/CustomTenantSchemaSqlParser.java#L29) 未支持在WHERE条件中使用子查询，即在WHERE条件中使用子查询时不会自动在子查询的表名前增加schema
 
 ## 访问：
-> 因为[配置了验证租户参数拦截器](https://github.com/baayso/ieasy-server/blob/master/src/main/java/com/baayso/springboot/config/mybatis/MybatisPlusConfig.java#L44), 所以必须在请求头中增加`tenantId`参数，参数值为`ieasy_server`
+> 因为[配置了验证租户参数拦截器](https://github.com/baayso/ieasy-server/blob/master/src/main/java/com/baayso/springboot/config/mybatis/MybatisPlusConfig.java#L44), 所以必须在请求头中增加`tenantCode`参数，参数值为`ieasy_tenant_1`
 * http://localhost:8888/welcome
 * http://localhost:8888/welcome/index  LayUI后台布局
 * http://localhost:8888/welcome/index2  LayUI后台布局2

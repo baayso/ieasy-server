@@ -25,7 +25,7 @@ spring:
                 min-idle: 0
         timeout: 0ms
     datasource:
-        url: jdbc:mysql://127.0.0.1:3306?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
+        url: jdbc:mysql://127.0.0.1:3306/ieasy_server?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
         username: root
         password: root
         druid:

@@ -4,9 +4,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.baayso.commons.tool.BasicResponseStatus;
+import com.baayso.commons.utils.Validator;
 import com.baayso.springboot.common.exception.ApiViolationException;
 
 /**
@@ -17,20 +19,20 @@ import com.baayso.springboot.common.exception.ApiViolationException;
  */
 public class TenantInterceptor extends HandlerInterceptorAdapter {
 
+    @Autowired
+    private Validator validate;
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
-        String tenantId = request.getHeader("tenantId");
+        String tenantCode = request.getHeader("tenantCode");
 
-        if (StringUtils.isBlank(tenantId)) {
-            throw new ApiViolationException(BasicResponseStatus.PARAMETER_MISSING, "缺少tenantId参数");
+        if (StringUtils.isBlank(tenantCode)) {
+            throw new ApiViolationException(BasicResponseStatus.PARAMETER_MISSING, "缺少tenantCode参数");
         }
 
-        try {
-            Long.parseLong(tenantId);
-        }
-        catch (Exception e) {
-            throw new ApiViolationException(BasicResponseStatus.PARAMETER_TYPE_ERROR, "tenantId参数类型不匹配");
+        if (!this.validate.isEnglishAndNumberAndUnderscore(tenantCode, 3, 30)) {
+            throw new ApiViolationException(BasicResponseStatus.PARAMETER_CHECK_FAILED, "tenantCode参数为3-30个字母、数字或者下划线");
         }
 
         return super.preHandle(request, response, handler);

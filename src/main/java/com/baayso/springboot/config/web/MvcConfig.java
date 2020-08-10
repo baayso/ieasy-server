@@ -1,5 +1,6 @@
 package com.baayso.springboot.config.web;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -17,17 +18,26 @@ import com.baayso.springboot.common.interceptor.TenantInterceptor;
 @Configuration
 public class MvcConfig implements WebMvcConfigurer {
 
+    @Bean
+    public PerformanceInterceptor performanceInterceptor() {
+        return new PerformanceInterceptor();
+    }
+
+    @Bean
+    public TenantInterceptor tenantInterceptor() {
+        return new TenantInterceptor();
+    }
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new PerformanceInterceptor())
+        registry.addInterceptor(this.performanceInterceptor())
                 .addPathPatterns("/demo/**")
                 .addPathPatterns("/api/**")
                 .addPathPatterns("/app/api/**");
 
-        registry.addInterceptor(new TenantInterceptor())
+        registry.addInterceptor(this.tenantInterceptor())
                 .addPathPatterns("/demo/**")
-                .addPathPatterns("/api/**")
-                .addPathPatterns("/app/api/**");
+                .addPathPatterns("/api/**");
 
         //registry.addInterceptor(new AccessTokenVerificationInterceptor())
         //        .addPathPatterns("/api/**")

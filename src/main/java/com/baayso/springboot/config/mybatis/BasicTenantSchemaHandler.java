@@ -16,9 +16,9 @@ public class BasicTenantSchemaHandler implements TenantSchemaHandler {
     @Override
     public String getTenantSchema() {
         HttpServletRequest request = CommonController.getRequest();
-        String tenantId = request.getHeader("tenantId");
+        String tenantCode = request.getHeader("tenantCode");
 
-        return "ieasy_server";
+        return "ieasy_tenant_1";
     }
 
     @Override

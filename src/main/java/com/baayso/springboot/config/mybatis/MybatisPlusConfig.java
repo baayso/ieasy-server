@@ -37,7 +37,7 @@ public class MybatisPlusConfig {
     @Bean
     public PaginationInterceptor paginationInterceptor() {
 
-        // 租户SQL解析器(TenantId 行级)
+        // 租户SQL解析器(tenantCode 行级)
         // TenantSqlParser tenantSqlParser = new TenantSqlParser();
         // tenantSqlParser.setTenantHandler(new BasicTenantHandler());
 

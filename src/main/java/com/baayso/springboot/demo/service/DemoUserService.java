@@ -147,7 +147,7 @@ public class DemoUserService extends AbstractBaseService<DemoUserDAO, DemoUserDO
         List<DemoUserDO> listLeftJoin = super.baseMapper.listLeftJoin();
         List<DemoUserDO> listRightJoin = super.baseMapper.listRightJoin();
 
-        // TODO 请注意：租户SQL解析器(Schema 级)未支持在WHERE条件中使用子查询
+        // TODO 请注意：租户SQL解析器(schema 级)未支持在WHERE条件中使用子查询，此处查询会报错
         List<DemoUserDO> listSubQuery = super.baseMapper.listSubQuery();
 
         return super.baseMapper.listUnion();
