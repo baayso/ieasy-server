@@ -53,7 +53,7 @@
    * 生产环境  
      **`bin\start.bat 8888 pro`** (Windows) or **`./bin/start.sh 8888 pro`** (Linux/Mac OS)  
      > 注：端口号为 8888
-7. [测试](#config)
+7. [测试](#test)
 
 ## [配置文件：](https://github.com/baayso/ieasy-server/blob/master/src/main/resources/config)
 * <span id = "config">多环境配置文件</span>
