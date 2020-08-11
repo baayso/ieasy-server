@@ -1,7 +1,7 @@
 # iEasy Server  
 > Spring Boot 脚手架项目  
 > 项目原地址: https://github.com/baayso/spring-boot-demo  
-> 代码生成器：https://gitee.com/baayso/ieasy-generator  
+> **代码生成器：https://gitee.com/baayso/ieasy-generator**  
 
 
 [![Jdk Version](https://img.shields.io/badge/JDK-1.8+-green.svg)](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
@@ -31,9 +31,9 @@
 1. git clone https://github.com/baayso/ieasy-server.git
 2. 安装 MySQL 5.5+
 3. 执行 [SQL 脚本](https://github.com/baayso/ieasy-server/tree/master/sql/mysql/install)
-   > 注：默认创建的数据库有两个，分别为：[**ieasy_server**](https://github.com/baayso/ieasy-server/blob/master/sql/mysql/install/common/common_mysql.sql) 和 [**ieasy_tenant_1**](https://github.com/baayso/ieasy-server/blob/master/sql/mysql/install/demo/demo_mysql.sql)  
-   > **ieasy_server** 为主数据库(默认连接的数据库)，存储系统数据及所有租户共享的数据  
-   > **ieasy_tenant_1** 为`测试租户`的数据库，存储租户的专有数据。每一个租户都有其专有的数据库，既新增一个租户时会为其单独创建一个数据库  
+   > * 注：默认创建的数据库有两个，分别为：[**ieasy_server**](https://github.com/baayso/ieasy-server/blob/master/sql/mysql/install/common/common_mysql.sql) 和 [**ieasy_tenant_1**](https://github.com/baayso/ieasy-server/blob/master/sql/mysql/install/demo/demo_mysql.sql)  
+   > * **ieasy_server** 为主数据库(默认连接的数据库)，存储系统数据及所有租户共享的数据。  
+   > * **ieasy_tenant_1** 为`测试租户`的数据库，存储租户的专有数据。每一个租户都有其专有的数据库，既新增一个租户时会为其单独创建一个数据库。  
    * Windows  
      **`sql\mysql\install\install.bat`**  
      > 注：根据提示输入数据库的 ip、port、username
@@ -53,6 +53,7 @@
    * 生产环境  
      **`bin\start.bat 8888 pro`** (Windows) or **`./bin/start.sh 8888 pro`** (Linux/Mac OS)  
      > 注：端口号为 8888
+7. [测试](#config)
 
 ## [配置文件：](https://github.com/baayso/ieasy-server/blob/master/src/main/resources/config)
 * <span id = "config">多环境配置文件</span>
@@ -61,16 +62,22 @@
   * [测试环境配置文件](https://github.com/baayso/ieasy-server/blob/master/src/main/resources/config/application-test.yml)
   * [生产环境配置文件](https://github.com/baayso/ieasy-server/blob/master/src/main/resources/config/application-pro.yml)
 * [MyBatis 配置文件](https://github.com/baayso/ieasy-server/blob/master/src/main/resources/config/mybatis-config.xml)
+* [Log4j2 配置文件](https://github.com/baayso/ieasy-server/blob/master/src/main/resources/config/log4j2.xml)
+* [配置类](https://github.com/baayso/ieasy-server/tree/master/src/main/java/com/baayso/springboot/config)
 
 ## [多租户 SQL 解析器：](https://mybatis.plus/guide/tenant.html)
 > [配置多租户 SQL 解析器](https://github.com/baayso/ieasy-server/blob/master/src/main/java/com/baayso/springboot/config/mybatis/MybatisPlusConfig.java#L44)
-* [验证租户参数拦截器](https://github.com/baayso/ieasy-server/blob/master/src/main/java/com/baayso/springboot/common/interceptor/TenantInterceptor.java#L23)
-* [配置验证租户参数拦截器](https://github.com/baayso/ieasy-server/blob/master/src/main/java/com/baayso/springboot/config/web/MvcConfig.java#L27)
+* [验证租户参数拦截器](https://github.com/baayso/ieasy-server/blob/master/src/main/java/com/baayso/springboot/common/interceptor/TenantInterceptor.java#L28)
+* [配置验证租户参数拦截器](https://github.com/baayso/ieasy-server/blob/master/src/main/java/com/baayso/springboot/config/web/MvcConfig.java#L38)
 * [MyBatis-Plus租户处理器(schema 级)](https://github.com/baayso/ieasy-server/blob/master/src/main/java/com/baayso/springboot/config/mybatis/BasicTenantSchemaHandler.java#L21): 执行SQL前自动在表名前增加schema，如: `demo_user -> ieasy_tenant_1.demo_user`
 * 注意：[租户SQL解析器(schema 级)](https://github.com/baayso/ieasy-server/blob/master/src/main/java/com/baayso/springboot/config/mybatis/CustomTenantSchemaSqlParser.java#L29) 未支持在WHERE条件中使用子查询，即在WHERE条件中使用子查询时不会自动在子查询的表名前增加schema
 
-## 访问：
-> 因为[配置了验证租户参数拦截器](https://github.com/baayso/ieasy-server/blob/master/src/main/java/com/baayso/springboot/config/mybatis/MybatisPlusConfig.java#L44), 所以必须在请求头中增加`tenantCode`参数，参数值为`ieasy_tenant_1`
+## 示例模块
+* [代码](https://github.com/baayso/ieasy-server/tree/master/src/main/java/com/baayso/springboot/demo)
+* [MyBatis Mapper XML](https://github.com/baayso/ieasy-server/tree/master/src/main/resources/mybatis/demo)
+
+## <span id = "test">测试：</span>
+> 因为[配置了验证租户参数拦截器](https://github.com/baayso/ieasy-server/blob/master/src/main/java/com/baayso/springboot/config/web/MvcConfig.java#L38), 所以必须在**请求头**中增加`tenantCode`参数，参数值为`ieasy_tenant_1`
 * http://localhost:8888/welcome
 * http://localhost:8888/welcome/index  LayUI后台布局
 * http://localhost:8888/welcome/index2  LayUI后台布局2
