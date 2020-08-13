@@ -9,6 +9,7 @@ source common/common_mysql.sql;
 source common/area_mysql.sql;
 
 source system/user_mysql.sql;
+source system/sys_tenant-mysql.sql;
 
 source demo/demo_mysql.sql;
 

@@ -16,16 +16,15 @@ public class BasicTenantSchemaHandler implements TenantSchemaHandler {
     @Override
     public String getTenantSchema() {
         HttpServletRequest request = CommonController.getRequest();
-        String tenantCode = request.getHeader("tenantCode");
 
-        return "ieasy_tenant_1";
+        return request.getHeader("tenantCode");
     }
 
     @Override
     public boolean doTableFilter(String tableName) {
         // 这里可以判断是否过滤表
 
-        return false;
+        return tableName.startsWith("sys_");
     }
 
 }

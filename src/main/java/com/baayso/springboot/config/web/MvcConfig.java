@@ -37,7 +37,8 @@ public class MvcConfig implements WebMvcConfigurer {
 
         registry.addInterceptor(this.tenantInterceptor())
                 .addPathPatterns("/demo/**")
-                .addPathPatterns("/api/**");
+                .addPathPatterns("/api/**")
+                .excludePathPatterns("/api/tenant/**");
 
         //registry.addInterceptor(new AccessTokenVerificationInterceptor())
         //        .addPathPatterns("/api/**")

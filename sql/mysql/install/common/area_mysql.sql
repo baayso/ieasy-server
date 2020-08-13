@@ -2,11 +2,11 @@
 USE ieasy_server;
 
 /*==============================================================*/
-/* Table: area                                                */
+/* Table: sys_area                                                */
 /*==============================================================*/
-drop table if exists area;
+drop table if exists sys_area;
 
-create table area
+create table sys_area
 (
    id                   integer not null comment '地区ID',
    word                 char(1) comment '首字母',
@@ -18,16 +18,16 @@ create table area
 ) comment '地区';
 
 --
--- Indexes for table `area`
+-- Indexes for table `sys_area`
 --
-ALTER TABLE `area` ADD KEY `idx_parent_id` (`parent_id`);
-ALTER TABLE `area` ADD KEY `idx_type` (`type`);
-ALTER TABLE `area` ADD KEY `idx_word` (`word`);
+ALTER TABLE `sys_area` ADD KEY `idx_parent_id` (`parent_id`);
+ALTER TABLE `sys_area` ADD KEY `idx_type` (`type`);
+ALTER TABLE `sys_area` ADD KEY `idx_word` (`word`);
 
 --
--- 转存表中的数据 `area`
+-- 转存表中的数据 `sys_area`
 --
-INSERT INTO `area` (`id`, `word`, `name`, `parent_id`, `type`, `zipcode`) VALUES
+INSERT INTO `sys_area` (`id`, `word`, `name`, `parent_id`, `type`, `zipcode`) VALUES
 (1, 'Z', '中国', 0, 1, NULL),
 (110000, 'B', '北京', 1, 2, NULL),
 (110100, 'B', '北京', 110000, 3, 100000),
