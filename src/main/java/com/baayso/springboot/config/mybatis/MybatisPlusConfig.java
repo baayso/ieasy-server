@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.baayso.springboot.common.mybatis.InsertAndUpdateMetaObjectHandler;
 import com.baomidou.mybatisplus.core.parser.ISqlParser;
 import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
@@ -22,6 +23,12 @@ import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 @EnableTransactionManagement
 @MapperScan("com.baayso.**.dao*")
 public class MybatisPlusConfig {
+
+    /** 插入与更新时自动填充字段处理器 */
+    @Bean
+    public InsertAndUpdateMetaObjectHandler insertAndUpdateMetaObjectHandler() {
+        return new InsertAndUpdateMetaObjectHandler();
+    }
 
     /** 乐观锁插件 */
     @Bean

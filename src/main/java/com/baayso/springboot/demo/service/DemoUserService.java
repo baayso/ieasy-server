@@ -35,7 +35,7 @@ public class DemoUserService extends AbstractBaseService<DemoUserDAO, DemoUserDO
         user1.setName("code-1-" + this.nowTimeStr());
         user1.setIntro("");
         user1.setAge(18);
-        user1.initBeforeAdd();
+        // user1.initBeforeAdd();
 
         super.save(user1);
 
@@ -44,7 +44,7 @@ public class DemoUserService extends AbstractBaseService<DemoUserDAO, DemoUserDO
         user2.setIntro(null);
         user2.setAge(18);
         user2.setStatus(OrderStatus.SUCCESS);
-        user2.initBeforeAdd();
+        // user2.initBeforeAdd();
 
         super.save(user2);
 
@@ -72,7 +72,7 @@ public class DemoUserService extends AbstractBaseService<DemoUserDAO, DemoUserDO
         user2.setIntro(null);
         user2.setAge(18);
         user2.setStatus(OrderStatus.SUCCESS);
-        user2.initBeforeAdd();
+        // user2.initBeforeAdd();
 
         super.save(user2);
 
@@ -91,14 +91,14 @@ public class DemoUserService extends AbstractBaseService<DemoUserDAO, DemoUserDO
         user3.setName("code-555-" + this.nowTimeStr());
         user3.setIntro("");
         user3.setAge(19);
-        user3.initBeforeAdd();
+        // user3.initBeforeAdd();
 
         DemoUserDO user4 = new DemoUserDO();
         user4.setName("code-666-" + this.nowTimeStr());
         user4.setIntro(null);
         user4.setAge(19);
         user4.setStatus(OrderStatus.CLOSE);
-        user4.initBeforeAdd();
+        // user4.initBeforeAdd();
 
         List<DemoUserDO> list = new ArrayList<>();
         list.add(user3);
@@ -131,8 +131,8 @@ public class DemoUserService extends AbstractBaseService<DemoUserDAO, DemoUserDO
                 .version(2) //
                 .intro("测试乐观锁") //
                 .status(OrderStatus.RETURN_SUCCESS) //
-                .updateBy("测试乐观锁") //
-                .updateTime(LocalDateTime.now()) //
+                // .updateBy("测试乐观锁") //
+                // .updateTime(LocalDateTime.now()) //
                 .build();
 
         return super.updateById(user5);
