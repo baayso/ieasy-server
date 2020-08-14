@@ -18,16 +18,16 @@ create table sys_area
 ) comment '地区';
 
 --
--- Indexes for table `sys_area`
+-- Indexes for table sys_area
 --
-ALTER TABLE `sys_area` ADD KEY `idx_parent_id` (`parent_id`);
-ALTER TABLE `sys_area` ADD KEY `idx_type` (`type`);
-ALTER TABLE `sys_area` ADD KEY `idx_word` (`word`);
+ALTER TABLE sys_area ADD KEY idx_parent_id (parent_id);
+ALTER TABLE sys_area ADD KEY idx_type (type);
+ALTER TABLE sys_area ADD KEY idx_word (word);
 
 --
--- 转存表中的数据 `sys_area`
+-- 转存表中的数据 sys_area
 --
-INSERT INTO `sys_area` (`id`, `word`, `name`, `parent_id`, `type`, `zipcode`) VALUES
+INSERT INTO sys_area (id, word, name, parent_id, type, zipcode) VALUES
 (1, 'Z', '中国', 0, 1, NULL),
 (110000, 'B', '北京', 1, 2, NULL),
 (110100, 'B', '北京', 110000, 3, 100000),

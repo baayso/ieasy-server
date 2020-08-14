@@ -5,12 +5,12 @@ set names utf8;
 
 SET FOREIGN_KEY_CHECKS = 0; -- 取消外键约束
 
-source common/common_mysql.sql;
-source common/area_mysql.sql;
+source common/common-mysql.sql;
 
-source system/user_mysql.sql;
+source system/sys_area-mysql.sql;
 source system/sys_tenant-mysql.sql;
+-- source system/sys_user-mysql.sql;
 
-source demo/demo_mysql.sql;
+source demo/demo_user-mysql.sql;
 
 source dataway/dataway.sql;
