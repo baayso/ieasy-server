@@ -36,7 +36,7 @@
 
         <!-- 默认枚举处理类，如果配置了该属性，枚举将统一使用指定处理器进行处理 -->
         <setting name="defaultEnumTypeHandler"
-                 value="com.baomidou.mybatisplus.extension.handlers.MybatisEnumTypeHandler"/>
+                 value="com.baomidou.mybatisplus.core.handlers.MybatisEnumTypeHandler"/>
     </settings>
 
     <typeHandlers>

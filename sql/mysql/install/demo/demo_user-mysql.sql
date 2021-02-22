@@ -1,9 +1,5 @@
 
-CREATE DATABASE IF NOT EXISTS ieasy_tenant_1
-    DEFAULT CHARSET utf8mb4
-    COLLATE utf8mb4_unicode_ci;
-
-USE ieasy_tenant_1;
+USE ieasy_server;
 
 -- ----------------------------
 -- Table structure for demo_user

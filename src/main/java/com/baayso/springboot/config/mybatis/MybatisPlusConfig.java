@@ -1,17 +1,18 @@
 package com.baayso.springboot.config.mybatis;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.baayso.springboot.common.mybatis.InsertAndUpdateMetaObjectHandler;
-import com.baomidou.mybatisplus.core.parser.ISqlParser;
-import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
-import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
+import com.baomidou.mybatisplus.annotation.DbType;
+import com.baomidou.mybatisplus.autoconfigure.ConfigurationCustomizer;
+import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.inner.BlockAttackInnerInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.inner.OptimisticLockerInnerInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.inner.TenantLineInnerInterceptor;
 
 /**
  * Mybatis-Plus 配置。
@@ -30,35 +31,38 @@ public class MybatisPlusConfig {
         return new InsertAndUpdateMetaObjectHandler();
     }
 
-    /** 乐观锁插件 */
-    @Bean
-    public OptimisticLockerInterceptor optimisticLockerInterceptor() {
-        return new OptimisticLockerInterceptor();
-    }
-
     /**
-     * mybatis-plus 分页插件
+     * mybatis-plus 插件
      * <p>
-     * 文档： https://mybatis.plus/guide/tenant.html
+     * 文档：https://mp.baomidou.com/guide/interceptor.html
      */
     @Bean
-    public PaginationInterceptor paginationInterceptor() {
+    public MybatisPlusInterceptor mybatisPlusInterceptor() {
+        MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
 
-        // 租户SQL解析器(tenantCode 行级)
-        // TenantSqlParser tenantSqlParser = new TenantSqlParser();
-        // tenantSqlParser.setTenantHandler(new BasicTenantHandler());
+        // 防止全表更新与删除插件
+        interceptor.addInnerInterceptor(new BlockAttackInnerInterceptor());
 
-        // 租户SQL解析器(schema 级)
-        CustomTenantSchemaSqlParser tenantSchemaSqlParser = new CustomTenantSchemaSqlParser();
-        tenantSchemaSqlParser.setTenantSchemaHandler(new BasicTenantSchemaHandler());
+        // 多租户插件
+        TenantLineInnerInterceptor tenantLineInnerInterceptor = new TenantLineInnerInterceptor();
+        // 行级租户SQL解析器
+        tenantLineInnerInterceptor.setTenantLineHandler(new BasicTenantLineHandler());
+        interceptor.addInnerInterceptor(tenantLineInnerInterceptor);
 
-        List<ISqlParser> sqlParserList = new ArrayList<>();
-        sqlParserList.add(tenantSchemaSqlParser);
+        // 分页插件
+        // 如果使用了分页插件注意先 add TenantLineInnerInterceptor 再 add PaginationInnerInterceptor
+        // 用了分页插件必须设置 MybatisConfiguration#useDeprecatedExecutor = false
+        interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.MYSQL));
 
-        PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
-        paginationInterceptor.setSqlParserList(sqlParserList);
+        // 乐观锁插件
+        interceptor.addInnerInterceptor(new OptimisticLockerInnerInterceptor());
 
-        return paginationInterceptor;
+        return interceptor;
+    }
+
+    @Bean
+    public ConfigurationCustomizer configurationCustomizer() {
+        return configuration -> configuration.setUseDeprecatedExecutor(false);
     }
 
 }

@@ -1,10 +1,8 @@
 package com.baayso.springboot.demo.domain.enums;
 
-import java.io.Serializable;
-
 import org.apache.commons.lang3.StringUtils;
 
-import com.baomidou.mybatisplus.core.enums.IEnum;
+import com.baomidou.mybatisplus.annotation.IEnum;
 
 /**
  * 订单状态枚举。
@@ -12,7 +10,7 @@ import com.baomidou.mybatisplus.core.enums.IEnum;
  * @author ChenFangjie (2016/4/27 8:59)
  * @since 1.0.0
  */
-public enum OrderStatus implements IEnum {
+public enum OrderStatus implements IEnum<Integer> {
 
     /* 注意：如果数据库表字段默认值0，则枚举中需要增加一个为0的枚举项 */
 
@@ -124,7 +122,7 @@ public enum OrderStatus implements IEnum {
      * Return the integer value of this code.
      */
     @Override
-    public Serializable getValue() {
+    public Integer getValue() {
         return this.value;
     }
 

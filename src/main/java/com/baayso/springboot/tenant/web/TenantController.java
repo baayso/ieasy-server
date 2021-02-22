@@ -68,7 +68,7 @@ public class TenantController extends CommonController {
      */
     @RequestMapping("/create")
     public Boolean create(@RequestBody @Valid TenantDO tenant) {
-        return this.tenantService.create(tenant);
+        return this.tenantService.save(tenant);
     }
 
     /**
