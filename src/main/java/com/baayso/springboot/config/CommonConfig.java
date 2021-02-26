@@ -12,7 +12,6 @@ import com.baayso.commons.security.password.PasswordEncoder;
 import com.baayso.commons.spring.SpringUtils;
 import com.baayso.commons.utils.Validator;
 import com.baayso.springboot.common.message.ErrorFactory;
-import com.baayso.springboot.config.dataway.I18nProperties;
 
 /**
  * 公共配置。

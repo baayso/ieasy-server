@@ -16,7 +16,6 @@
 * 后端
   * [MyBatis](http://www.mybatis.org/mybatis-3)
   * [MyBatis-Plus](https://gitee.com/baomidou/mybatis-plus)
-  * [Dataway](https://www.hasor.net/web/dataway/index.html)
   * [vjkit](https://github.com/vipshop/vjtools/tree/master/vjkit)
   * [Lombok](https://www.projectlombok.org)
   * [JFinal Enjoy](https://www.jfinal.com/doc/6-1)
@@ -89,8 +88,6 @@
 * http://localhost:8888/api/demo/update?id=7
 * http://localhost:8888/api/demo/hello
 * http://localhost:8888/api/demo/test  测试多租户(schema级)自动在表名前增加schema
-* http://localhost:8888/app/interface-ui/  Dataway 接口管理页面
-* http://localhost:8888/app/api/dataway/test 使用  Dataway 创建的 API
 
 ## Dependencies:
 * https://github.com/baayso/commons

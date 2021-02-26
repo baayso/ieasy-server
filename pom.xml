@@ -88,16 +88,9 @@
             <version>1.0.1.Alpha</version>
         </dependency>
 
-        <!-- DataWay: https://www.hasor.net/web/index.html -->
         <dependency>
-            <groupId>net.hasor</groupId>
-            <artifactId>hasor-spring</artifactId>
-            <version>4.1.6</version>
-        </dependency>
-        <dependency>
-            <groupId>net.hasor</groupId>
-            <artifactId>hasor-dataway</artifactId>
-            <version>4.1.6</version>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
         </dependency>
 
         <!-- GENERAL UTILS begin -->
@@ -278,10 +271,12 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
         </dependency>
+        <!--
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-joda</artifactId>
         </dependency>
+        -->
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
@@ -294,6 +289,12 @@
             <groupId>com.github.fge</groupId>
             <artifactId>json-schema-validator</artifactId>
             <version>2.2.6</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>joda-time</groupId>
+                    <artifactId>joda-time</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <!-- JSON end -->
 

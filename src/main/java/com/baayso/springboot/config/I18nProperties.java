@@ -1,10 +1,9 @@
-package com.baayso.springboot.config.dataway;
+package com.baayso.springboot.config;
 
 import java.util.Collections;
 import java.util.List;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 @ConfigurationProperties(prefix = I18nProperties.I18N_PREFIX)
 public class I18nProperties {
