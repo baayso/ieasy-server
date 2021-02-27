@@ -10,12 +10,14 @@ import lombok.Setter;
 @Setter
 public class LoginResponsePacket extends Packet {
 
+    private Long    userId;
+    private String  username;
     private boolean success;
-
-    private String reason;
+    private String  reason;
 
     @Override
     public Byte getCommand() {
         return Command.LOGIN_RESPONSE;
     }
+
 }

@@ -10,12 +10,14 @@ import lombok.Setter;
 @Setter
 public class MessageRequestPacket extends Packet {
 
-    private String message;
+    private Long   toUserId; // 要发送给哪个用户
+    private String message;  // 具体消息内容
 
     public MessageRequestPacket() {
     }
 
-    public MessageRequestPacket(String message) {
+    public MessageRequestPacket(Long toUserId, String message) {
+        this.toUserId = toUserId;
         this.message = message;
     }
 

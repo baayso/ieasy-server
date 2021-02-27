@@ -4,6 +4,7 @@ import javax.annotation.PreDestroy;
 
 import org.springframework.stereotype.Component;
 
+import com.baayso.springboot.common.utils.ThreadPool;
 import com.baayso.springboot.netty.server.handler.ServerChannelInitializer;
 
 import io.netty.bootstrap.ServerBootstrap;
@@ -23,7 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 public class NettyServer {
 
     private final NioEventLoopGroup boosGroup   = new NioEventLoopGroup(1);
-    private final NioEventLoopGroup workerGroup = new NioEventLoopGroup(4);
+    private final NioEventLoopGroup workerGroup = new NioEventLoopGroup(ThreadPool.AVAILABLE_PROCESSORS);
 
     private final ServerBootstrap serverBootstrap = new ServerBootstrap();
 

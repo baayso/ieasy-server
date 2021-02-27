@@ -10,10 +10,8 @@ import lombok.Setter;
 @Setter
 public class LoginRequestPacket extends Packet {
 
-    private Long userId;
-
+    private Long   userId;
     private String username;
-
     private String password;
 
     @Override

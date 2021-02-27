@@ -10,7 +10,9 @@ import lombok.Setter;
 @Setter
 public class MessageResponsePacket extends Packet {
 
-    private String message;
+    private Long   fromUserId;   // 发送消息的用户标识
+    private String fromUsername; // 发送消息的用户名
+    private String message;      // 消息内容
 
     @Override
     public Byte getCommand() {
