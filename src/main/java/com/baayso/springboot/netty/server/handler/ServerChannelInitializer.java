@@ -1,5 +1,6 @@
 package com.baayso.springboot.netty.server.handler;
 
+import com.baayso.commons.sequence.Sequence;
 import com.baayso.springboot.common.utils.ThreadPool;
 import com.baayso.springboot.netty.codec.PacketDecoder;
 import com.baayso.springboot.netty.codec.PacketEncoder;
@@ -11,6 +12,8 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.util.concurrent.EventExecutorGroup;
 
 public class ServerChannelInitializer extends ChannelInitializer<NioSocketChannel> {
+
+    private final Sequence sequence = new Sequence(0);
 
     private final EventExecutorGroup group = new DefaultEventLoopGroup(ThreadPool.AVAILABLE_PROCESSORS);
 
@@ -25,9 +28,11 @@ public class ServerChannelInitializer extends ChannelInitializer<NioSocketChanne
         ch.pipeline()
                 .addLast(new Spliter())
                 .addLast(new PacketDecoder())
-                .addLast(this.group, new LoginRequestHandler())
+                .addLast(this.group, new LoginRequestHandler(this.sequence))
                 .addLast(this.group, new AuthHandler())
-                .addLast(new MessageRequestHandler());
+                .addLast(this.group, new MessageRequestHandler())
+                .addLast(this.group, new CreateGroupRequestHandler(this.sequence))
+                .addLast(this.group, new LogoutRequestHandler());
     }
 
 }

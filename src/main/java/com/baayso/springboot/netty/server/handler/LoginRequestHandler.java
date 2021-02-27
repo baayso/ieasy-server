@@ -16,7 +16,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class LoginRequestHandler extends SimpleChannelInboundHandler<LoginRequestPacket> {
 
-    private final Sequence sequence = new Sequence(0);
+    private final Sequence sequence;
+
+    public LoginRequestHandler(Sequence sequence) {
+        this.sequence = sequence;
+    }
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, LoginRequestPacket request) {
@@ -54,10 +58,12 @@ public class LoginRequestHandler extends SimpleChannelInboundHandler<LoginReques
         Channel channel = ctx.channel();
 
         Session session = SessionUtils.getSession(channel);
-        log.info("【{}】下线", session.getUsername());
+        if (session != null) {
+            log.info("【{}】下线", session.getUsername());
 
-        // 用户下线之后取消绑定
-        SessionUtils.unbind(channel);
+            // 用户下线之后取消绑定
+            SessionUtils.unbind(channel);
+        }
     }
 
     private boolean valid(LoginRequestPacket request) {

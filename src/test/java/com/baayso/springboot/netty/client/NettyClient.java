@@ -1,14 +1,13 @@
 package com.baayso.springboot.netty.client;
 
 import java.util.Scanner;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import com.baayso.commons.utils.DateTimeUtils;
 import com.baayso.springboot.common.utils.ThreadPool;
+import com.baayso.springboot.netty.client.console.ConsoleCommandManager;
+import com.baayso.springboot.netty.client.console.LoginConsoleCommand;
 import com.baayso.springboot.netty.client.handler.ClientChannelInitializer;
-import com.baayso.springboot.netty.protocol.request.LoginRequestPacket;
-import com.baayso.springboot.netty.protocol.request.MessageRequestPacket;
 import com.baayso.springboot.netty.utils.SessionUtils;
 
 import io.netty.bootstrap.Bootstrap;
@@ -24,10 +23,8 @@ public class NettyClient {
     private static final int    PORT      = 8000;
     private static final int    MAX_RETRY = 5;
 
-    private static final ExecutorService THREAD_POOL = ThreadPool.newThreadPool();
-
     public static void main(String[] args) {
-        NioEventLoopGroup workerGroup = new NioEventLoopGroup();
+        NioEventLoopGroup workerGroup = new NioEventLoopGroup(ThreadPool.AVAILABLE_PROCESSORS);
 
         Bootstrap bootstrap = new Bootstrap();
         bootstrap
@@ -66,41 +63,20 @@ public class NettyClient {
     }
 
     private static void startConsoleThread(Channel channel) {
-        Scanner sc = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
+        ConsoleCommandManager consoleCommandManager = new ConsoleCommandManager();
+        LoginConsoleCommand loginConsoleCommand = new LoginConsoleCommand();
 
-        THREAD_POOL.execute(() -> {
+        new Thread(() -> {
             while (!Thread.interrupted()) {
                 if (!SessionUtils.hasLogin(channel)) {
-                    System.out.println("请输入用户名：");
-                    String username = sc.nextLine();
-                    System.out.println("请输入密码：");
-                    String password = sc.nextLine();
-
-                    LoginRequestPacket request = new LoginRequestPacket();
-                    request.setUsername(username);
-                    request.setPassword(password);
-
-                    channel.writeAndFlush(request);
-
-                    waitForLoginResponse();
+                    loginConsoleCommand.exec(scanner, channel);
                 }
                 else {
-                    Long toUserId = Long.valueOf(sc.next());
-                    String message = sc.next();
-
-                    channel.writeAndFlush(new MessageRequestPacket(toUserId, message));
+                    consoleCommandManager.exec(scanner, channel);
                 }
             }
-        });
-    }
-
-    private static void waitForLoginResponse() {
-        try {
-            TimeUnit.SECONDS.sleep(1L);
-        }
-        catch (InterruptedException e) {
-            // ignore
-        }
+        }).start();
     }
 
 }
