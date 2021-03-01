@@ -5,13 +5,19 @@ import java.util.Map;
 
 import com.baayso.springboot.netty.protocol.command.Command;
 import com.baayso.springboot.netty.protocol.request.CreateGroupRequestPacket;
+import com.baayso.springboot.netty.protocol.request.JoinGroupRequestPacket;
+import com.baayso.springboot.netty.protocol.request.ListGroupMembersRequestPacket;
 import com.baayso.springboot.netty.protocol.request.LoginRequestPacket;
 import com.baayso.springboot.netty.protocol.request.LogoutRequestPacket;
 import com.baayso.springboot.netty.protocol.request.MessageRequestPacket;
+import com.baayso.springboot.netty.protocol.request.QuitGroupRequestPacket;
 import com.baayso.springboot.netty.protocol.response.CreateGroupResponsePacket;
+import com.baayso.springboot.netty.protocol.response.JoinGroupResponsePacket;
+import com.baayso.springboot.netty.protocol.response.ListGroupMembersResponsePacket;
 import com.baayso.springboot.netty.protocol.response.LoginResponsePacket;
 import com.baayso.springboot.netty.protocol.response.LogoutResponsePacket;
 import com.baayso.springboot.netty.protocol.response.MessageResponsePacket;
+import com.baayso.springboot.netty.protocol.response.QuitGroupResponsePacket;
 import com.baayso.springboot.netty.serialize.Serializer;
 import com.baayso.springboot.netty.serialize.impl.JSONSerializer;
 
@@ -46,6 +52,12 @@ public class PacketCodeC {
         this.packetTypeMap.put(Command.LOGOUT_RESPONSE, LogoutResponsePacket.class);
         this.packetTypeMap.put(Command.CREATE_GROUP_REQUEST, CreateGroupRequestPacket.class);
         this.packetTypeMap.put(Command.CREATE_GROUP_RESPONSE, CreateGroupResponsePacket.class);
+        this.packetTypeMap.put(Command.LIST_GROUP_MEMBERS_REQUEST, ListGroupMembersRequestPacket.class);
+        this.packetTypeMap.put(Command.LIST_GROUP_MEMBERS_RESPONSE, ListGroupMembersResponsePacket.class);
+        this.packetTypeMap.put(Command.JOIN_GROUP_REQUEST, JoinGroupRequestPacket.class);
+        this.packetTypeMap.put(Command.JOIN_GROUP_RESPONSE, JoinGroupResponsePacket.class);
+        this.packetTypeMap.put(Command.QUIT_GROUP_REQUEST, QuitGroupRequestPacket.class);
+        this.packetTypeMap.put(Command.QUIT_GROUP_RESPONSE, QuitGroupResponsePacket.class);
 
         this.serializerMap = new HashMap<>();
         Serializer serializer = new JSONSerializer();
@@ -85,8 +97,8 @@ public class PacketCodeC {
         byte[] bytes = new byte[length];
         byteBuf.readBytes(bytes);
 
-        Class<? extends Packet> requestType = getRequestType(command);
-        Serializer serializer = getSerializer(serializeAlgorithm);
+        Class<? extends Packet> requestType = this.getRequestType(command);
+        Serializer serializer = this.getSerializer(serializeAlgorithm);
 
         if (requestType != null && serializer != null) {
             return serializer.deserialize(requestType, bytes);

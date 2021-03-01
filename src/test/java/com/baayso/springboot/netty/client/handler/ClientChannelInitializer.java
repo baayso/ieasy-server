@@ -23,6 +23,9 @@ public class ClientChannelInitializer extends ChannelInitializer<NioSocketChanne
                 .addLast(new LoginResponseHandler())
                 .addLast(new MessageResponseHandler())
                 .addLast(new CreateGroupResponseHandler())
+                .addLast(new ListGroupMembersResponseHandler())
+                .addLast(new JoinGroupResponseHandler())
+                .addLast(new QuitGroupResponseHandler())
                 .addLast(new LogoutResponseHandler());
     }
 

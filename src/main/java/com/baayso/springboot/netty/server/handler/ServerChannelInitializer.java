@@ -32,6 +32,9 @@ public class ServerChannelInitializer extends ChannelInitializer<NioSocketChanne
                 .addLast(this.group, new AuthHandler())
                 .addLast(this.group, new MessageRequestHandler())
                 .addLast(this.group, new CreateGroupRequestHandler(this.sequence))
+                .addLast(this.group, new ListGroupMembersRequestHandler())
+                .addLast(this.group, new JoinGroupRequestHandler())
+                .addLast(this.group, new QuitGroupRequestHandler())
                 .addLast(this.group, new LogoutRequestHandler());
     }
 

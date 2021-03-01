@@ -26,7 +26,7 @@ public class CreateGroupRequestHandler extends SimpleChannelInboundHandler<Creat
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, CreateGroupRequestPacket request) {
-        // 1. 创建一个channel分组
+        // 1. 创建一个 channel 分组
         ChannelGroup channelGroup = new DefaultChannelGroup(ctx.executor());
 
         // 2. 筛选出待加入群聊的用户的 channel 和 username
@@ -40,14 +40,18 @@ public class CreateGroupRequestHandler extends SimpleChannelInboundHandler<Creat
             }
         }
 
-        // 3. 创建群聊创建结果的响应
+        // 3. 构建群聊创建结果的响应
+        Long groupId = this.sequence.nextId();
         CreateGroupResponsePacket response = new CreateGroupResponsePacket();
         response.setSuccess(true);
-        response.setGroupId(this.sequence.nextId());
+        response.setGroupId(groupId);
         response.setUsernames(usernames);
 
         // 4. 给每个客户端发送拉群通知
         channelGroup.writeAndFlush(response);
+
+        // 5. 保存群组相关的信息
+        SessionUtils.bindChannelGroup(groupId, channelGroup);
 
         log.info("群创建成功，群ID为：{}，群里包含的用户有：{}", response.getGroupId(), response.getUsernames());
     }
