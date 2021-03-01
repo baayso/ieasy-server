@@ -1,7 +1,7 @@
 package com.baayso.springboot.netty.codec;
 
 import com.baayso.springboot.netty.protocol.Packet;
-import com.baayso.springboot.netty.protocol.PacketCodeC;
+import com.baayso.springboot.netty.protocol.PacketCodec;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
@@ -17,7 +17,7 @@ public class PacketEncoder extends MessageToByteEncoder<Packet> {
 
     @Override
     protected void encode(ChannelHandlerContext ctx, Packet msg, ByteBuf out) throws Exception {
-        PacketCodeC.INSTANCE.encode(out, msg);
+        PacketCodec.INSTANCE.encode(out, msg);
     }
 
 }

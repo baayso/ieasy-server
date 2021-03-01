@@ -28,6 +28,12 @@ public class NettyServer {
 
     private final ServerBootstrap serverBootstrap = new ServerBootstrap();
 
+    private final ServerChannelInitializer serverChannelInitializer;
+
+    public NettyServer(ServerChannelInitializer serverChannelInitializer) {
+        this.serverChannelInitializer = serverChannelInitializer;
+    }
+
     /**
      * 关闭服务。
      */
@@ -50,7 +56,7 @@ public class NettyServer {
                 .option(ChannelOption.SO_BACKLOG, 1024)
                 .childOption(ChannelOption.SO_KEEPALIVE, true)
                 .childOption(ChannelOption.TCP_NODELAY, true)
-                .childHandler(new ServerChannelInitializer());
+                .childHandler(this.serverChannelInitializer);
 
         this.bind(this.serverBootstrap, 8000);
     }

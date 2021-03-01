@@ -1,12 +1,17 @@
 package com.baayso.springboot.netty.server.handler;
 
+import org.springframework.stereotype.Component;
+
 import com.baayso.springboot.netty.utils.SessionUtils;
 
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+@Component
+@ChannelHandler.Sharable
 public class AuthHandler extends ChannelInboundHandlerAdapter {
 
     @Override

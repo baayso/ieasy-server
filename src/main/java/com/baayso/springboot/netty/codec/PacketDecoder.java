@@ -2,7 +2,7 @@ package com.baayso.springboot.netty.codec;
 
 import java.util.List;
 
-import com.baayso.springboot.netty.protocol.PacketCodeC;
+import com.baayso.springboot.netty.protocol.PacketCodec;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
@@ -18,7 +18,7 @@ public class PacketDecoder extends ByteToMessageDecoder {
 
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
-        out.add(PacketCodeC.INSTANCE.decode(in));
+        out.add(PacketCodec.INSTANCE.decode(in));
     }
 
 }

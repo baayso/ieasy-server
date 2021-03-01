@@ -34,9 +34,9 @@ import io.netty.buffer.ByteBuf;
  * +--------------+---------+-------------------------+---------+-------------+----------------+
  * </pre>
  */
-public class PacketCodeC {
+public class PacketCodec {
 
-    public static final PacketCodeC INSTANCE = new PacketCodeC();
+    public static final PacketCodec INSTANCE = new PacketCodec();
 
     public static final int MAGIC_NUMBER = 0x19491001;
 
@@ -44,7 +44,7 @@ public class PacketCodeC {
     private final Map<Byte, Serializer>              serializerMap;
 
 
-    private PacketCodeC() {
+    private PacketCodec() {
         this.packetTypeMap = new HashMap<>();
         this.packetTypeMap.put(Command.LOGIN_REQUEST, LoginRequestPacket.class);
         this.packetTypeMap.put(Command.LOGIN_RESPONSE, LoginResponsePacket.class);

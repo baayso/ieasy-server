@@ -9,6 +9,7 @@ import org.springframework.web.client.RestTemplate;
 import com.baayso.commons.security.AESCoder;
 import com.baayso.commons.security.password.BCryptPasswordEncoder;
 import com.baayso.commons.security.password.PasswordEncoder;
+import com.baayso.commons.sequence.Sequence;
 import com.baayso.commons.spring.SpringUtils;
 import com.baayso.commons.utils.Validator;
 import com.baayso.springboot.common.message.ErrorFactory;
@@ -51,6 +52,11 @@ public class CommonConfig {
     @Bean
     public Validator validator() {
         return new Validator();
+    }
+
+    @Bean
+    public Sequence sequence() {
+        return new Sequence(0);
     }
 
 }
