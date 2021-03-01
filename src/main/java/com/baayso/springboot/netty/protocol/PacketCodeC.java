@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.baayso.springboot.netty.protocol.command.Command;
 import com.baayso.springboot.netty.protocol.request.CreateGroupRequestPacket;
+import com.baayso.springboot.netty.protocol.request.GroupMessageRequestPacket;
 import com.baayso.springboot.netty.protocol.request.JoinGroupRequestPacket;
 import com.baayso.springboot.netty.protocol.request.ListGroupMembersRequestPacket;
 import com.baayso.springboot.netty.protocol.request.LoginRequestPacket;
@@ -12,6 +13,7 @@ import com.baayso.springboot.netty.protocol.request.LogoutRequestPacket;
 import com.baayso.springboot.netty.protocol.request.MessageRequestPacket;
 import com.baayso.springboot.netty.protocol.request.QuitGroupRequestPacket;
 import com.baayso.springboot.netty.protocol.response.CreateGroupResponsePacket;
+import com.baayso.springboot.netty.protocol.response.GroupMessageResponsePacket;
 import com.baayso.springboot.netty.protocol.response.JoinGroupResponsePacket;
 import com.baayso.springboot.netty.protocol.response.ListGroupMembersResponsePacket;
 import com.baayso.springboot.netty.protocol.response.LoginResponsePacket;
@@ -58,6 +60,8 @@ public class PacketCodeC {
         this.packetTypeMap.put(Command.JOIN_GROUP_RESPONSE, JoinGroupResponsePacket.class);
         this.packetTypeMap.put(Command.QUIT_GROUP_REQUEST, QuitGroupRequestPacket.class);
         this.packetTypeMap.put(Command.QUIT_GROUP_RESPONSE, QuitGroupResponsePacket.class);
+        this.packetTypeMap.put(Command.GROUP_MESSAGE_REQUEST, GroupMessageRequestPacket.class);
+        this.packetTypeMap.put(Command.GROUP_MESSAGE_RESPONSE, GroupMessageResponsePacket.class);
 
         this.serializerMap = new HashMap<>();
         Serializer serializer = new JSONSerializer();
