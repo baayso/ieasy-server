@@ -15,7 +15,7 @@ public class CreateGroupRequestPacket extends Packet {
     private List<Long> userIds;
 
     @Override
-    public Byte getCommand() {
+    public byte getCommand() {
         return Command.CREATE_GROUP_REQUEST;
     }
 

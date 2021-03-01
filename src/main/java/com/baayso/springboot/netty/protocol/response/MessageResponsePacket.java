@@ -15,7 +15,7 @@ public class MessageResponsePacket extends Packet {
     private String message;      // 消息内容
 
     @Override
-    public Byte getCommand() {
+    public byte getCommand() {
         return Command.MESSAGE_RESPONSE;
     }
 

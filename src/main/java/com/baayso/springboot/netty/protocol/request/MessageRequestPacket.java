@@ -22,7 +22,7 @@ public class MessageRequestPacket extends Packet {
     }
 
     @Override
-    public Byte getCommand() {
+    public byte getCommand() {
         return Command.MESSAGE_REQUEST;
     }
 

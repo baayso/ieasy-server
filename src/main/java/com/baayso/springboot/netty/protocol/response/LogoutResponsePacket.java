@@ -14,7 +14,7 @@ public class LogoutResponsePacket extends Packet {
     private String  reason;
 
     @Override
-    public Byte getCommand() {
+    public byte getCommand() {
         return Command.LOGOUT_RESPONSE;
     }
 

@@ -17,7 +17,7 @@ public class CreateGroupResponsePacket extends Packet {
     private List<String> usernames;
 
     @Override
-    public Byte getCommand() {
+    public byte getCommand() {
         return Command.CREATE_GROUP_RESPONSE;
     }
 

@@ -13,9 +13,9 @@ public abstract class Packet {
      * 协议版本
      */
     @JsonIgnore
-    private Byte version = 1;
+    private byte version = 1;
 
     @JsonIgnore
-    public abstract Byte getCommand();
+    public abstract byte getCommand();
 
 }

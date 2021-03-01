@@ -22,7 +22,7 @@ public class GroupMessageRequestPacket extends Packet {
     }
 
     @Override
-    public Byte getCommand() {
+    public byte getCommand() {
         return Command.GROUP_MESSAGE_REQUEST;
     }
 

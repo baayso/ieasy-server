@@ -13,7 +13,7 @@ public class JoinGroupRequestPacket extends Packet {
     private Long groupId;
 
     @Override
-    public Byte getCommand() {
+    public byte getCommand() {
         return Command.JOIN_GROUP_REQUEST;
     }
 

@@ -17,7 +17,7 @@ public class ListGroupMembersResponsePacket extends Packet {
     private List<Session> sessions;
 
     @Override
-    public Byte getCommand() {
+    public byte getCommand() {
         return Command.LIST_GROUP_MEMBERS_RESPONSE;
     }
 

@@ -16,7 +16,7 @@ public class LoginResponsePacket extends Packet {
     private String  reason;
 
     @Override
-    public Byte getCommand() {
+    public byte getCommand() {
         return Command.LOGIN_RESPONSE;
     }
 

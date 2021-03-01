@@ -11,7 +11,7 @@ import lombok.Setter;
 public class LogoutRequestPacket extends Packet {
 
     @Override
-    public Byte getCommand() {
+    public byte getCommand() {
         return Command.LOGOUT_REQUEST;
     }
 

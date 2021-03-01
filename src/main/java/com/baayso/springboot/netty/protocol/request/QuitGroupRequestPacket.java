@@ -13,7 +13,7 @@ public class QuitGroupRequestPacket extends Packet {
     private Long groupId;
 
     @Override
-    public Byte getCommand() {
+    public byte getCommand() {
         return Command.QUIT_GROUP_REQUEST;
     }
 
