@@ -6,6 +6,7 @@ import com.baayso.commons.sequence.Sequence;
 import com.baayso.springboot.common.utils.ThreadPool;
 import com.baayso.springboot.netty.codec.PacketCodecHandler;
 import com.baayso.springboot.netty.codec.Spliter;
+import com.baayso.springboot.netty.common.handler.IMIdleStateHandler;
 
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.DefaultEventLoopGroup;
@@ -30,8 +31,10 @@ public class ServerChannelInitializer extends ChannelInitializer<NioSocketChanne
     @Override
     protected void initChannel(NioSocketChannel ch) {
         ch.pipeline()
+                .addLast(new IMIdleStateHandler())
                 .addLast(new Spliter())
                 .addLast(PacketCodecHandler.INSTANCE)
+                .addLast(HeartBeatRequestHandler.INSTANCE)
                 .addLast(this.group, new LoginRequestHandler(this.sequence))
                 .addLast(this.group, this.authHandler)
                 .addLast(this.group, this.imServiceHandler);
