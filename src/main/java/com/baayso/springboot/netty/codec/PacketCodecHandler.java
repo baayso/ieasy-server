@@ -22,6 +22,7 @@ public class PacketCodecHandler extends MessageToMessageCodec<ByteBuf, Packet> {
 
     @Override
     protected void encode(ChannelHandlerContext ctx, Packet msg, List<Object> out) {
+        // ioBuffer()方法会返回适配IO读写相关的内存，它会尽可能创建一个直接内存
         ByteBuf byteBuf = ctx.channel().alloc().ioBuffer();
         PacketCodec.INSTANCE.encode(byteBuf, msg);
         out.add(byteBuf);

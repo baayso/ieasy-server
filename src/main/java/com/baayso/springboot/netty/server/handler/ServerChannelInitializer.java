@@ -3,26 +3,28 @@ package com.baayso.springboot.netty.server.handler;
 import org.springframework.stereotype.Component;
 
 import com.baayso.commons.sequence.Sequence;
-import com.baayso.springboot.common.utils.ThreadPool;
 import com.baayso.springboot.netty.codec.PacketCodecHandler;
 import com.baayso.springboot.netty.codec.Spliter;
 import com.baayso.springboot.netty.common.handler.IMIdleStateHandler;
 
 import io.netty.channel.ChannelInitializer;
-import io.netty.channel.DefaultEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import io.netty.util.NettyRuntime;
 import io.netty.util.concurrent.EventExecutorGroup;
+import io.netty.util.concurrent.UnorderedThreadPoolEventExecutor;
 
 @Component
 public class ServerChannelInitializer extends ChannelInitializer<NioSocketChannel> {
 
-    private final EventExecutorGroup group = new DefaultEventLoopGroup(ThreadPool.AVAILABLE_PROCESSORS);
+    private static final EventExecutorGroup EXECUTOR_GROUP = new UnorderedThreadPoolEventExecutor(NettyRuntime.availableProcessors());
 
     private final Sequence         sequence;
     private final AuthHandler      authHandler;
     private final IMServiceHandler imServiceHandler;
 
-    public ServerChannelInitializer(Sequence sequence, AuthHandler authHandler, IMServiceHandler imServiceHandler) {
+    public ServerChannelInitializer(Sequence sequence,
+                                    AuthHandler authHandler,
+                                    IMServiceHandler imServiceHandler) {
         this.sequence = sequence;
         this.authHandler = authHandler;
         this.imServiceHandler = imServiceHandler;
@@ -35,9 +37,9 @@ public class ServerChannelInitializer extends ChannelInitializer<NioSocketChanne
                 .addLast(new Spliter())
                 .addLast(PacketCodecHandler.INSTANCE)
                 .addLast(HeartBeatRequestHandler.INSTANCE)
-                .addLast(this.group, new LoginRequestHandler(this.sequence))
-                .addLast(this.group, this.authHandler)
-                .addLast(this.group, this.imServiceHandler);
+                .addLast(EXECUTOR_GROUP, new LoginRequestHandler(this.sequence))
+                .addLast(EXECUTOR_GROUP, this.authHandler)
+                .addLast(EXECUTOR_GROUP, this.imServiceHandler);
     }
 
 }

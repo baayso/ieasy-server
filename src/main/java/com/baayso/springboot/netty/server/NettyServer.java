@@ -4,13 +4,14 @@ import javax.annotation.PreDestroy;
 
 import org.springframework.stereotype.Component;
 
-import com.baayso.springboot.common.utils.ThreadPool;
 import com.baayso.springboot.netty.server.handler.ServerChannelInitializer;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.util.NettyRuntime;
+import io.netty.util.concurrent.DefaultThreadFactory;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -23,8 +24,8 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 public class NettyServer {
 
-    private final NioEventLoopGroup boosGroup   = new NioEventLoopGroup(1);
-    private final NioEventLoopGroup workerGroup = new NioEventLoopGroup(ThreadPool.AVAILABLE_PROCESSORS);
+    private final NioEventLoopGroup bossGroup   = new NioEventLoopGroup(1, new DefaultThreadFactory("boss"));
+    private final NioEventLoopGroup workerGroup = new NioEventLoopGroup(NettyRuntime.availableProcessors(), new DefaultThreadFactory("worker"));
 
     private final ServerBootstrap serverBootstrap = new ServerBootstrap();
 
@@ -41,7 +42,7 @@ public class NettyServer {
     public void close() {
         log.info(">>>>>>>>>>>>>>> 关闭Netty服务 <<<<<<<<<<<<<");
         // 优雅退出
-        this.boosGroup.shutdownGracefully();
+        this.bossGroup.shutdownGracefully();
         this.workerGroup.shutdownGracefully();
     }
 
@@ -51,7 +52,7 @@ public class NettyServer {
     public void start() {
         log.info(">>>>>>>>>>>>>>> 启动Netty服务 <<<<<<<<<<<<<");
         this.serverBootstrap
-                .group(this.boosGroup, this.workerGroup)
+                .group(this.bossGroup, this.workerGroup)
                 .channel(NioServerSocketChannel.class)
                 .option(ChannelOption.SO_BACKLOG, 1024)
                 .childOption(ChannelOption.SO_KEEPALIVE, true)
