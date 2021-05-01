@@ -27,7 +27,7 @@ spring:
                 max-idle: 10
                 max-wait: -1ms
                 min-idle: 0
-        timeout: 0ms
+        timeout: 5000ms
     datasource:
         url: jdbc:mysql://192.168.1.222:3306/ieasy_server?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
         username: root

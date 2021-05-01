@@ -8,8 +8,8 @@ import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
-import org.springframework.boot.autoconfigure.web.ResourceProperties;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
+import org.springframework.boot.autoconfigure.web.WebProperties;
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
 import org.springframework.boot.autoconfigure.web.servlet.error.ErrorViewResolver;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -31,7 +31,7 @@ import com.baayso.springboot.common.controller.CustomBasicErrorController;
 @ConditionalOnWebApplication
 @ConditionalOnClass({Servlet.class, DispatcherServlet.class})
 @AutoConfigureBefore(WebMvcAutoConfiguration.class)
-@EnableConfigurationProperties(ResourceProperties.class)
+@EnableConfigurationProperties(WebProperties.class)
 public class ErrorControllerConfig {
 
     private final ServerProperties        serverProperties;

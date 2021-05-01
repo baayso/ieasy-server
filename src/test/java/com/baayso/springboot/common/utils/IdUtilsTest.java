@@ -1,8 +1,8 @@
 package com.baayso.springboot.common.utils;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test class for {@link IdUtils}.
@@ -12,11 +12,11 @@ import org.junit.Test;
  */
 public class IdUtilsTest {
 
-    @Before
+    @BeforeAll
     public void setUp() throws Exception {
     }
 
-    @After
+    @AfterAll
     public void tearDown() throws Exception {
     }
 

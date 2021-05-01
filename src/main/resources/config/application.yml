@@ -77,6 +77,11 @@ spring:
         cache: false
         request-context-attribute: request
         template-loader-path: classpath:/templates/
+#    security:
+#        user:
+#            name: baayso
+#            password: baayso
+#            roles: admin
 
 mybatis-plus:
     config-location: classpath:config/mybatis-config.xml

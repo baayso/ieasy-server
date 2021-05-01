@@ -1,5 +1,8 @@
 package com.baayso.springboot.config;
 
+import java.io.Serializable;
+
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -18,6 +21,7 @@ import com.baayso.commons.serialize.redis.CustomSerializationRedisSerializer;
 public class RedisConfig {
 
     @Bean
+    @ConditionalOnMissingBean(StringRedisTemplate.class)
     public StringRedisTemplate stringRedisTemplate(RedisConnectionFactory factory) {
         StringRedisTemplate template = new StringRedisTemplate(factory);
         template.afterPropertiesSet();
@@ -26,8 +30,9 @@ public class RedisConfig {
     }
 
     @Bean
-    public RedisTemplate redisTemplate(RedisConnectionFactory factory) {
-        RedisTemplate template = new RedisTemplate();
+    @ConditionalOnMissingBean(name = "redisTemplate")
+    public RedisTemplate<String, Serializable> redisTemplate(RedisConnectionFactory factory) {
+        RedisTemplate<String, Serializable> template = new RedisTemplate<>();
         template.setConnectionFactory(factory);
         template.setKeySerializer(template.getStringSerializer());
         template.setHashKeySerializer(template.getStringSerializer());

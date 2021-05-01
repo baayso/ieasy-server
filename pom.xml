@@ -61,10 +61,10 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <kotlin.compiler.incremental>true</kotlin.compiler.incremental>
         <poi.version>4.1.2</poi.version>
-        <easypoi.version>4.2.0</easypoi.version>
-        <druid.version>1.1.23</druid.version>
+        <easypoi.version>4.3.0</easypoi.version>
+        <druid.version>1.2.6</druid.version>
         <mybatis-plus.version>3.4.2</mybatis-plus.version>
-        <spring-boot.version>2.3.7.RELEASE</spring-boot.version>
+        <spring-boot.version>2.4.5</spring-boot.version>
     </properties>
 
     <dependencyManagement>
@@ -76,6 +76,16 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+            <!--
+            <dependency>
+                <groupId>org.springframework.session</groupId>
+                <artifactId>spring-session-bom</artifactId>
+                <version>2020.0.3</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            -->
         </dependencies>
     </dependencyManagement>
 
@@ -91,6 +101,12 @@
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.whvcse</groupId>
+            <artifactId>easy-captcha</artifactId>
+            <version>1.6.2</version>
         </dependency>
 
         <!-- GENERAL UTILS begin -->
@@ -130,7 +146,7 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>29.0-jre</version>
+            <version>30.1.1-jre</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -342,6 +358,18 @@
 
         <!--
         <dependency>
+            <groupId>org.springframework.session</groupId>
+            <artifactId>spring-session-data-redis</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        -->
+
+        <!--
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-cache</artifactId>
         </dependency>
@@ -379,7 +407,7 @@
         <dependency>
             <groupId>com.jfinal</groupId>
             <artifactId>enjoy</artifactId>
-            <version>4.8</version>
+            <version>4.9.10</version>
         </dependency>
 
         <dependency>
