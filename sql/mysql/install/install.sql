@@ -1,4 +1,4 @@
-set names utf8;
+set names utf8mb4;
 
 -- SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 -- SET time_zone = "+00:00";

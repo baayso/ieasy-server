@@ -30,9 +30,6 @@
 1. git clone https://github.com/baayso/ieasy-server.git
 2. 安装 MySQL 5.5+
 3. 执行 [SQL 脚本](https://github.com/baayso/ieasy-server/tree/master/sql/mysql/install)
-   > * 注：默认创建的数据库有两个，分别为：[**ieasy_server**](https://github.com/baayso/ieasy-server/blob/master/sql/mysql/install/common/common_mysql.sql) 和 [**ieasy_tenant_1**](https://github.com/baayso/ieasy-server/blob/master/sql/mysql/install/demo/demo_mysql.sql)  
-   > * **ieasy_server** 为主数据库(默认连接的数据库)，存储系统数据及所有租户共享的数据。  
-   > * **ieasy_tenant_1** 为`测试租户`的数据库，存储租户的专有数据。每一个租户都有其专有的数据库，既新增一个租户时会为其单独创建一个数据库。  
    * Windows  
      **`sql\mysql\install\install.bat`**  
      > 注：根据提示输入数据库的 ip、port、username

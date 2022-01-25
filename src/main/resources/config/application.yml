@@ -35,8 +35,7 @@ logging:
 
 management:
     server:
-        servlet:
-            context-path: /management
+        base-path: /management
         port: ${server.port}
     endpoints:
         web:

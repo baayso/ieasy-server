@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.baayso.springboot.common.mybatis.InsertAndUpdateMetaObjectHandler;
 import com.baomidou.mybatisplus.annotation.DbType;
-import com.baomidou.mybatisplus.autoconfigure.ConfigurationCustomizer;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.BlockAttackInnerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.OptimisticLockerInnerInterceptor;
@@ -34,7 +33,13 @@ public class MybatisPlusConfig {
     /**
      * mybatis-plus 插件
      * <p>
-     * 文档：https://mp.baomidou.com/guide/interceptor.html
+     * 文档：https://baomidou.com/pages/2976a3/
+     * <p>
+     * 使用多个功能需要注意顺序关系,建议使用如下顺序<br>
+     * 1) 多租户,动态表名<br>
+     * 2) 分页,乐观锁<br>
+     * 3) sql 性能规范,防止全表更新与删除<br>
+     * 总结: 对 sql 进行单次改造的优先放入,不对 sql 进行改造的最后放入
      */
     @Bean
     public MybatisPlusInterceptor mybatisPlusInterceptor() {
@@ -51,18 +56,12 @@ public class MybatisPlusConfig {
 
         // 分页插件
         // 如果使用了分页插件注意先 add TenantLineInnerInterceptor 再 add PaginationInnerInterceptor
-        // 用了分页插件必须设置 MybatisConfiguration#useDeprecatedExecutor = false
         interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.MYSQL));
 
         // 乐观锁插件
         interceptor.addInnerInterceptor(new OptimisticLockerInnerInterceptor());
 
         return interceptor;
-    }
-
-    @Bean
-    public ConfigurationCustomizer configurationCustomizer() {
-        return configuration -> configuration.setUseDeprecatedExecutor(false);
     }
 
 }

@@ -14,7 +14,7 @@ set CURRENT_PATH=%cd%
 
 cd %CURRENT_PATH%\sql\mysql\install
 
-mysql --host=%server% --port=%port% --user=%username% --password < %CURRENT_PATH%\sql\mysql\install\install.sql
+mysql --host=%server% --port=%port% --user=%username% --default-character-set=utf8mb4 --password < %CURRENT_PATH%\sql\mysql\install\install.sql
 
 cd %CURRENT_PATH%
 
