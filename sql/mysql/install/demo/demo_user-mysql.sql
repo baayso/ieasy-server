@@ -14,9 +14,9 @@ CREATE TABLE demo_user (
     intro           TEXT                                    DEFAULT NULL                COMMENT '简介',
     version         INT             UNSIGNED                DEFAULT 0                   COMMENT '乐观锁',
     deleted         BOOLEAN                                 DEFAULT FALSE               COMMENT '是否删除',
-    create_by       VARCHAR(100)                                                        COMMENT '记录创建人',
+    creator         VARCHAR(100)                                                        COMMENT '记录创建人',
     create_time     DATETIME                                                            COMMENT '记录创建时间',
-    update_by       VARCHAR(100)                                                        COMMENT '记录修改人',
+    updater         VARCHAR(100)                                                        COMMENT '记录修改人',
     update_time     DATETIME                                                            COMMENT '记录修改时间',
     PRIMARY KEY (id)
 ) COMMENT '测试';

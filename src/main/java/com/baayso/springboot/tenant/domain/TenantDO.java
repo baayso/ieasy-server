@@ -44,14 +44,15 @@ public class TenantDO extends BaseDO {
     @TableLogic
     private Boolean deleted;
 
+
     public TenantDO() {
     }
 
     @Builder
     public TenantDO(String code, String name, Integer type, String remark, Boolean disabled, Boolean deleted,
-                    Long id, String createBy, LocalDateTime createTime, String updateBy, LocalDateTime updateTime) {
+                    Long id, String creator, LocalDateTime createTime, String updater, LocalDateTime updateTime) {
 
-        super(id, createBy, createTime, updateBy, updateTime);
+        super(id, creator, createTime, updater, updateTime);
 
         this.code = code;
         this.name = name;

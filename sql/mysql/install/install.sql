@@ -12,5 +12,3 @@ source system/sys_tenant-mysql.sql;
 -- source system/sys_user-mysql.sql;
 
 source demo/demo_user-mysql.sql;
-
-source dataway/dataway.sql;

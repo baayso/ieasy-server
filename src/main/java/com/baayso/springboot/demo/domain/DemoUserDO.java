@@ -62,11 +62,11 @@ public class DemoUserDO extends BaseDO {
 
 
     @Builder
-    public DemoUserDO(Long id, String createBy, LocalDateTime createTime, String updateBy, LocalDateTime updateTime,
+    public DemoUserDO(Long id, String creator, LocalDateTime createTime, String updater, LocalDateTime updateTime,
                       String tenantCode, String name, Integer age, OrderStatus status, String intro, Integer version, Boolean deleted,
                       LocalDateTime datetime) {
 
-        super(id, createBy, createTime, updateBy, updateTime);
+        super(id, creator, createTime, updater, updateTime);
 
         this.tenantCode = tenantCode;
         this.name = name;

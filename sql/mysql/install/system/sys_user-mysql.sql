@@ -18,9 +18,9 @@ create table user
     locked               boolean default FALSE comment '是否已锁定',
     disabled             boolean default FALSE comment '是否已禁用',
     deleted              boolean default FALSE comment '是否已删除',
-    create_by            varchar(100) comment '记录创建人',
+    creator              varchar(100) comment '记录创建人',
     create_time          datetime comment '记录创建时间',
-    update_by            varchar(100) comment '记录修改人',
+    updater              varchar(100) comment '记录修改人',
     update_time          datetime comment '记录修改时间',
     primary key (id)
 ) comment '用户表';
@@ -42,9 +42,9 @@ create table role
     name                 varchar(100) comment '名称',
     code                 varchar(100) comment '编码',
     descr                varchar(255) default '' comment '描述',
-    create_by            varchar(100) comment '记录创建人',
+    creator              varchar(100) comment '记录创建人',
     create_time          datetime comment '记录创建时间',
-    update_by            varchar(100) comment '记录修改人',
+    updater              varchar(100) comment '记录修改人',
     update_time          datetime comment '记录修改时间',
     primary key (id)
 ) comment '角色表';
@@ -63,9 +63,9 @@ create table user_and_role_ref
     id                   bigint not null auto_increment comment 'ID',
     user_id              bigint comment '用户ID',
     role_id              bigint comment '角色ID',
-    create_by            varchar(100) comment '记录创建人',
+    creator              varchar(100) comment '记录创建人',
     create_time          datetime comment '记录创建时间',
-    update_by            varchar(100) comment '记录修改人',
+    updater              varchar(100) comment '记录修改人',
     update_time          datetime comment '记录修改时间',
     primary key (id)
 ) comment '用户与角色关联表';
@@ -82,9 +82,9 @@ create table user_group
     name                 varchar(100) comment '名称',
     code                 varchar(100) comment '编码',
     descr                varchar(255) default '' comment '描述',
-    create_by            varchar(100) comment '记录创建人',
+    creator              varchar(100) comment '记录创建人',
     create_time          datetime comment '记录创建时间',
-    update_by            varchar(100) comment '记录修改人',
+    updater              varchar(100) comment '记录修改人',
     update_time          datetime comment '记录修改时间',
     primary key (id)
 ) comment '用户组';
@@ -103,9 +103,9 @@ create table user_group_and_user_ref
     id                   bigint not null auto_increment comment 'ID',
     user_group_id        bigint comment '用户组ID',
     user_id              bigint comment '用户ID',
-    create_by            varchar(100) comment '记录创建人',
+    creator              varchar(100) comment '记录创建人',
     create_time          datetime comment '记录创建时间',
-    update_by            varchar(100) comment '记录修改人',
+    updater              varchar(100) comment '记录修改人',
     update_time          datetime comment '记录修改时间',
     primary key (id)
 ) comment '用户组与用户关联表';
@@ -121,9 +121,9 @@ create table user_group_and_role_ref
     id                   bigint not null auto_increment comment 'ID',
     user_group_id        bigint comment '用户组ID',
     role_id              bigint comment '角色ID',
-    create_by            varchar(100) comment '记录创建人',
+    creator              varchar(100) comment '记录创建人',
     create_time          datetime comment '记录创建时间',
-    update_by            varchar(100) comment '记录修改人',
+    updater              varchar(100) comment '记录修改人',
     update_time          datetime comment '记录修改时间',
     primary key (id)
 )comment '用户组与角色关联表';
@@ -140,9 +140,9 @@ create table permission
     name                 varchar(100) default '' comment '名称',
     code                 varchar(100) comment '编码',
     type                 smallint comment '类型',
-    create_by            varchar(100) comment '记录创建人',
+    creator              varchar(100) comment '记录创建人',
     create_time          datetime comment '记录创建时间',
-    update_by            varchar(100) comment '记录修改人',
+    updater              varchar(100) comment '记录修改人',
     update_time          datetime comment '记录修改时间',
     primary key (id)
 ) comment '权限表';
@@ -161,9 +161,9 @@ create table role_and_permission_ref
     id                   bigint not null auto_increment comment 'ID',
     role_id              bigint comment '角色ID',
     permission_id        bigint comment '权限ID',
-    create_by            varchar(100) comment '记录创建人',
+    creator              varchar(100) comment '记录创建人',
     create_time          datetime comment '记录创建时间',
-    update_by            varchar(100) comment '记录修改人',
+    updater              varchar(100) comment '记录修改人',
     update_time          datetime comment '记录修改时间',
     primary key (id)
 ) comment '角色与权限关联表';
@@ -184,9 +184,9 @@ create table permission_menu
     parent_id            bigint comment '父级ID',
     is_parent            boolean default FALSE comment '是否父级',
     is_show              boolean default TRUE comment '是否显示',
-    create_by            varchar(100) comment '记录创建人',
+    creator              varchar(100) comment '记录创建人',
     create_time          datetime comment '记录创建时间',
-    update_by            varchar(100) comment '记录修改人',
+    updater              varchar(100) comment '记录修改人',
     update_time          datetime comment '记录修改时间',
     primary key (id)
 ) comment '菜单表';
@@ -204,9 +204,9 @@ create table permission_and_menu_ref
     id                   bigint not null auto_increment comment 'ID',
     permission_id        bigint comment '权限ID',
     menu_id              bigint comment '菜单ID',
-    create_by            varchar(100) comment '记录创建人',
+    creator              varchar(100) comment '记录创建人',
     create_time          datetime comment '记录创建时间',
-    update_by            varchar(100) comment '记录修改人',
+    updater              varchar(100) comment '记录修改人',
     update_time          datetime comment '记录修改时间',
     primary key (id)
 ) comment '权限与菜单关联表';
@@ -223,9 +223,9 @@ create table permission_element
     name                 varchar(100) default '' comment '名称',
     code                 varchar(100) comment '编码',
     type                 smallint comment '类型',
-    create_by            varchar(100) comment '记录创建人',
+    creator              varchar(100) comment '记录创建人',
     create_time          datetime comment '记录创建时间',
-    update_by            varchar(100) comment '记录修改人',
+    updater              varchar(100) comment '记录修改人',
     update_time          datetime comment '记录修改时间',
     primary key (id)
 ) comment '页面元素表';
@@ -243,9 +243,9 @@ create table permission_and_element_ref
     id                   bigint not null auto_increment comment 'ID',
     permission_id        bigint comment '权限ID',
     element_id           bigint comment '页面元素ID',
-    create_by            varchar(100) comment '记录创建人',
+    creator              varchar(100) comment '记录创建人',
     create_time          datetime comment '记录创建时间',
-    update_by            varchar(100) comment '记录修改人',
+    updater              varchar(100) comment '记录修改人',
     update_time          datetime comment '记录修改时间',
     primary key (id)
 ) comment '权限与页面元素关联表';
@@ -263,9 +263,9 @@ create table permission_file
     code                 varchar(100) comment '编码',
     type                 smallint comment '类型',
     path                 varchar(255) comment '路径',
-    create_by            varchar(100) comment '记录创建人',
+    creator              varchar(100) comment '记录创建人',
     create_time          datetime comment '记录创建时间',
-    update_by            varchar(100) comment '记录修改人',
+    updater              varchar(100) comment '记录修改人',
     update_time          datetime comment '记录修改时间',
     primary key (id)
 ) comment '文件表';
@@ -284,9 +284,9 @@ create table permission_and_file_ref
     id                   bigint not null auto_increment comment 'ID',
     permission_id        bigint comment '权限ID',
     file_id              bigint comment '文件ID',
-    create_by            varchar(100) comment '记录创建人',
+    creator              varchar(100) comment '记录创建人',
     create_time          datetime comment '记录创建时间',
-    update_by            varchar(100) comment '记录修改人',
+    updater              varchar(100) comment '记录修改人',
     update_time          datetime comment '记录修改时间',
     primary key (id)
 ) comment '权限与文件关联表';
@@ -306,9 +306,9 @@ create table permission_operation
     url_prefix           varchar(255) comment '拦截URL前缀',
     is_parent            boolean default FALSE comment '是否父级',
     parent_id            bigint comment '父级ID',
-    create_by            varchar(100) comment '记录创建人',
+    creator              varchar(100) comment '记录创建人',
     create_time          datetime comment '记录创建时间',
-    update_by            varchar(100) comment '记录修改人',
+    updater              varchar(100) comment '记录修改人',
     update_time          datetime comment '记录修改时间',
     primary key (id)
 ) comment '功能操作表';
@@ -327,9 +327,9 @@ create table permission_and_operation_ref
     id                   bigint not null auto_increment comment 'ID',
     permission_id        bigint comment '权限ID',
     operation_id         bigint comment '功能操作ID',
-    create_by            varchar(100) comment '记录创建人',
+    creator              varchar(100) comment '记录创建人',
     create_time          datetime comment '记录创建时间',
-    update_by            varchar(100) comment '记录修改人',
+    updater              varchar(100) comment '记录修改人',
     update_time          datetime comment '记录修改时间',
     primary key (id)
 ) comment '权限与功能操作关联表';

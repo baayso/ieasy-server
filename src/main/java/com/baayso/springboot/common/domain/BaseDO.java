@@ -27,11 +27,11 @@ import lombok.Setter;
 @Setter
 public class BaseDO extends IdEntity {
 
-    private static final long serialVersionUID = -3694675102885188955L;
+    private static final long serialVersionUID = 1L;
 
     @TableField(fill = FieldFill.INSERT)
     @JsonIgnore
-    protected String createBy;                  // 记录创建人
+    protected String creator;                   // 记录创建人
 
     @TableField(fill = FieldFill.INSERT)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
@@ -41,7 +41,7 @@ public class BaseDO extends IdEntity {
 
     @TableField(fill = FieldFill.INSERT_UPDATE)
     @JsonIgnore
-    protected String updateBy;                  // 记录修改人
+    protected String updater;                   // 记录修改人
 
     @TableField(fill = FieldFill.INSERT_UPDATE)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
@@ -52,12 +52,12 @@ public class BaseDO extends IdEntity {
     public BaseDO() {
     }
 
-    public BaseDO(Long id, String createBy, LocalDateTime createTime, String updateBy, LocalDateTime updateTime) {
+    public BaseDO(Long id, String creator, LocalDateTime createTime, String updater, LocalDateTime updateTime) {
         super(id);
 
-        this.createBy = createBy;
+        this.creator = creator;
         this.createTime = createTime;
-        this.updateBy = updateBy;
+        this.updater = updater;
         this.updateTime = updateTime;
     }
 
@@ -79,9 +79,9 @@ public class BaseDO extends IdEntity {
 
     @Deprecated
     public BaseDO initBeforeAdd(String actor, LocalDateTime dateTime) {
-        setCreateBy(actor);
+        setCreator(actor);
         setCreateTime(dateTime);
-        setUpdateBy(actor);
+        setUpdater(actor);
         setUpdateTime(dateTime);
 
         return this;
@@ -104,7 +104,7 @@ public class BaseDO extends IdEntity {
 
     @Deprecated
     public BaseDO initBeforeUpdate(String actor, LocalDateTime dateTime) {
-        setUpdateBy(actor);
+        setUpdater(actor);
         setUpdateTime(dateTime);
 
         return this;
@@ -127,7 +127,7 @@ public class BaseDO extends IdEntity {
 
     @Deprecated
     public BaseDO initBeforeDelete(String actor, LocalDateTime dateTime) {
-        setUpdateBy(actor);
+        setUpdater(actor);
         setUpdateTime(dateTime);
 
         return this;

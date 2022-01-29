@@ -25,12 +25,12 @@ public class InsertAndUpdateMetaObjectHandler implements MetaObjectHandler {
         String username = "default";
         LocalDateTime now = LocalDateTime.now();
 
-        // createBy 应当取当前操作用户的名称
-        this.strictInsertFill(metaObject, "createBy", String.class, username);
+        // creator 应当取当前操作用户的名称
+        this.strictInsertFill(metaObject, "creator", String.class, username);
         this.strictInsertFill(metaObject, "createTime", LocalDateTime.class, now);
 
-        // updateBy 应当取当前操作用户的名称
-        this.strictUpdateFill(metaObject, "updateBy", String.class, username);
+        // updater 应当取当前操作用户的名称
+        this.strictUpdateFill(metaObject, "updater", String.class, username);
         this.strictUpdateFill(metaObject, "updateTime", LocalDateTime.class, now);
 
         log.debug("end insert fill.");
@@ -40,8 +40,8 @@ public class InsertAndUpdateMetaObjectHandler implements MetaObjectHandler {
     public void updateFill(MetaObject metaObject) {
         log.info("start update fill...");
 
-        // updateBy 应当取当前操作用户的名称
-        this.strictUpdateFill(metaObject, "updateBy", String.class, "default");
+        // updater 应当取当前操作用户的名称
+        this.strictUpdateFill(metaObject, "updater", String.class, "default");
         this.strictUpdateFill(metaObject, "updateTime", LocalDateTime.class, LocalDateTime.now());
 
         log.info("end update fill.");
