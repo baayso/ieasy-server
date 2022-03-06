@@ -19,6 +19,8 @@ import com.baayso.springboot.demo.dao.DemoUserDAO;
 import com.baayso.springboot.demo.domain.DemoUserDO;
 import com.baayso.springboot.demo.domain.enums.OrderStatus;
 
+import lombok.extern.slf4j.Slf4j;
+
 
 /**
  * 测试业务。
@@ -26,6 +28,7 @@ import com.baayso.springboot.demo.domain.enums.OrderStatus;
  * @author ChenFangjie (2016/4/1 16:27)
  * @since 1.0.0
  */
+@Slf4j
 @Service
 public class DemoUserService extends AbstractBaseService<DemoUserDAO, DemoUserDO> {
 
@@ -110,11 +113,33 @@ public class DemoUserService extends AbstractBaseService<DemoUserDAO, DemoUserDO
     }
 
     @Async
-    public Future<Boolean> asyncSaves() throws InterruptedException {
+    public Future<Long> asyncSaves() throws InterruptedException {
+        long startTime = System.currentTimeMillis();
 
         TimeUnit.SECONDS.sleep(3L);
 
-        return AsyncResult.forValue(this.save());
+        long endTime = System.currentTimeMillis();
+
+        long time = endTime - startTime;
+
+        log.info("time: {}", time);
+
+        return AsyncResult.forValue(time);
+    }
+
+    @Async
+    public Future<Long> asyncSaves2() throws InterruptedException {
+        long startTime = System.currentTimeMillis();
+
+        TimeUnit.SECONDS.sleep(2L);
+
+        long endTime = System.currentTimeMillis();
+
+        long time = endTime - startTime;
+
+        log.info("time: {}", time);
+
+        return AsyncResult.forValue(time);
     }
 
     public boolean deletes(Long id) {

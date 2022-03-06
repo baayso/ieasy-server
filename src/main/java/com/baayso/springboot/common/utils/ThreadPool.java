@@ -19,7 +19,7 @@ public class ThreadPool {
 
     public static ExecutorService newThreadPool(String poolName) {
         final int poolSize = AVAILABLE_PROCESSORS + 1;
-        final int queueSize = AVAILABLE_PROCESSORS;
+        final int queueSize = AVAILABLE_PROCESSORS * 2;
 
         return new ThreadPoolExecutor(
                 poolSize,

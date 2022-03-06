@@ -1,7 +1,10 @@
 package com.baayso.springboot.demo.web;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 import javax.inject.Inject;
@@ -22,6 +25,9 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @RestController
 @RequestMapping("/api/demo")
 public class DemoApiController extends CommonController {
@@ -84,8 +90,26 @@ public class DemoApiController extends CommonController {
     }
 
     @RequestMapping("/creates/async")
-    public Future<Boolean> asyncCreates() throws InterruptedException {
-        return this.demoUserService.asyncSaves();
+    public Map<String, Long> asyncCreates() throws InterruptedException, ExecutionException {
+        long startTime = System.currentTimeMillis();
+
+        Future<Long> firstTask = this.demoUserService.asyncSaves();
+        Future<Long> secondTask = this.demoUserService.asyncSaves2();
+
+        Long firstTaskResult = firstTask.get();
+        Long secondTaskResult = secondTask.get();
+
+        long endTime = System.currentTimeMillis();
+
+        log.info("firstTaskResult: {}", firstTaskResult);
+        log.info("secondTaskResult: {}", secondTaskResult);
+
+        Map<String, Long> result = new HashMap<>(3);
+        result.put("firstTask", firstTaskResult);
+        result.put("secondTask", secondTaskResult);
+        result.put("total", endTime - startTime);
+
+        return result;
     }
 
     @RequestMapping("/update")
