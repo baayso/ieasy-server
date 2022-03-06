@@ -4,13 +4,13 @@
 > **代码生成器：https://gitee.com/baayso/ieasy-generator**  
 
 
-[![Jdk Version](https://img.shields.io/badge/JDK-1.8+-green.svg)](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
+[![Jdk Version](https://img.shields.io/badge/JDK-17+-green.svg)](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
 [![Build Status](https://travis-ci.org/baayso/ieasy-server.svg?branch=master)](https://travis-ci.org/baayso/ieasy-server)
 
 ## 环境要求：
-* Jdk 8.0+
-* Maven 3.2+
-* MySQL 5.5+
+* Jdk 17+
+* Maven 3.6+
+* MySQL 5.7+
 
 ## 框架：
 * 后端
@@ -28,7 +28,7 @@
    * git clone https://github.com/baayso/commons
    * **`build.bat`** (Windows) or **`./build.sh`** (Linux/Mac OS)
 1. git clone https://github.com/baayso/ieasy-server.git
-2. 安装 MySQL 5.5+
+2. 安装 MySQL 5.7+
 3. 执行 [SQL 脚本](https://github.com/baayso/ieasy-server/tree/master/sql/mysql/install)
    * Windows  
      **`sql\mysql\install\install.bat`**  
