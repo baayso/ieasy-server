@@ -8,6 +8,7 @@ import java.util.Locale;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -72,6 +73,25 @@ public class CommonController {
         }
 
         return response;
+    }
+
+    /**
+     * 获取 HTTP Session。
+     *
+     * @return {@linkplain HttpSession}
+     *
+     * @since 1.0.0
+     */
+    public static HttpSession getSession() {
+        HttpSession session = null;
+
+        RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
+
+        if (requestAttributes != null) {
+            session = ((ServletRequestAttributes) requestAttributes).getRequest().getSession(false);
+        }
+
+        return session;
     }
 
     /**
