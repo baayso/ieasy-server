@@ -2,7 +2,7 @@ package com.baayso.springboot.common.message;
 
 import java.util.Locale;
 
-import com.baayso.springboot.common.controller.CommonController;
+import com.baayso.commons.web.util.WebUtils;
 import com.baayso.springboot.common.exception.ApiException;
 
 /**
@@ -61,7 +61,7 @@ public class ErrorMeta implements Error<String> {
      * @return 返回exception
      */
     public ApiException getException(Object... params) {
-        return this.getException(CommonController.getLocal(), params);
+        return this.getException(WebUtils.getLocal(), params);
     }
 
     /**
@@ -71,7 +71,7 @@ public class ErrorMeta implements Error<String> {
      * @return 返回exception
      */
     public ApiException getExceptionData(Object data, Object... params) {
-        ApiException ex = this.getException(CommonController.getLocal(), params);
+        ApiException ex = this.getException(WebUtils.getLocal(), params);
         ex.setData(data);
         return ex;
     }

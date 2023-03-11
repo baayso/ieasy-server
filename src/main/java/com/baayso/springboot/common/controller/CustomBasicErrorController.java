@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.boot.autoconfigure.web.ErrorProperties;
 import org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController;
 import org.springframework.boot.autoconfigure.web.servlet.error.ErrorViewResolver;
+import org.springframework.boot.web.error.ErrorAttributeOptions;
 import org.springframework.boot.web.servlet.error.ErrorAttributes;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -60,13 +61,14 @@ public class CustomBasicErrorController extends BasicErrorController {
     @Override
     @RequestMapping
     public ResponseEntity<Map<String, Object>> error(HttpServletRequest request) {
-        HttpStatus status = getStatus(request);
+        HttpStatus status = super.getStatus(request);
 
         if (status == HttpStatus.NO_CONTENT) {
             return new ResponseEntity<>(status);
         }
 
-        Map<String, Object> body = getErrorAttributes(request, getErrorAttributeOptions(request, MediaType.ALL));
+        ErrorAttributeOptions errorAttributeOptions = super.getErrorAttributeOptions(request, MediaType.ALL);
+        Map<String, Object> body = super.getErrorAttributes(request, errorAttributeOptions);
 
         ResultVO<Map<String, Object>> result = new ResultVO<>();
         result.setSuccess(false);

@@ -4,7 +4,7 @@ import java.util.Objects;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.baayso.springboot.common.controller.CommonController;
+import com.baayso.commons.web.util.WebUtils;
 import com.baomidou.mybatisplus.extension.plugins.handler.TenantLineHandler;
 
 import net.sf.jsqlparser.expression.Expression;
@@ -20,7 +20,7 @@ public class BasicTenantLineHandler implements TenantLineHandler {
 
     @Override
     public Expression getTenantId() {
-        HttpServletRequest request = CommonController.getRequest();
+        HttpServletRequest request = WebUtils.getRequest();
         String tenantCode = request.getHeader("tenantCode");
 
         return new StringValue(tenantCode);
