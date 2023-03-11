@@ -4,6 +4,8 @@ CHCP 65001
 
 echo [Pre-Requirement] Makesure install JDK 8.0+ and set the JAVA_HOME.
 
+set APP_NAME="ieasy-server"
+
 set CURRENT_PATH=%cd%
 
 set PORT=%1%
@@ -21,8 +23,8 @@ echo %APP_OPTS%
 
 cd %CURRENT_PATH%
 
-echo java %JAVA_OPTS% -jar %CURRENT_PATH%/target/ieasy-server.jar %APP_OPTS%
+echo java %JAVA_OPTS% -jar %CURRENT_PATH%/target/%APP_NAME%.jar %APP_OPTS%
 
-java %JAVA_OPTS% -jar %CURRENT_PATH%/target/ieasy-server.jar %APP_OPTS%
+java %JAVA_OPTS% -jar %CURRENT_PATH%/target/%APP_NAME%.jar %APP_OPTS%
 
 pause

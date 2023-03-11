@@ -1,10 +1,13 @@
 #!/bin/bash
 
-PID=$(ps -ef | grep ieasy-server.jar | grep -v grep | awk '{ print $2 }')
+APP_NAME="ieasy-server"
 
-if [ -z "$PID" ]; then
-    echo Application is already stopped.
+PID=$(ps -ef | grep ${APP_NAME}.jar | grep -v grep | awk '{ print $2 }')
+
+if [ -z "${PID}" ]; then
+    echo "${APP_NAME}" is already stopped.
 else
-    echo kill $PID
-    kill $PID
+    echo kill "${PID}"
+    kill "${PID}"
+    echo "${APP_NAME}" stopped.
 fi
