@@ -12,9 +12,9 @@ import org.springframework.web.client.RestTemplate;
 
 import com.baayso.commons.sequence.Sequence;
 import com.baayso.commons.spring.SpringUtils;
-import com.baayso.commons.utils.JsonUtils;
 import com.baayso.commons.utils.Validator;
 import com.baayso.springboot.common.message.ErrorFactory;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * 公共配置。
@@ -32,7 +32,7 @@ public class CommonConfig {
     }
 
     @Bean
-    public RestTemplate restTemplate() {
+    public RestTemplate restTemplate(ObjectMapper objectMapper) {
         RestTemplate restTemplate = new RestTemplate(new OkHttp3ClientHttpRequestFactory());
 
         List<HttpMessageConverter<?>> messageConverterList = restTemplate.getMessageConverters();
@@ -40,7 +40,7 @@ public class CommonConfig {
         for (HttpMessageConverter<?> messageConverter : messageConverterList) {
             if (messageConverter instanceof MappingJackson2HttpMessageConverter) {
                 MappingJackson2HttpMessageConverter converter = (MappingJackson2HttpMessageConverter) messageConverter;
-                converter.setObjectMapper(JsonUtils.INSTANCE.getMapper());
+                converter.setObjectMapper(objectMapper);
             }
         }
 

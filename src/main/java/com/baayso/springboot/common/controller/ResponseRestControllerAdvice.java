@@ -2,6 +2,7 @@ package com.baayso.springboot.common.controller;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.Objects;
 
 import org.springdoc.webmvc.api.MultipleOpenApiResource;
 import org.springdoc.webmvc.ui.SwaggerConfigResource;
@@ -14,8 +15,8 @@ import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
+import com.baayso.commons.json.JsonSerializer;
 import com.baayso.commons.tool.BasicResponseStatus;
-import com.baayso.commons.utils.JsonUtils;
 import com.baayso.springboot.common.domain.ResultVO;
 
 /**
@@ -26,6 +27,12 @@ import com.baayso.springboot.common.domain.ResultVO;
  */
 @RestControllerAdvice
 public class ResponseRestControllerAdvice implements ResponseBodyAdvice<Object> {
+
+    private final JsonSerializer jsonSerializer;
+
+    public ResponseRestControllerAdvice(JsonSerializer jsonSerializer) {
+        this.jsonSerializer = jsonSerializer;
+    }
 
     @Override
     public boolean supports(MethodParameter returnType,
@@ -68,13 +75,14 @@ public class ResponseRestControllerAdvice implements ResponseBodyAdvice<Object> 
         result.setMessage(BasicResponseStatus.OK.getReason());
         result.setData(body);
 
+        Type genericParameterType = returnType.getGenericParameterType();
+
         // String类型需主动转为JSON字符串，否则会报
         // com.baayso.springboot.common.domain.ResultVO cannot be cast to java.lang.String
-
         // String类型不能直接包装，所以要进行些特别的处理
-        if (returnType.getGenericParameterType().equals(String.class)) {
+        if (Objects.equals(genericParameterType, String.class)) {
             // 将数据包装在ResultVO里后，再转换为json字符串响应给客户端
-            return JsonUtils.INSTANCE.toJson(result);
+            return this.jsonSerializer.toJson(result);
         }
 
         return result;

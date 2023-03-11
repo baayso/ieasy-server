@@ -51,13 +51,16 @@ spring:
     jackson:
         date-format: yyyy-MM-dd HH:mm:ss
         # joda-date-time-format: yyyy-MM-dd HH:mm:ss
-        default-property-inclusion: NON_NULL
+        # default-property-inclusion: NON_NULL
         time-zone: Asia/Shanghai
+        generator:
+            WRITE_BIGDECIMAL_AS_PLAIN: true
         serialization:
             WRITE_ENUMS_USING_TO_STRING: true
             FAIL_ON_EMPTY_BEANS: false
         deserialization:
             READ_ENUMS_USING_TO_STRING: true
+            FAIL_ON_UNKNOWN_PROPERTIES: false
     mvc:
         format:
             date: yyyy-MM-dd

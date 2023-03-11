@@ -11,13 +11,17 @@ import com.baayso.commons.tool.ResponseStatus;
  */
 public class ApiServiceException extends ApiException {
 
-    private static final long serialVersionUID = -3247721709918992766L;
+    private static final long serialVersionUID = 1L;
 
     public ApiServiceException() {
     }
 
     public ApiServiceException(String message) {
         super(message);
+    }
+
+    public ApiServiceException(String message, Object... args) {
+        super(message, args);
     }
 
     public ApiServiceException(ResponseStatus responseStatus) {
@@ -28,8 +32,16 @@ public class ApiServiceException extends ApiException {
         super(code, message);
     }
 
+    public ApiServiceException(int code, String message, Object... args) {
+        super(code, message, args);
+    }
+
     public ApiServiceException(ResponseStatus responseStatus, String message) {
         super(responseStatus, message);
+    }
+
+    public ApiServiceException(ResponseStatus responseStatus, String message, Object... args) {
+        super(responseStatus, message, args);
     }
 
 }

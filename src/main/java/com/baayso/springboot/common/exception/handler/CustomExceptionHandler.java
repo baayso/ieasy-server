@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import com.baayso.commons.exception.ApiException;
+import com.baayso.commons.json.JsonSerializer;
 import com.baayso.commons.tool.BasicResponseStatus;
 import com.baayso.commons.tool.ResponseStatus;
-import com.baayso.commons.utils.JsonUtils;
-import com.baayso.commons.web.WebUtils;
+import com.baayso.commons.web.util.WebUtils;
 import com.baayso.springboot.common.domain.ResultVO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -35,6 +35,12 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RestControllerAdvice
 public final class CustomExceptionHandler {
+
+    private final JsonSerializer jsonSerializer;
+
+    public CustomExceptionHandler(JsonSerializer jsonSerializer) {
+        this.jsonSerializer = jsonSerializer;
+    }
 
     /**
      * 处理ApiException异常。
@@ -156,7 +162,7 @@ public final class CustomExceptionHandler {
         Map<String, String> map = new HashMap<>(1);
         map.put("message", ex.getMessage());
 
-        log.error(JsonUtils.INSTANCE.toJson(map), ex);
+        log.error(this.jsonSerializer.toJson(map), ex);
     }
 
     /**
@@ -166,13 +172,14 @@ public final class CustomExceptionHandler {
      */
     public void logError(Exception ex, HttpServletRequest request) {
         String queryString = request.getQueryString();
+        String path = StringUtils.isNotBlank(queryString) ? (request.getRequestURI() + "?" + queryString) : request.getRequestURI();
 
         Map<String, String> map = new HashMap<>(3);
         map.put("message", ex.getMessage());
-        map.put("from", WebUtils.getRealIp(request));
-        map.put("path", StringUtils.isNotBlank(queryString) ? (request.getRequestURI() + "?" + queryString) : request.getRequestURI());
+        map.put("from", WebUtils.getClientIp(request));
+        map.put("path", path);
 
-        log.error(JsonUtils.INSTANCE.toJson(map), ex);
+        log.error(this.jsonSerializer.toJson(map), ex);
     }
 
 }
