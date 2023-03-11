@@ -3,6 +3,8 @@ package com.baayso.springboot.common.controller;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
+import org.springdoc.webmvc.api.MultipleOpenApiResource;
+import org.springdoc.webmvc.ui.SwaggerConfigResource;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -27,11 +29,12 @@ public class ResponseRestControllerAdvice implements ResponseBodyAdvice<Object> 
 
     @Override
     public boolean supports(MethodParameter returnType,
-                            Class<? extends HttpMessageConverter<?>> aClass) {
+                            Class<? extends HttpMessageConverter<?>> converterType) {
 
         Class<?> clazz = null;
 
         Type genericParameterType = returnType.getGenericParameterType();
+        Class<?> declaringClass = returnType.getDeclaringClass();
 
         if (genericParameterType instanceof Class<?>) {
             clazz = (Class<?>) genericParameterType;
@@ -41,17 +44,20 @@ public class ResponseRestControllerAdvice implements ResponseBodyAdvice<Object> 
             clazz = (Class<?>) type.getRawType();
         }
 
-        boolean invoke = ResultVO.class.equals(clazz) || ResponseEntity.class.equals(clazz);
+        boolean invoke = ResultVO.class.equals(clazz) ||
+                ResponseEntity.class.equals(clazz) ||
+                MultipleOpenApiResource.class.isAssignableFrom(declaringClass) ||
+                SwaggerConfigResource.class.isAssignableFrom(declaringClass);
 
         // 如果接口返回的类型本身就是ResultVO那就没有必要进行额外的操作，返回false
         return !invoke;
     }
 
     @Override
-    public Object beforeBodyWrite(Object data,
+    public Object beforeBodyWrite(Object body,
                                   MethodParameter returnType,
-                                  MediaType mediaType,
-                                  Class<? extends HttpMessageConverter<?>> aClass,
+                                  MediaType selectedContentType,
+                                  Class<? extends HttpMessageConverter<?>> selectedConverterType,
                                   ServerHttpRequest request,
                                   ServerHttpResponse response) {
 
@@ -60,7 +66,7 @@ public class ResponseRestControllerAdvice implements ResponseBodyAdvice<Object> 
         result.setSuccess(true);
         result.setCode(BasicResponseStatus.OK.value());
         result.setMessage(BasicResponseStatus.OK.getReason());
-        result.setData(data);
+        result.setData(body);
 
         // String类型需主动转为JSON字符串，否则会报
         // com.baayso.springboot.common.domain.ResultVO cannot be cast to java.lang.String
