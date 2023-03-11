@@ -1,119 +1,119 @@
 info:
-    name: ieasy-server # @project.artifactId@
-    version: 4.0.0.Alpha # @project.version@
-    description: Spring Boot 脚手架项目 # @project.description@
+  name: ieasy-server # @project.artifactId@
+  version: 4.0.0.Alpha # @project.version@
+  description: Spring Boot 脚手架项目 # @project.description@
 
 server:
-    port: 8888
-    shutdown: graceful
-    compression:
-        enabled: true
-        mime-types: text/html,application/xml,application/json,application/javascript,text/css,text/plain
-        min-response-size: 1024
-    ssl:
-        enabled: false
-        key-store: classpath:config/sample.jks
-        key-store-password: secret
-        key-password: password
-    servlet:
-        context-path: /
-        encoding:
-            charset: UTF-8
-            enabled: true
-            force: true
-    http2:
-        enabled: true
-    error:
-        path: /error
-    undertow:
-        accesslog:
-            enabled: false
-            dir: ./logs/undertow
+  port: 8888
+  shutdown: graceful
+  compression:
+    enabled: true
+    mime-types: text/html,application/xml,application/json,application/javascript,text/css,text/plain
+    min-response-size: 1024
+  ssl:
+    enabled: false
+    key-store: classpath:config/sample.jks
+    key-store-password: secret
+    key-password: password
+  servlet:
+    context-path: /
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  http2:
+    enabled: true
+  error:
+    path: /error
+  undertow:
+    accesslog:
+      enabled: false
+      dir: ./logs/undertow
 
 logging:
-    config: classpath:config/log4j2.xml
+  config: classpath:config/log4j2.xml
 
 management:
-    server:
-        base-path: /management
-        port: ${server.port}
-    endpoints:
-        web:
-            base-path: /
+  server:
+    base-path: /management
+    port: ${server.port}
+  endpoints:
+    web:
+      base-path: /
 
 spring:
-    profiles:
-        active: dev
-    application:
-        name: ${info.name}
-        admin:
-            enabled: false
-    jackson:
-        date-format: yyyy-MM-dd HH:mm:ss
-        # joda-date-time-format: yyyy-MM-dd HH:mm:ss
-        # default-property-inclusion: NON_NULL
-        time-zone: Asia/Shanghai
-        generator:
-            WRITE_BIGDECIMAL_AS_PLAIN: true
-        serialization:
-            WRITE_ENUMS_USING_TO_STRING: true
-            FAIL_ON_EMPTY_BEANS: false
-        deserialization:
-            READ_ENUMS_USING_TO_STRING: true
-            FAIL_ON_UNKNOWN_PROPERTIES: false
-    mvc:
-        format:
-            date: yyyy-MM-dd
-            date-time: yyyy-MM-dd HH:mm:ss
-        view:
-            prefix: /templates/
-            suffix: .html
-    cache:
-        type: redis
-        cache-names: ieasy
-        redis:
-            time-to-live: 5000ms
-            cache-null-values: false
-    freemarker:
-        enabled: false
-        cache: false
-        request-context-attribute: request
-        template-loader-path: classpath:/templates/
+  profiles:
+    active: dev
+  application:
+    name: ${info.name}
+    admin:
+      enabled: false
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    # joda-date-time-format: yyyy-MM-dd HH:mm:ss
+    # default-property-inclusion: NON_NULL
+    time-zone: Asia/Shanghai
+    generator:
+      WRITE_BIGDECIMAL_AS_PLAIN: true
+    serialization:
+      WRITE_ENUMS_USING_TO_STRING: true
+      FAIL_ON_EMPTY_BEANS: false
+    deserialization:
+      READ_ENUMS_USING_TO_STRING: true
+      FAIL_ON_UNKNOWN_PROPERTIES: false
+  mvc:
+    format:
+      date: yyyy-MM-dd
+      date-time: yyyy-MM-dd HH:mm:ss
+    view:
+      prefix: /templates/
+      suffix: .html
+  cache:
+    type: redis
+    cache-names: ieasy
+    redis:
+      time-to-live: 5000ms
+      cache-null-values: false
+  freemarker:
+    enabled: false
+    cache: false
+    request-context-attribute: request
+    template-loader-path: classpath:/templates/
 #    security:
-#        user:
-#            name: baayso
-#            password: baayso
-#            roles: admin
+#      user:
+#        name: baayso
+#        password: baayso
+#        roles: admin
 
 springdoc:
-    swagger-ui:
-        path: /swagger-ui.html
-        tags-sorter: alpha
-        operations-sorter: alpha
-    api-docs:
-        path: /v3/api-docs
-    group-configs:
-        - group: 'default'
-          paths-to-match: '/**'
-          packages-to-scan: com.baayso.springboot
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+  api-docs:
+    path: /v3/api-docs
+  group-configs:
+    - group: 'default'
+      paths-to-match: '/**'
+      packages-to-scan: com.baayso.springboot
 
 mybatis-plus:
-    config-location: classpath:config/mybatis-config.xml
-    mapper-locations: classpath*:mybatis/**/*.xml
-    # 实体扫描，多个package用逗号或者分号分隔
-    # type-aliases-package: com.baayso.**.domain
-    # 配置扫描通用枚举
-    type-enums-package: com.baayso.**.domain.enums
-    # 指定 MyBatis 的执行器
-    executor-type: REUSE
-    global-config:
-        db-config:
-            # 逻辑删除配置
-            logic-delete-value: 'true' # 逻辑已删除值(默认为 1)
-            logic-not-delete-value: 'false' # 逻辑未删除值(默认为 0)
+  config-location: classpath:config/mybatis-config.xml
+  mapper-locations: classpath*:mybatis/**/*.xml
+  # 实体扫描，多个package用逗号或者分号分隔
+  # type-aliases-package: com.baayso.**.domain
+  # 配置扫描通用枚举
+  type-enums-package: com.baayso.**.domain.enums
+  # 指定 MyBatis 的执行器
+  executor-type: REUSE
+  global-config:
+    db-config:
+      # 逻辑删除配置
+      logic-delete-value: 'true' # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 'false' # 逻辑未删除值(默认为 0)
 
 i18n:
-    # 配置国际化消息
-    isv-modules:
-        - i18n/isv/error
-        - i18n/isv/user_error
+  # 配置国际化消息
+  isv-modules:
+    - i18n/isv/error
+    - i18n/isv/user_error

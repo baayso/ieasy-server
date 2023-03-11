@@ -1,58 +1,58 @@
 server:
-    undertow:
-        accesslog:
-            enabled: false
-    servlet:
-        jsp:
-            init-parameters:
-                development: true
+  undertow:
+    accesslog:
+      enabled: false
+  servlet:
+    jsp:
+      init-parameters:
+        development: true
 
 logging:
-    level:
-        com.baayso: DEBUG
+  level:
+    com.baayso: DEBUG
 
 spring:
-    redis:
-        database: 0
-        host: 127.0.0.1
-        port: 6379
-        password:
-        jedis:
-            pool:
-                max-active: 8
-                max-idle: 8
-                max-wait: -1ms
-                min-idle: 0
-        timeout: 5000ms
-    datasource:
-        url: jdbc:mysql://127.0.0.1:3306/ieasy_server?allowPublicKeyRetrieval=true&useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
-        username: root
-        password: root
-        druid:
-            initial-size: 1
-            min-idle: 1
-            max-active: 8
-            # 如果用Oracle则把poolPreparedStatements配置为true，MySQL可以配置为false。分库分表较多的数据库建议配置为false。
-            poolPreparedStatements: false
-            filter:
-                stat:
-                    enabled: true
-                    log-slow-sql: true
-                wall:
-                    enabled: true
-                slf4j:
-                    enabled: true
-                    statement-create-after-log-enabled: false
-                    statement-close-after-log-enabled: false
-                    result-set-open-after-log-enabled: false
-                    result-set-close-after-log-enabled: false
-            stat-view-servlet:
-                enabled: true
-                url-pattern: /druid/*
-                reset-enable: false
-                login-username: baayso
-                login-password: baayso
-            web-stat-filter:
-                enabled: true
-                url-pattern: /*
-                exclusions: /druid,/druid/*
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    password:
+    jedis:
+      pool:
+        max-active: 8
+        max-idle: 8
+        max-wait: -1ms
+        min-idle: 0
+    timeout: 5000ms
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/ieasy_server?allowPublicKeyRetrieval=true&useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
+    username: root
+    password: root
+    druid:
+      initial-size: 1
+      min-idle: 1
+      max-active: 8
+      # 如果用Oracle则把poolPreparedStatements配置为true，MySQL可以配置为false。分库分表较多的数据库建议配置为false。
+      poolPreparedStatements: false
+      filter:
+        stat:
+          enabled: true
+          log-slow-sql: true
+        wall:
+          enabled: true
+        slf4j:
+          enabled: true
+          statement-create-after-log-enabled: false
+          statement-close-after-log-enabled: false
+          result-set-open-after-log-enabled: false
+          result-set-close-after-log-enabled: false
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        reset-enable: false
+        login-username: baayso
+        login-password: baayso
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+        exclusions: /druid,/druid/*
